@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": [
+    "source.addMissingImports",
+    "source.fixAll.eslint",
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#0080ff",
+  },
+  "editor.tokenColorCustomizations": {
+    "comments": "#a59680"
+  },
+}
