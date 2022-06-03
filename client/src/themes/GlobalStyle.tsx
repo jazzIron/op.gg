@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
-import { Gothic, GothicBold } from '../asset/fonts';
-import { colors } from './index';
+import { theme } from '@src/themes';
+import { AppleSDGothicNeoB, AppleSDGothicNeoR } from '@src/asset/fonts';
 export default function GlobalStyle(): JSX.Element {
   return (
     <Global
@@ -73,7 +73,7 @@ export default function GlobalStyle(): JSX.Element {
           -webkit-text-size-adjust: none;
           -ms-text-size-adjust: none;
           scroll-behavior: smooth;
-          background-color: ${colors.bg_gray};
+          background-color: ${theme.colors.white};
         }
 
         #root {
@@ -136,12 +136,12 @@ export default function GlobalStyle(): JSX.Element {
         }
 
         @font-face {
-          font-family: 'Gothic';
-          src: url(${Gothic});
+          font-family: 'AppleSDGothicNeoR';
+          src: url(${AppleSDGothicNeoR});
         }
         @font-face {
-          font-family: 'GothicBold';
-          src: url(${GothicBold});
+          font-family: 'AppleSDGothicNeoB';
+          src: url(${AppleSDGothicNeoB});
         }
       `}
     />

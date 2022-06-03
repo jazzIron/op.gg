@@ -1,2 +1,11 @@
 export * from '../themes/GlobalStyle';
-export { Gothic, GothicBold, GothicLight, GothicUltraLight } from './fonts';
+export {
+  AppleSDGothicNeoB,
+  AppleSDGothicNeoEB,
+  AppleSDGothicNeoH,
+  AppleSDGothicNeoL,
+  AppleSDGothicNeoR,
+  AppleSDGothicNeoSB,
+  AppleSDGothicNeoT,
+  AppleSDGothicNeoUL,
+} from './fonts';

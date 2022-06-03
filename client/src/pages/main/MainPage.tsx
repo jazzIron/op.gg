@@ -1,7 +1,12 @@
 import styled from '@emotion/styled';
+import { Header } from '@src/layout/header/Header';
 
 export function MainPage() {
-  return <MainPageStyled>메인페이지 </MainPageStyled>;
+  return (
+    <MainPageStyled>
+      <Header />
+    </MainPageStyled>
+  );
 }
 
 const MainPageStyled = styled.div``;
