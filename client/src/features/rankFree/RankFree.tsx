@@ -42,4 +42,5 @@ const RankSoloType = styled.div`
 `;
 const RankSoloInfo = styled.div`
   ${fonts.textStyle11};
+  font-weight: bold;
 `;

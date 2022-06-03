@@ -18,27 +18,26 @@ const fonts: { [key: string]: SerializedStyles } = {
   textStyle03: css`
     font-family: 'AppleSDGothicNeoB';
     font-size: 20px;
-    letter-spacing: -0.77px;
+    letter-spacing: 0px;
     color: ${colors.charcoal};
     font-weight: bold;
   `,
   textStyle04: css`
     font-family: 'AppleSDGothicNeoR';
     font-size: 11px;
-    letter-spacing: -0.42px;
+    letter-spacing: 0px;
     color: ${colors.slate_grey};
   `,
   textStyle05: css`
-    font-family: 'HelveticaBold';
+    font-family: 'Helvetica';
     font-size: 11px;
-    letter-spacing: -0.42px;
+    letter-spacing: 0px;
     color: ${colors.grey_temp};
-    font-weight: bold;
   `,
   textStyle06: css`
     font-family: 'Helvetica';
     font-size: 11px;
-    letter-spacing: -0.42px;
+    letter-spacing: 0px;
     color: ${colors.slate_grey};
   `,
   textStyle08: css`
@@ -62,11 +61,10 @@ const fonts: { [key: string]: SerializedStyles } = {
   `,
 
   textStyle11: css`
-    font-family: 'HelveticaBold';
+    font-family: 'Helvetica';
     font-size: 13px;
     letter-spacing: 0px;
     color: ${colors.grey_temp};
-    font-weight: bold;
   `,
 };
 

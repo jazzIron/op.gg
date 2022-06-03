@@ -84,6 +84,7 @@ const SummonerInfoWrapper = styled.div`
     }
     > span:nth-of-type(2) {
       ${fonts.textStyle05}
+      font-weight: bold;
     }
     > span:nth-of-type(3) {
       ${fonts.textStyle06}
@@ -109,6 +110,7 @@ const TierTag = () => {
     ${fonts.textStyle06}
     > span {
       ${fonts.textStyle05}
+      font-weight: bold;
     }
   `;
 

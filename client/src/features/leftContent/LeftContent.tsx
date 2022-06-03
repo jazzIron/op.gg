@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ChampionRate } from '../championRate/ChampionRate';
 import { RankFree } from '../rankFree/RankFree';
 import { RankSolo } from '../rankSolo/RankSolo';
 
@@ -7,6 +8,7 @@ export function LeftContent() {
     <LeftContentWrapper>
       <RankSolo />
       <RankFree />
+      <ChampionRate />
     </LeftContentWrapper>
   );
 }
