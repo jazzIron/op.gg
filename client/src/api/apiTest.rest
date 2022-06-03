@@ -1,0 +1,22 @@
+### example
+
+
+### 1. 소환사 기본 정보 API
+get https://codingtest.op.gg/api/summoner/{summonerName}
+
+
+### 2. 소환사 most info API
+get https://codingtest.op.gg/api/summoner/{summonerName}/mostInfo
+
+### 3. 소환사 match list API
+get https://codingtest.op.gg/api/summoner/{summonerName}/matches
+
+
+### 4. 소환사 match 상세정보 API
+get https://codingtest.op.gg/api/summoner/{summonerName}/matchDetail/{gameId}
+
+
+### 5. 아이템 정보 API
+get http://ddragon.leagueoflegends.com/cdn/10.15.1/data/ko_KR/item.json
+
+
