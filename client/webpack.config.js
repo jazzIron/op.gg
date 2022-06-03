@@ -120,7 +120,7 @@ module.exports = (env) => {
             {
               loader: 'url-loader',
               options: {
-                limit: 20000,
+                limit: 30000,
                 fallback: 'file-loader',
                 name: '[name].[ext]?[hash]',
               },
@@ -159,13 +159,13 @@ module.exports = (env) => {
       new Dotenv({
         path: DOTENV_PATH,
       }),
-      // new webpack.BannerPlugin({
-      //   banner: `
-      //   Build Date: ${new Date().toLocaleString()}
-      //   Commit Version: ${childProcess.execSync('git rev-parse --short HEAD')},
-      //   Author: ${childProcess.execSync('git config user.name')}
-      // `,
-      // }),
+      new webpack.BannerPlugin({
+        banner: `
+        Build Date: ${new Date().toLocaleString()}
+        Commit Version: ${childProcess.execSync('git rev-parse --short HEAD')},
+        Author: ${childProcess.execSync('git config user.name')}
+      `,
+      }),
       //css 파일과 js파일을 각각 html파일의 link태그, script태그로 추가
       new HtmlWebpackPlugin({
         template: './public/index.html',
@@ -173,7 +173,7 @@ module.exports = (env) => {
         favicon: `./public/favicon.ico`,
         hash: true,
         templateParameters: {
-          env: env.mode === 'development' ? '(개발용)' : '',
+          env: env.mode === 'development' ? '[DEV]' : '',
         },
         minify:
           // 디버깅쉽게 하기위해 production 환경에서만 설정

@@ -1,9 +1,11 @@
-import adc from '@assets/icons/icon-mostposition-adc.svg';
-import mid from '@assets/icon/icon-mostposition-mid.svg';
-import sup from '@assets/icon/icon-mostposition-sup.svg';
+import adc from '../../asset/images/icons/icon-mostposition-adc.svg';
+import mid from '../../asset/images/icons/icon-mostposition-mid.svg';
+import sup from '../../asset/images/icons/icon-mostposition-sup.svg';
+import unranked from '../../asset/images/icons/unranked.png';
 
 export const ICON_LIST: { [key: string]: string } = {
   adc,
   mid,
   sup,
+  unranked,
 };

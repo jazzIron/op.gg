@@ -1,71 +1,72 @@
 import { css, SerializedStyles } from '@emotion/react';
+import colors from '@src/themes/emotion/colors';
 
 const fonts: { [key: string]: SerializedStyles } = {
-  h0: css`
-    font-family: 'AppleSDGothicNeoB';
-    font-size: 24px;
-    line-height: 34px;
+  textStyle01: css`
+    font-family: 'Helvetica';
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: ${colors.grey_temp};
   `,
-  h1_b: css`
+  textStyle02: css`
+    font-family: 'HelveticaBold';
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: ${colors.grey_temp};
+    font-weight: bold;
+  `,
+  textStyle03: css`
     font-family: 'AppleSDGothicNeoB';
     font-size: 20px;
-    line-height: 28px;
+    letter-spacing: -0.77px;
+    color: ${colors.charcoal};
+    font-weight: bold;
   `,
-  h1: css`
+  textStyle04: css`
     font-family: 'AppleSDGothicNeoR';
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 28px;
+    font-size: 11px;
+    letter-spacing: -0.42px;
+    color: ${colors.slate_grey};
   `,
-  h2_b: css`
-    font-family: 'AppleSDGothicNeoB';
-    font-size: 18px;
-    line-height: 28px;
+  textStyle05: css`
+    font-family: 'HelveticaBold';
+    font-size: 11px;
+    letter-spacing: -0.42px;
+    color: ${colors.grey_temp};
+    font-weight: bold;
   `,
-  h2: css`
-    font-family: 'AppleSDGothicNeoR';
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 25px;
+  textStyle06: css`
+    font-family: 'Helvetica';
+    font-size: 11px;
+    letter-spacing: -0.42px;
+    color: ${colors.slate_grey};
   `,
-  body_01_b: css`
-    font-family: 'AppleSDGothicNeoB';
-    font-size: 16px;
-    line-height: 24px;
-  `,
-  body_01: css`
-    font-family: 'AppleSDGothicNeoR';
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 24px;
-  `,
-  body_02_b: css`
-    font-family: 'AppleSDGothicNeoB';
+  textStyle08: css`
+    font-family: 'Helvetica';
     font-size: 14px;
-    line-height: 22px;
+    letter-spacing: 0px;
+    color: ${colors.dull_yellow};
   `,
-  body_02: css`
+  textStyle09: css`
     font-family: 'AppleSDGothicNeoR';
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 22px;
+    font-size: 11px;
+    letter-spacing: 0px;
+    color: ${colors.grey_temp};
   `,
-  body_03_b: css`
-    font-family: 'AppleSDGothicNeoB';
-    font-size: 12px;
-    line-height: 20px;
+  textStyle10: css`
+    font-family: 'HelveticaBold';
+    font-size: 15px;
+    letter-spacing: 0px;
+    color: ${colors.bluish};
+    font-weight: bold;
   `,
-  body_03: css`
-    font-family: 'AppleSDGothicNeoR';
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 20px;
-  `,
-  p1: css`
-    font-family: 'AppleSDGothicNeoR';
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 18px;
+
+  textStyle11: css`
+    font-family: 'HelveticaBold';
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: ${colors.grey_temp};
+    font-weight: bold;
   `,
 };
 

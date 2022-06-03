@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
 import { theme } from '@src/themes';
-import { AppleSDGothicNeoB, AppleSDGothicNeoR } from '@src/asset/fonts';
+import { AppleSDGothicNeoB, AppleSDGothicNeoR, Helvetica, HelveticaBold } from '@src/asset/fonts';
 export default function GlobalStyle(): JSX.Element {
   return (
     <Global
@@ -142,6 +142,14 @@ export default function GlobalStyle(): JSX.Element {
         @font-face {
           font-family: 'AppleSDGothicNeoB';
           src: url(${AppleSDGothicNeoB});
+        }
+        @font-face {
+          font-family: 'Helvetica';
+          src: url(${Helvetica});
+        }
+        @font-face {
+          font-family: 'HelveticaBold';
+          src: url(${HelveticaBold});
         }
       `}
     />
