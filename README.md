@@ -34,8 +34,10 @@
 
 ## Project Setting
 
-- Yarn berry의 PnP 기능을 사용할 때 TypeScript가 작동 하도록 추가 구성 필요
-  - VSCode에서는 사용자 지정 TypeScript 설정을 명시적으로 활성화
+```bash
+# yarn package setting
+yarn install
+```
 
 
 ## Development 🛠
