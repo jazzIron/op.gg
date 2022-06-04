@@ -1,20 +1,40 @@
 import styled from '@emotion/styled';
-import { ChampionRate } from '../championRate/ChampionRate';
+import { Tab } from '@src/components/tab/Tab';
+import { ChampionRate, ChampionRateSummary } from '../championRate';
 import { RankFree } from '../rankFree/RankFree';
 import { RankSolo } from '../rankSolo/RankSolo';
+
+const tabItems = [
+  {
+    id: 1,
+    label: '챔피언 승률',
+  },
+  {
+    id: 2,
+    label: '7일간 랭크 승률',
+  },
+];
+
+const tabContents = [
+  {
+    content: <ChampionRate />,
+  },
+  {
+    content: <ChampionRateSummary />,
+  },
+];
 
 export function LeftContent() {
   return (
     <LeftContentWrapper>
       <RankSolo />
       <RankFree />
-      <ChampionRate />
+      <Tab tabItem={tabItems} tabContent={tabContents} />
     </LeftContentWrapper>
   );
 }
 
 const LeftContentWrapper = styled.div`
-  background-color: blue;
   > div {
     margin-bottom: 8px;
   }

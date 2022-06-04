@@ -13,7 +13,8 @@ export function Content() {
 
 const ContentWrapper = styled.div`
   background-color: yellow;
-  padding: 10px 180px;
+  /* padding: 10px 180px; */
+  padding: 10px 50px;
   height: calc(100vh - 97px - 175px);
   display: flex;
   flex-direction: row;
