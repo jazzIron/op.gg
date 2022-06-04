@@ -74,6 +74,7 @@ export default function GlobalStyle(): JSX.Element {
           -ms-text-size-adjust: none;
           scroll-behavior: smooth;
           background-color: ${theme.colors.white};
+          overflow: auto;
         }
 
         #root {

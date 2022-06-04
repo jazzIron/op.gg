@@ -12,18 +12,20 @@ export function Content() {
 }
 
 const ContentWrapper = styled.div`
-  background-color: yellow;
-  /* padding: 10px 180px; */
-  padding: 10px 50px;
+  padding: 10px 180px;
   height: calc(100vh - 97px - 175px);
   display: flex;
   flex-direction: row;
 
   > div:nth-of-type(1) {
     flex-shrink: 0;
-    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
   }
   > div:nth-of-type(2) {
     flex-grow: 1;
+    max-width: 960px;
+    min-width: 960px;
+    margin-left: 10px;
   }
 `;

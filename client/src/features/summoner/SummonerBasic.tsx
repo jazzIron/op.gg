@@ -28,6 +28,7 @@ export function SummonerBasic() {
 const SummonerBasicWrapper = styled.div`
   border-bottom: 1px solid ${colors.white_three};
   padding: 15px 200px 12px 200px;
+  min-width: 1000px;
 `;
 const SummonerBasicStyled = styled.div`
   display: flex;

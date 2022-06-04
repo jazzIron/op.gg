@@ -23,16 +23,32 @@ export function ChampionRate() {
           </PlayedWrapper>
         </ChampionDetailWrapper>
       </ChampionBoxWrapper>
+      <ChampionBoxWrapper>
+        <ChampionAvatarWrapper>
+          <img src="https://opgg-static.akamaized.net/images/lol/champion/Jayce.png?image=w_30&v=1" />
+        </ChampionAvatarWrapper>
+        <ChampionDetailWrapper>
+          <InfoWrapper>
+            <div>신지드</div>
+            <div>CS 67.8 (2.4)</div>
+          </InfoWrapper>
+          <KdaWrapper>
+            <div>2.47:1 평점</div>
+            <div>4.3 / 6.1 / 10.7</div>
+          </KdaWrapper>
+          <PlayedWrapper>
+            <div>69%</div>
+            <div>35게임</div>
+          </PlayedWrapper>
+        </ChampionDetailWrapper>
+      </ChampionBoxWrapper>
     </ChampionRateWrapper>
   );
 }
 
 const ChampionRateWrapper = styled.div`
   background-color: ${colors.white_five};
-  > div {
-    border-bottom: 1px solid ${colors.silver_three};
-  }
-  > div:nth-last-of-type() {
+  > div:last-child {
     border-bottom: 0px;
   }
 `;
@@ -42,6 +58,7 @@ const ChampionBoxWrapper = styled.div`
   align-items: center;
   gap: 8px;
   padding: 4px 15px;
+  border-bottom: 1px solid ${colors.silver_three};
 `;
 
 const ChampionAvatarWrapper = styled.div`

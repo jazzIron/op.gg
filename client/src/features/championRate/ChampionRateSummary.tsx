@@ -7,7 +7,10 @@ export function ChampionRateSummary() {
     <ChampionRateSummaryWrapper>
       <ChampionBoxWrapper>
         <ChampionAvatarWrapper>
-          <img src="https://opgg-static.akamaized.net/images/lol/champion/Jayce.png?image=w_30&v=1" />
+          <img
+            src="https://opgg-static.akamaized.net/images/lol/champion/Jayce.png?image=w_30&v=1"
+            alt="ChampionAvatarImg"
+          />
         </ChampionAvatarWrapper>
         <ChampionDetailWrapper>
           <InfoWrapper>
@@ -27,10 +30,7 @@ export function ChampionRateSummary() {
 
 const ChampionRateSummaryWrapper = styled.div`
   background-color: ${colors.white_five};
-  > div {
-    border-bottom: 1px solid ${colors.silver_three};
-  }
-  > div:nth-last-of-type() {
+  > div:last-child {
     border-bottom: 0px;
   }
 `;
@@ -40,6 +40,7 @@ const ChampionBoxWrapper = styled.div`
   align-items: center;
   gap: 8px;
   padding: 4px 8px 4px 15px;
+  border-bottom: 1px solid ${colors.silver_three};
 `;
 
 const ChampionAvatarWrapper = styled.div`
@@ -76,6 +77,6 @@ const RateWrapper = styled.div`
 `;
 
 const RateGraphWrapper = styled.div`
-  min-width: 123px;
+  min-width: 111px;
   padding-left: 12px;
 `;
