@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import { colors } from '@src/themes';
-import { MatchItem } from './MatchItem';
-import { MatchTeam } from './MatchTeam';
+import { MatchBox } from './MatchBox';
 
 export function MatchList() {
   return (
     <MatchListWrapper>
-      <MatchItem />
-      <MatchTeam />
+      <MatchBox />
     </MatchListWrapper>
   );
 }

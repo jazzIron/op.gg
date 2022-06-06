@@ -9,7 +9,7 @@ get https://codingtest.op.gg/api/summoner/{summonerName}
 get https://codingtest.op.gg/api/summoner/{summonerName}/mostInfo
 
 ### 3. 소환사 match list API
-get https://codingtest.op.gg/api/summoner/{summonerName}/matches
+get https://codingtest.op.gg/api/summoner/Hide on bush/matches
 
 
 ### 4. 소환사 match 상세정보 API

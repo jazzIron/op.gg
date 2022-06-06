@@ -1,0 +1,1293 @@
+{
+    "games": [
+      {
+        "mmr": 1004,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "262437815",
+        "createDate": 1654501833,
+        "gameLength": 1310,
+        "gameType": "무작위 총력전",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 1,
+            "assist": 3,
+            "kdaString": "12.00:1",
+            "cs": 146,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "19%",
+            "goldEarned": 421,
+            "totalDamageDealtToChampions": 4766,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 448,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "314179214",
+        "createDate": 1654498390,
+        "gameLength": 1349,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 10,
+            "death": 6,
+            "assist": 2,
+            "kdaString": "2.00:1",
+            "cs": 161,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "11%",
+            "goldEarned": 1575,
+            "totalDamageDealtToChampions": 2918,
+            "largestMultiKillString": "",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1358,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Jayce.png",
+          "level": 12
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/2031.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "202920703",
+        "createDate": 1654496129,
+        "gameLength": 1448,
+        "gameType": "자유 5:5 랭크",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 1,
+            "death": 4,
+            "assist": 2,
+            "kdaString": "0.75:1",
+            "cs": 145,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "35%",
+            "goldEarned": 5212,
+            "totalDamageDealtToChampions": 5796,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1096,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "383317482",
+        "createDate": 1654493560,
+        "gameLength": 1475,
+        "gameType": "일반",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 5,
+            "death": 6,
+            "assist": 1,
+            "kdaString": "1.00:1",
+            "cs": 173,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "52%",
+            "goldEarned": 320,
+            "totalDamageDealtToChampions": 4025,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 2529,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Qiyana.png",
+          "level": 3
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "461988716",
+        "createDate": 1654490062,
+        "gameLength": 2301,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 8,
+            "death": 10,
+            "assist": 4,
+            "kdaString": "1.20:1",
+            "cs": 174,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "10%",
+            "goldEarned": 4717,
+            "totalDamageDealtToChampions": 4572,
+            "largestMultiKillString": "",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 2065,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "139139581",
+        "createDate": 1654487749,
+        "gameLength": 1038,
+        "gameType": "일반",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 4,
+            "assist": 1,
+            "kdaString": "2.50:1",
+            "cs": 128,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "51%",
+            "goldEarned": 5516,
+            "totalDamageDealtToChampions": 5094,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 1920,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "90746207",
+        "createDate": 1654485512,
+        "gameLength": 811,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 3,
+            "death": 3,
+            "assist": 5,
+            "kdaString": "2.67:1",
+            "cs": 145,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "19%",
+            "goldEarned": 3150,
+            "totalDamageDealtToChampions": 2243,
+            "largestMultiKillString": "",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 748,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "414665304",
+        "createDate": 1654482392,
+        "gameLength": 3562,
+        "gameType": "자유 5:5 랭크",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 4,
+            "death": 9,
+            "assist": 5,
+            "kdaString": "1.00:1",
+            "cs": 111,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "36%",
+            "goldEarned": 2187,
+            "totalDamageDealtToChampions": 5424,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 3271,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Qiyana.png",
+          "level": 3
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/2031.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "481179461",
+        "createDate": 1654479210,
+        "gameLength": 3073,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 1,
+            "assist": 2,
+            "kdaString": "11.00:1",
+            "cs": 121,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "23%",
+            "goldEarned": 4545,
+            "totalDamageDealtToChampions": 5819,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 107,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "207957441",
+        "createDate": 1654476806,
+        "gameLength": 338,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 9,
+            "assist": 3,
+            "kdaString": "1.33:1",
+            "cs": 139,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "21%",
+            "goldEarned": 3753,
+            "totalDamageDealtToChampions": 477,
+            "largestMultiKillString": "",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1237,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Galio.png",
+          "level": 20
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "29660359",
+        "createDate": 1654474743,
+        "gameLength": 1008,
+        "gameType": "자유 5:5 랭크",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 7,
+            "death": 4,
+            "assist": 5,
+            "kdaString": "3.00:1",
+            "cs": 104,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "10%",
+            "goldEarned": 1147,
+            "totalDamageDealtToChampions": 5052,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 1873,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "479423130",
+        "createDate": 1654471215,
+        "gameLength": 2930,
+        "gameType": "자유 5:5 랭크",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 1,
+            "death": 6,
+            "assist": 4,
+            "kdaString": "0.83:1",
+            "cs": 140,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "4%",
+            "goldEarned": 110,
+            "totalDamageDealtToChampions": 6620,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1006,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "32783947",
+        "createDate": 1654469030,
+        "gameLength": 647,
+        "gameType": "무작위 총력전",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 10,
+            "death": 6,
+            "assist": 1,
+            "kdaString": "1.83:1",
+            "cs": 141,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "34%",
+            "goldEarned": 2773,
+            "totalDamageDealtToChampions": 1628,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 2718,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Malzahar.png",
+          "level": 6
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "369413016",
+        "createDate": 1654466223,
+        "gameLength": 2441,
+        "gameType": "무작위 총력전",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 6,
+            "death": 6,
+            "assist": 4,
+            "kdaString": "1.67:1",
+            "cs": 127,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "17%",
+            "goldEarned": 4196,
+            "totalDamageDealtToChampions": 3191,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1734,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Tristana.png",
+          "level": 7
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "77799080",
+        "createDate": 1654463831,
+        "gameLength": 1534,
+        "gameType": "무작위 총력전",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 10,
+            "death": 1,
+            "assist": 3,
+            "kdaString": "13.00:1",
+            "cs": 115,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "34%",
+            "goldEarned": 2872,
+            "totalDamageDealtToChampions": 3999,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 2969,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Lucian.png",
+          "level": 9
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "430917711",
+        "createDate": 1654462024,
+        "gameLength": 1346,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 4,
+            "death": 1,
+            "assist": 3,
+            "kdaString": "7.00:1",
+            "cs": 183,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "41%",
+            "goldEarned": 3056,
+            "totalDamageDealtToChampions": 5952,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": true
+      },
+      {
+        "mmr": 668,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Galio.png",
+          "level": 20
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1056.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/2031.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3340.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "381548024",
+        "createDate": 1654459430,
+        "gameLength": 367,
+        "gameType": "솔랭",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 3,
+            "assist": 1,
+            "kdaString": "3.33:1",
+            "cs": 159,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "34%",
+            "goldEarned": 5059,
+            "totalDamageDealtToChampions": 3939,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 1658,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3113.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "203026628",
+        "createDate": 1654457554,
+        "gameLength": 2383,
+        "gameType": "자유 5:5 랭크",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 5,
+            "death": 6,
+            "assist": 2,
+            "kdaString": "1.17:1",
+            "cs": 199,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "30%",
+            "goldEarned": 3452,
+            "totalDamageDealtToChampions": 5827,
+            "largestMultiKillString": "Double Kill",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": null,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Malzahar.png",
+          "level": 6
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/1026.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "166892237",
+        "createDate": 1654454968,
+        "gameLength": 173,
+        "gameType": "일반",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 0,
+            "death": 0,
+            "assist": 0,
+            "kdaString": "0.00:1",
+            "cs": 145,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "51%",
+            "goldEarned": 4562,
+            "totalDamageDealtToChampions": 6324,
+            "largestMultiKillString": "",
+            "opScoreBadge": "ACE"
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      },
+      {
+        "mmr": 568,
+        "champion": {
+          "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Anivia.png",
+          "level": 31
+        },
+        "spells": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerTeleport.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png"
+          }
+        ],
+        "items": [
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3020.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3198.png"
+          },
+          {
+            "imageUrl": "https://opgg-static.akamaized.net/images/lol/item/3364.png"
+          }
+        ],
+        "needRenew": false,
+        "gameId": "279829523",
+        "createDate": 1654451382,
+        "gameLength": 3280,
+        "gameType": "무작위 총력전",
+        "summonerId": "6116417",
+        "summonerName": "{summonerName}",
+        "tierRankShort": "C1",
+        "stats": {
+          "general": {
+            "kill": 9,
+            "death": 4,
+            "assist": 4,
+            "kdaString": "3.25:1",
+            "cs": 187,
+            "csPerMin": 7.5,
+            "contributionForKillRate": "54%",
+            "goldEarned": 4029,
+            "totalDamageDealtToChampions": 2217,
+            "largestMultiKillString": "",
+            "opScoreBadge": ""
+          },
+          "ward": {
+            "sightWardsBought": 0,
+            "visionWardsBought": 2
+          }
+        },
+        "mapInfo": null,
+        "peak": [
+          "https://opgg-static.akamaized.net/images/lol/perk/8229.png",
+          "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"
+        ],
+        "isWin": false
+      }
+    ],
+    "champions": [
+      {
+        "id": 90,
+        "key": "Malzahar",
+        "name": "말자하",
+        "imageUrl": "https://opgg-static.akamaized.net/images/lol/champion/Malzahar.png?image=w_30&v=1",
+        "games": 8,
+        "kills": 19,
+        "deaths": 14,
+        "assists": 5,
+        "wins": 5,
+        "losses": 3
+      },
+      {
+        "id": 106,
+        "key": "Volibear",
+        "name": "볼리베어",
+        "imageUrl": "//opgg-static.akamaized.net/images/lol/champion/Volibear.png?image=q_auto&v=1591083841",
+        "games": 6,
+        "kills": 19,
+        "deaths": 1,
+        "assists": 17,
+        "wins": 1,
+        "losses": 5
+      },
+      {
+        "id": 80,
+        "key": "Pantheon",
+        "name": "판테온",
+        "imageUrl": "//opgg-static.akamaized.net/images/lol/champion/Pantheon.png?image=q_auto&v=1591083841",
+        "games": 6,
+        "kills": 13,
+        "deaths": 16,
+        "assists": 5,
+        "wins": 5,
+        "losses": 1
+      }
+    ],
+    "positions": [
+      {
+        "games": 8,
+        "wins": 7,
+        "losses": 1,
+        "position": "TOP",
+        "positionName": "Top"
+      },
+      {
+        "games": 12,
+        "wins": 4,
+        "losses": 8,
+        "position": "MID",
+        "positionName": "Middle"
+      }
+    ],
+    "summary": {
+      "wins": 11,
+      "losses": 9,
+      "kills": 51,
+      "deaths": 31,
+      "assists": 27
+    }
+  }

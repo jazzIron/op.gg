@@ -6,13 +6,6 @@ import sampleData from './matchTeam.Data.json';
 export function MatchTeam() {
   const redTeam = sampleData.teams.filter((team) => team.teamId === 1);
   const blueTeam = sampleData.teams.filter((team) => team.teamId === 2);
-
-  console.group('MatchTeam');
-  console.log(sampleData);
-  console.log(redTeam);
-  console.log(blueTeam);
-  console.groupEnd();
-
   return (
     <MatchTeamWrapper>
       <MatchTeamItemWrapper>
@@ -42,7 +35,11 @@ const MatchTeamWrapper = styled.div`
   align-items: center;
   gap: 13px;
 `;
-const MatchTeamItemWrapper = styled.ul``;
+const MatchTeamItemWrapper = styled.ul`
+  > li:last-child() {
+    margin-bottom: 0px;
+  }
+`;
 
 const MatchTeamItem = ({
   champion,
@@ -55,6 +52,7 @@ const MatchTeamItem = ({
     display: flex;
     align-items: center;
     gap: 4px;
+    margin-bottom: 2px;
   `;
 
   const ChampionAvatarWrapper = styled.div`
@@ -74,6 +72,10 @@ const MatchTeamItem = ({
     font-size: 11px;
     letter-spacing: -0.42px;
     color: ${colors.greyish_brown};
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `;
 
   return (

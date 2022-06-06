@@ -63,12 +63,8 @@ const SummonerAvatar = styled.div`
     transform: translate(-50%, -50%);
     width: 44px;
     height: 24px;
-    border-style: solid;
-    border-width: 1px;
-    border-image-source: linear-gradient(to bottom, ${colors.sandy}, ${colors.dull_orange} 99%);
-    border-image-slice: 1;
-    background-color: ${colors.dark};
     ${fonts.textStyle08};
+    background: url(https://s-lol-web.op.gg/static/images/site/summoner/bg-levelbox.png);
     > span {
     }
   }
