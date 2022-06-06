@@ -24,8 +24,8 @@ const ContentWrapper = styled.div`
   }
   > div:nth-of-type(2) {
     flex-grow: 1;
-    max-width: 960px;
-    min-width: 960px;
+    min-width: 690px;
+    max-width: 690px;
     margin-left: 10px;
   }
 `;

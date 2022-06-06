@@ -13,12 +13,8 @@ export function ChampionRateSummary() {
           />
         </ChampionAvatarWrapper>
         <ChampionDetailWrapper>
-          <InfoWrapper>
-            <div>신지드</div>
-          </InfoWrapper>
-          <RateWrapper>
-            <div>69%</div>
-          </RateWrapper>
+          <InfoWrapper>신지드</InfoWrapper>
+          <RateWrapper>69%</RateWrapper>
           <RateGraphWrapper>
             <GraphBar leftValue={23} leftLabel={'6승'} rightLabel={'4패'} />
           </RateGraphWrapper>
@@ -72,6 +68,7 @@ const InfoWrapper = styled.div`
 `;
 
 const RateWrapper = styled.div`
+  width: 27px;
   ${fonts.textStyle11}
   font-weight: bold;
 `;

@@ -23,7 +23,7 @@ export function GameResultPie() {
             background={'#ee5a52'}
             lengthAngle={360}
             // paddingAngle={-20}
-            label={({ dataEntry }) => `${dataEntry.value}%`}
+            label={({ dataEntry }: any) => `${dataEntry.value}%`}
             labelStyle={{
               fontFamily: 'Helvetica',
               fontSize: '14px',
@@ -39,7 +39,7 @@ export function GameResultPie() {
           </KdaWrapper>
           <KdaRatioWrapper>
             <span>3.45:1</span>
-            <span>(58%)</span>
+            <span> (58%)</span>
           </KdaRatioWrapper>
         </ResultSummaryWrapper>
       </ContentWrapper>
@@ -88,6 +88,7 @@ const KdaWrapper = styled.div`
 const KdaRatioWrapper = styled.div`
   font-family: 'Helvetica';
   font-size: 16px;
+  margin-top: 6px;
   > span:nth-of-type(1) {
     font-weight: bold;
     color: ${colors.bluey_green};

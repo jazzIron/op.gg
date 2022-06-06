@@ -55,7 +55,7 @@ const FavoriteChampionWrapper = styled.div`
   background-color: ${colors.white_four};
 
   > div {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
   > div:last-of-type {
     margin-bottom: 0px;

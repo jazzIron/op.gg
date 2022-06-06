@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { colors } from '@src/themes';
 import { MatchChampion } from './MatchChampion';
 import { MatchInfo } from './MatchInfo';
@@ -7,6 +6,7 @@ import { MatchStats } from './MatchStats';
 import { MatchTeam } from './MatchTeam';
 import MatchData from './match.Data.json';
 import { ICON_LIST } from '@src/components/icon';
+import styled from '@emotion/styled';
 
 const sampleData = {
   isWin: MatchData.games[0].isWin,
@@ -49,22 +49,26 @@ const MatchBoxWrapper = styled.div<{ isWin: boolean }>`
 `;
 
 const InfoWrapper = styled.div`
-  padding: 8px 14px 14px 16px;
+  width: 70px;
+  display: flex;
+  align-items: center;
 `;
 const ChampionWrapper = styled.div`
-  padding: 15px 24px 13px 0px;
+  width: 100px;
+  display: flex;
+  align-items: center;
 `;
 const StatusWrapper = styled.div`
+  width: 204px;
   padding-top: 13px;
-  margin-right: 30px;
 `;
 const ItemWrapper = styled.div`
   padding-top: 15px;
-  margin-right: 11px;
+  width: 114px;
 `;
 const TeamWrapper = styled.div`
+  width: 170px;
   padding: 4px 0px;
-  margin-right: 14px;
 `;
 const SuffixWrapper = styled.div<{ isWin: boolean }>`
   position: relative;

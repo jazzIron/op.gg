@@ -1,9 +1,8 @@
-import styled from '@emotion/styled';
-
 import MatchData from './match.Data.json';
 import { ICON_LIST } from './../../components/icon/IconList';
 import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
+import styled from '@emotion/styled';
 
 interface item {
   imageUrl: string;
@@ -63,7 +62,11 @@ export function MatchItem() {
         </ItemStyled>
         <EtcItemStyled>
           <ItemImageStyled>
-            <img src={wardItem[0].imageUrl} alt={'ward_img'} />
+            {wardItem.length === 0 ? (
+              <ItemEmptyStyled isWin={isWin} />
+            ) : (
+              <img src={wardItem[0].imageUrl} alt={'ward_img'} />
+            )}
           </ItemImageStyled>
           <ItemImageStyled>
             <img src={buildItem} alt={'build_img'} />

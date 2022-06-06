@@ -19,15 +19,16 @@ const GameSummaryWrapper = styled.div`
   align-items: center;
   border: 1px solid ${colors.silver_three};
   background-color: ${colors.white_four};
+  border-radius: 2px;
   > div:nth-of-type(1) {
-    width: 40%;
+    min-width: 276px;
   }
   > div:nth-of-type(2) {
-    width: 35%;
+    min-width: 228px;
     border-left: 1px solid ${colors.silver_three};
     border-right: 1px solid ${colors.silver_three};
   }
   > div:nth-of-type(3) {
-    width: 25%;
+    min-width: 184px;
   }
 `;

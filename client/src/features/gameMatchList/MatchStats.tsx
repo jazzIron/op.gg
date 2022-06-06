@@ -1,9 +1,8 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { Tag, TAG_THEME } from '@src/components/tag';
 import { colors, fonts } from '@src/themes';
 import MatchData from './match.Data.json';
 import { isEmpty } from 'lodash';
+import styled from '@emotion/styled';
 
 const sampleData = {
   stats: MatchData.games[0].stats,
@@ -56,8 +55,10 @@ const MatchStatsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 const KdaWrapper = styled.div`
+  width: 113.5px;
   font-family: 'HelveticaBold';
   font-size: 15px;
   letter-spacing: -0.58px;
@@ -84,6 +85,7 @@ const MatchTagsWrapper = styled.div`
 `;
 
 const StatsWrapper = styled.div`
+  width: 90px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +94,6 @@ const StatsWrapper = styled.div`
   ${fonts.textStyle04};
   color: ${colors.gunmetal};
   letter-spacing: -0.42px;
-  padding-left: 33px;
 `;
 const LevelStyed = styled.div``;
 const CsStyled = styled.div``;
