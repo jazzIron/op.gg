@@ -2,6 +2,13 @@ import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
 import { PieChart } from 'react-minimal-pie-chart';
 
+const kdaStyled = (kills: number, assists: number, deaths: number) => {
+  //KDA 공식 : kills + assists / deaths
+  const kda = (kills + assists / deaths).toFixed(2);
+  console.log(kda);
+};
+
+//NOTE: kills/ assists/ deaths
 export function GameResultPie() {
   return (
     <GameResultPieWrapper>
@@ -15,14 +22,13 @@ export function GameResultPie() {
             data={[
               {
                 value: 65,
-                color: '#1f8ecd',
+                color: colors.bluish,
               },
             ]}
             reveal={65}
             lineWidth={30}
-            background={'#ee5a52'}
+            background={colors.coral}
             lengthAngle={360}
-            // paddingAngle={-20}
             label={({ dataEntry }: any) => `${dataEntry.value}%`}
             labelStyle={{
               fontFamily: 'Helvetica',
@@ -86,6 +92,7 @@ const KdaWrapper = styled.div`
 `;
 
 const KdaRatioWrapper = styled.div`
+  width: 92px;
   font-family: 'Helvetica';
   font-size: 16px;
   margin-top: 6px;

@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
-import { useEffect, MouseEvent, useRef } from 'react';
 import { ICON_LIST } from '../icon';
 import { theme } from '@src/themes';
 import { useAutoComplete } from './useAutoComplete';
 import { isEmpty } from 'lodash';
 import { AutoCompleteItems } from './AutoCompleteItems';
 import { AutoComplete } from './AutoComplete_types';
+import styled from '@emotion/styled';
+import { useEffect, useRef } from 'react';
 
 const useOutsideClick = (
   ref: React.MutableRefObject<any>,

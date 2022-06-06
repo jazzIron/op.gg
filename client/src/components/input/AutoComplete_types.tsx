@@ -2,7 +2,6 @@ export interface AutoCompleteItem {
   id: string;
   label: string;
   value: string;
-  disabled: boolean;
 }
 
 export interface AutoComplete {

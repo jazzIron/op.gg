@@ -9,6 +9,10 @@ const sampleData = {
   champion: MatchData.games[0].champion,
 };
 
+const getLargestMultiKillString = (killString: string) => {
+  return killString === 'Double Kill' ? '더블킬' : '트리플킬';
+};
+
 export function MatchStats() {
   const {
     assist,
@@ -34,7 +38,10 @@ export function MatchStats() {
         </RatioWrapper>
         <MatchTagsWrapper>
           {!isEmpty(largestMultiKillString) && (
-            <Tag theme={TAG_THEME.REDDISH} label={largestMultiKillString} />
+            <Tag
+              theme={TAG_THEME.REDDISH}
+              label={getLargestMultiKillString(largestMultiKillString)}
+            />
           )}
           {!isEmpty(opScoreBadge) && <Tag theme={TAG_THEME.PURPLE} label={opScoreBadge} />}
         </MatchTagsWrapper>

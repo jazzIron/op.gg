@@ -11,8 +11,8 @@ interface summonerParams {
 export const summonerInfoQuery = atomFamily<SummonerApi, summonerParams>({
   key: 'summonerInfoQuery',
   default: async ({ summonerName, refreshId }) => {
-    const summonerMost: SummonerApi = await getSummonerInfoApi(summonerName);
-    return summonerMost;
+    const summonerInfo: SummonerApi = await getSummonerInfoApi(summonerName);
+    return summonerInfo;
   },
 });
 

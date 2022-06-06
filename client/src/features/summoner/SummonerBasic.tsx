@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fonts, theme } from '@src/themes';
+import { fonts } from '@src/themes';
 import { colors } from '@src/themes/index';
 
 export function SummonerBasic() {

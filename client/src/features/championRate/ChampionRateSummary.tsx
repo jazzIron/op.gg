@@ -26,6 +26,8 @@ export function ChampionRateSummary() {
 
 const ChampionRateSummaryWrapper = styled.div`
   background-color: ${colors.white_five};
+  padding: 4px 8px 4px 15px;
+  width: 100%;
   > div:last-child {
     border-bottom: 0px;
   }
@@ -35,7 +37,6 @@ const ChampionBoxWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 8px 4px 15px;
   border-bottom: 1px solid ${colors.silver_three};
 `;
 

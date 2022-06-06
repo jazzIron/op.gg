@@ -47,6 +47,7 @@ export function ChampionRate() {
 }
 
 const ChampionRateWrapper = styled.div`
+  width: 100%;
   background-color: ${colors.white_five};
   > div:last-child {
     border-bottom: 0px;
