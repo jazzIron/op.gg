@@ -7,7 +7,7 @@ export interface SearchInputPropTypes {
   placeholder: string;
   onChange: (value: string) => void;
   onClick: () => void;
-  onSubmit: () => void;
+  onSubmit: (value: string) => void;
 }
 
 export function SearchInput({
@@ -20,7 +20,7 @@ export function SearchInput({
   const handleMouseDown = (e: MouseEvent<HTMLInputElement>) => e.preventDefault();
   const handleSearchSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    return onSubmit();
+    return onSubmit(inputValue);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

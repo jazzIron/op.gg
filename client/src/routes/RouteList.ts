@@ -1,3 +1,4 @@
 export enum RouteList {
-  MAIN = '/',
+  TEST = '/',
+  MAIN = '/main',
 }

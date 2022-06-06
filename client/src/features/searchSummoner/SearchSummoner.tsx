@@ -6,15 +6,15 @@ import { useOutsideClick } from '@src/utils/common';
 import { useState, useCallback, useRef } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { SearchSummonerHistory } from './SearchSummonerHistory';
-import { isEmpty } from 'lodash';
+import { debounce, isEmpty } from 'lodash';
+import { SummonerApi } from '@src/store/user/Summoner_types';
 
 export function SearchSummoner() {
   const outsideRef = useRef(null);
   const [searchInput, setSearchInput] = useState('');
+  const [searchResult, setSearchResult] = useState<SummonerApi>();
+  const [loading, setLoading] = useState(false);
   const [isHaveInputValue, setIsHaveInputValue] = useState(false); //dropdown 표시 유무
-  const onChangeHandler = useCallback((value: string) => {
-    setSearchInput(value);
-  }, []);
 
   const handleClick = () => {
     setIsHaveInputValue(true);
@@ -25,27 +25,40 @@ export function SearchSummoner() {
   };
   useOutsideClick(outsideRef, outsideCallback);
 
-  const searchSummoner = useRecoilCallback(({ snapshot, set }) => async () => {
-    if (isEmpty(searchInput)) return false;
+  const searchSummoner = useRecoilCallback(({ snapshot, set }) => async (newValue: string) => {
+    if (isEmpty(newValue)) return false;
+    setLoading(true);
     const refreshId = Math.random();
     const params = {
-      summonerName: searchInput,
+      summonerName: newValue,
       refreshId: refreshId,
     };
     const response = await snapshot.getPromise(summonerInfoQuery(params));
     console.log(response);
     setIsHaveInputValue(false);
+    setSearchResult(response);
+    setLoading(false);
   });
+
+  const debouncedCallback = useCallback(
+    debounce((newValue: string) => searchSummoner(newValue), 500),
+    [],
+  );
+
+  const handleChange = (newValue: string) => {
+    setSearchInput(newValue);
+    debouncedCallback(newValue);
+  };
 
   return (
     <SearchSummonerWrapper ref={outsideRef}>
       <SearchInput
         inputValue={searchInput}
-        onChange={onChangeHandler}
+        onChange={handleChange}
         onClick={handleClick}
         onSubmit={searchSummoner}
       />
-      {isHaveInputValue && (
+      {!loading && isHaveInputValue && (
         <SearchSummonerHistoryWrapper>
           <SearchSummonerHistoryTabWrapper>
             <div>최근검색</div>
@@ -54,6 +67,8 @@ export function SearchSummoner() {
           <SearchSummonerHistory />
         </SearchSummonerHistoryWrapper>
       )}
+
+      {searchResult && <div>{searchResult.summoner.name}</div>}
     </SearchSummonerWrapper>
   );
 }

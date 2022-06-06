@@ -35,7 +35,7 @@ interface PreviousTier {
   tierRankPoint: number;
 }
 
-export interface SummonerApi {
+export interface SummonerData {
   ladderRank: IadderRank;
   leagues: Ieague[];
   level: number;
@@ -47,6 +47,9 @@ export interface SummonerApi {
   url: string;
 }
 
+export interface SummonerApi {
+  summoner: SummonerData;
+}
 // ===============================================================================
 // NOTE: 소환사 most info API
 interface Champion {
