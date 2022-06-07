@@ -5,10 +5,10 @@ import { MatchItem } from './MatchItem';
 import { MatchStats } from './MatchStats';
 import { MatchTeam } from './MatchTeam';
 import { ICON_LIST } from '@src/components/icon';
-import styled from '@emotion/styled';
 import { summonerMatchResult } from '@src/store/match/MatchState';
 import { isNil } from 'lodash';
 import { useRecoilValue } from 'recoil';
+import styled from '@emotion/styled';
 
 export function MatchBox() {
   const matchResult = useRecoilValue(summonerMatchResult);
