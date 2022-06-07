@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { summonerMatchResult, summonerMatchResultQuery } from '@src/store/match/MatchState';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { isEmpty } from 'lodash';
+import { ToolTip } from '@src/components/tooltip';
 
 export function TestPage2() {
   const matchResult = useRecoilValue(summonerMatchResult);
@@ -27,6 +28,7 @@ export function TestPage2() {
   return (
     <RecoilTesterStyled>
       <button onClick={popupToggleHandler}>보기</button>
+      <ToolTip label="테스트영역">Hover</ToolTip>
     </RecoilTesterStyled>
   );
 }

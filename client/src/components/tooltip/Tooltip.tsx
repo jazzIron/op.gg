@@ -1,39 +1,57 @@
 import styled from '@emotion/styled';
-import ReactTooltip from 'react-tooltip';
-import { v4 as uuidv4 } from 'uuid';
+import { ToolTipPropTypes } from './Tooltip_types';
 
-import { ToolTip } from './Tooltip_types';
-
-/**
- * https://wwayne.github.io/react-tooltip/
- */
-
-export function Tooltip({ title, children, type, place }: ToolTip) {
-  const dataFor = uuidv4();
-
+export function ToolTip({ label, children }: ToolTipPropTypes) {
   return (
-    <ToolTipWrapper>
-      <ToolTipTitle data-tip data-for={dataFor}>
-        {title}
-      </ToolTipTitle>
-      {/* <ReactTooltip id={dataFor} type={type} place={place}>
-        {children}
-      </ReactTooltip> */}
-    </ToolTipWrapper>
+    <TooltipWrapper>
+      <ToolTipLabel>{label}</ToolTipLabel>
+      <ToolTipContent>{children}</ToolTipContent>
+    </TooltipWrapper>
   );
 }
 
-Tooltip.defaultProps = {
-  title: '',
-  toolTipItem: '',
-  type: 'light',
-  place: 'top',
+ToolTip.defaultProps = {
+  label: '',
+  children: '',
 };
 
-const ToolTipWrapper = styled.div`
+const TooltipWrapper = styled.div`
+  position: relative;
+`;
+
+const ToolTipLabel = styled.div`
+  position: relative;
   display: inline-block;
   cursor: pointer;
+  &:hover {
+    & + span {
+      visibility: visible;
+      opacity: 0.8;
+    }
+  }
 `;
-const ToolTipTitle = styled.div`
-  display: inline-block;
+const ToolTipContent = styled.span`
+  position: absolute;
+  background-color: green;
+  border-radius: 0.4em;
+  padding: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+  left: 0px;
+  top: 0px;
+  transform: translate(0%, -40px);
+  :after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: green;
+    border-bottom: 0;
+    margin-left: -6px;
+    margin-bottom: -6px;
+  }
 `;
