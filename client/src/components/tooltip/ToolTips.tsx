@@ -1,16 +1,32 @@
-import styled from '@emotion/styled';
 import { ToolTipPropTypes } from './Tooltip_types';
+import styled from '@emotion/styled';
+import ToolTip from 'react-portal-tooltip';
+import { useState } from 'react';
 
-export function ToolTip({ label, children }: ToolTipPropTypes) {
+export function ToolTips({ label, children }: ToolTipPropTypes) {
+  const [isTooltipActive, setIsTooltipActive] = useState(false);
+
+  const handleShowTooltip = () => setIsTooltipActive(true);
+  const handleHideTooltip = () => setIsTooltipActive(false);
+
   return (
     <TooltipWrapper>
       <ToolTipLabel>{label}</ToolTipLabel>
       <ToolTipContent>{children}</ToolTipContent>
+
+      <p id="text" onMouseEnter={handleShowTooltip} onMouseLeave={handleHideTooltip}>
+        This is a cool component
+      </p>
+      <ToolTip active={isTooltipActive} position="bottom" arrow="center" parent="#text">
+        <div>
+          <p>This is the content of the tooltip</p>
+        </div>
+      </ToolTip>
     </TooltipWrapper>
   );
 }
 
-ToolTip.defaultProps = {
+ToolTips.defaultProps = {
   label: '',
   children: '',
 };
@@ -35,8 +51,8 @@ const ToolTipContent = styled.span`
   background-color: green;
   border-radius: 0.4em;
   padding: 5px;
-  visibility: hidden;
-  opacity: 0;
+  /* visibility: hidden;
+  opacity: 0; */
   transition: all 0.5s;
   left: 0px;
   top: 0px;
