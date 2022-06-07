@@ -1,6 +1,8 @@
 import adc from '../../asset/images/icons/icon-mostposition-adc.svg';
 import mid from '../../asset/images/icons/icon-mostposition-mid.svg';
 import sup from '../../asset/images/icons/icon-mostposition-sup.svg';
+import jng from '../../asset/images/icons/icon-mostposition-jng.svg';
+import top from '../../asset/images/icons/icon-mostposition-top.svg';
 import groupChampion from '../../asset/images/icons/group-champion.svg';
 import unranked from '../../asset/images/icons/unranked.png';
 import levelBox from '../../asset/images/icons/bg-levelbox.png';
@@ -16,6 +18,8 @@ export const ICON_LIST: { [key: string]: string } = {
   adc,
   mid,
   sup,
+  jng,
+  top,
   groupChampion,
   unranked,
   levelBox,

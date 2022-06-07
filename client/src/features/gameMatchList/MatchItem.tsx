@@ -1,47 +1,21 @@
-import MatchData from './match.Data.json';
-import { ICON_LIST } from './../../components/icon/IconList';
 import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
+import { Items } from '@src/store/match/Match_types';
+import { makeChampionItems } from '@src/utils/match';
 
-interface item {
-  imageUrl: string;
+interface MatchItemPropTypes {
+  items: Items[];
+  ward: {
+    sightWardsBought: number;
+    visionWardsBought: number;
+  };
+  isWin: boolean;
 }
 
-const makeItem = (items: item[], isWin: boolean) => {
-  const wardImg = isWin ? ICON_LIST.wardBlue : ICON_LIST.wardRed;
-  const itemAllList = items.map((item, idx) => {
-    return idx === items.length - 1
-      ? { index: idx, type: 'WARD', ...item }
-      : { index: idx, type: 'ITEM', ...item };
-  });
-  const itemList = itemAllList.filter((item) => item.type === 'ITEM');
-  const wardItem = itemAllList.filter((item) => item.type === 'WARD');
-  const emptyCount =
-    ITEM_AREA_LENGTH - (itemAllList.length > 0 ? itemAllList.length - 1 : itemAllList.length);
-  const buildItem = isWin ? ICON_LIST.buildBlue : ICON_LIST.buildRed;
-  const emptyItem = new Array(emptyCount).fill(1);
-  return {
-    wardImg,
-    itemList,
-    wardItem,
-    buildItem,
-    emptyItem,
-  };
-};
-
-const sampleData = {
-  items: MatchData.games[0].items,
-  ward: MatchData.games[0].stats.ward,
-  isWin: MatchData.games[0].isWin,
-};
-
-const ITEM_AREA_LENGTH = 6;
-
-export function MatchItem() {
-  const { items, ward, isWin } = sampleData;
+export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
   const { wardImg, itemList, wardItem, buildItem, emptyItem } = useMemo(
-    () => makeItem(items, isWin),
+    () => makeChampionItems(items, isWin),
     [items, isWin],
   );
 

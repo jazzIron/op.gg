@@ -1,19 +1,16 @@
 import { Tag, TAG_THEME } from '@src/components/tag';
 import { colors, fonts } from '@src/themes';
-import MatchData from './match.Data.json';
 import { isEmpty } from 'lodash';
 import styled from '@emotion/styled';
+import { getLargestMultiKillString } from '@src/utils/match';
+import { Champion, Stats } from '@src/store/match/Match_types';
 
-const sampleData = {
-  stats: MatchData.games[0].stats,
-  champion: MatchData.games[0].champion,
-};
+interface MatchStatsPropTypes {
+  stats: Stats;
+  champion: Champion;
+}
 
-const getLargestMultiKillString = (killString: string) => {
-  return killString === 'Double Kill' ? '더블킬' : '트리플킬';
-};
-
-export function MatchStats() {
+export function MatchStats({ stats, champion }: MatchStatsPropTypes) {
   const {
     assist,
     contributionForKillRate,
@@ -24,8 +21,8 @@ export function MatchStats() {
     kill,
     largestMultiKillString,
     opScoreBadge,
-  } = sampleData.stats.general;
-  const { level } = sampleData.champion;
+  } = stats.general;
+  const { level } = champion;
 
   return (
     <>
@@ -34,7 +31,7 @@ export function MatchStats() {
           <span>{kill} </span>/<span> {death} </span>/<span> {assist}</span>
         </KdaWrapper>
         <RatioWrapper>
-          <span>{kdaString}</span> 평점
+          <span>{kdaString} 평점</span>
         </RatioWrapper>
         <MatchTagsWrapper>
           {!isEmpty(largestMultiKillString) && (

@@ -6,4 +6,5 @@ interface NavBarOption {
 export interface NavBarOptions {
   activeId: string;
   options: NavBarOption[];
+  onChange: (id: string) => void;
 }

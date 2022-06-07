@@ -1,39 +1,38 @@
 import styled from '@emotion/styled';
-import { ICON_LIST } from '@src/components/icon';
+import { SummonerMatchResultApi } from '@src/store/match/Match_types';
 import { colors, fonts } from '@src/themes';
+import { positionInfo, positionItem } from '@src/utils/match';
 
-export function FavoritePosition() {
+interface FavoritePositionPropTypes {
+  matchResult: SummonerMatchResultApi;
+}
+export function FavoritePosition({ matchResult }: FavoritePositionPropTypes) {
+  const { positions } = matchResult;
+  const positionTotalGame = matchResult.positions.reduce((acc, cur) => acc + cur.games, 0);
   return (
     <FavoritePositionWrapper>
       <TitleWrapper>선호 포지션 (랭크)</TitleWrapper>
-      <ContentWrapper>
-        <PositionImgWrapper>
-          <img src={ICON_LIST.mid} alt="positionImg" />
-        </PositionImgWrapper>
-        <PositionDetailWrapper>
-          <PositionLabelStyled>탑</PositionLabelStyled>
-          <PositionRateStyled>
-            <span>30%</span>
-            <span>
-              승률 <span>33%</span>
-            </span>
-          </PositionRateStyled>
-        </PositionDetailWrapper>
-      </ContentWrapper>
-      <ContentWrapper>
-        <PositionImgWrapper>
-          <img src={ICON_LIST.sup} alt="positionImg" />
-        </PositionImgWrapper>
-        <PositionDetailWrapper>
-          <PositionLabelStyled>정글</PositionLabelStyled>
-          <PositionRateStyled>
-            <span>30%</span>
-            <span>
-              승률 <span>33%</span>
-            </span>
-          </PositionRateStyled>
-        </PositionDetailWrapper>
-      </ContentWrapper>
+      {positions.map((position, idx) => {
+        const { positionWinningRateValue, positionWinningTotalRateValue, winningRateColor } =
+          positionItem(position.wins, position.games, positionTotalGame);
+        const positionStyled = positionInfo(position.positionName);
+        return (
+          <ContentWrapper key={idx}>
+            <PositionImgWrapper>
+              <img src={positionStyled.icon} alt="position_img" />
+            </PositionImgWrapper>
+            <PositionDetailWrapper>
+              <PositionLabelStyled>{positionStyled.label}</PositionLabelStyled>
+              <PositionRateStyled winningRateColor={winningRateColor}>
+                <span>{positionWinningTotalRateValue}%</span>
+                <span>
+                  승률 <span>{positionWinningRateValue}%</span>
+                </span>
+              </PositionRateStyled>
+            </PositionDetailWrapper>
+          </ContentWrapper>
+        );
+      })}
     </FavoritePositionWrapper>
   );
 }
@@ -82,7 +81,7 @@ const PositionLabelStyled = styled.div`
   font-weight: bold;
   margin-bottom: 3px;
 `;
-const PositionRateStyled = styled.div`
+const PositionRateStyled = styled.div<{ winningRateColor: string }>`
   display: flex;
   align-items: center;
   > span:nth-of-type(1) {
@@ -94,7 +93,7 @@ const PositionRateStyled = styled.div`
     ${fonts.textStyle05};
     color: ${colors.brownish_grey_two};
     > span {
-      color: ${colors.black};
+      color: ${(props) => props.winningRateColor};
       font-weight: bold;
     }
   }

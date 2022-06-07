@@ -1,15 +1,21 @@
 import styled from '@emotion/styled';
+import { summonerMatchResult } from '@src/store/match/MatchState';
 import { colors } from '@src/themes';
+import { useRecoilValue } from 'recoil';
 import { FavoriteChampion } from './FavoriteChampion';
 import { FavoritePosition } from './FavoritePosition';
 import { GameResultPie } from './GameResultPie';
+import { isNil } from 'lodash';
+import React from 'react';
 
 export function GameSummary() {
+  const matchResult = useRecoilValue(summonerMatchResult);
+  if (isNil(matchResult)) return <></>;
   return (
     <GameSummaryWrapper>
-      <GameResultPie />
-      <FavoriteChampion />
-      <FavoritePosition />
+      <GameResultPie matchResult={matchResult} />
+      <FavoriteChampion matchResult={matchResult} />
+      <FavoritePosition matchResult={matchResult} />
     </GameSummaryWrapper>
   );
 }
@@ -21,10 +27,10 @@ const GameSummaryWrapper = styled.div`
   background-color: ${colors.white_four};
   border-radius: 2px;
   > div:nth-of-type(1) {
-    min-width: 276px;
+    min-width: 260px;
   }
   > div:nth-of-type(2) {
-    min-width: 228px;
+    min-width: 240px;
     border-left: 1px solid ${colors.silver_three};
     border-right: 1px solid ${colors.silver_three};
   }

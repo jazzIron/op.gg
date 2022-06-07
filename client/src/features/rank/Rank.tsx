@@ -9,7 +9,6 @@ import { RankTypePropTypes } from './Rank_types';
 import { UnRank } from './UnRank';
 
 const SEASON = 9;
-
 export function Rank({ rankType }: RankTypePropTypes) {
   const rankTypeName = useMemo(() => {
     return rankType === 'SOLO' ? '솔로랭크' : '자유 5:5 랭크';
@@ -18,29 +17,32 @@ export function Rank({ rankType }: RankTypePropTypes) {
   const summonerDetail = useRecoilValue(summonerDetailResult);
   if (isNull(summonerDetail.summonerInfoRes)) return <div>로딩 중..</div>;
   const { summoner } = summonerDetail.summonerInfoRes;
-  const { rankInfo, totalGame, winningRateInfo } = useMemo(
+  const { rankInfo, totalGame, winningRateValue } = useMemo(
     () => makeLeagueRank(rankType, SEASON, summoner),
-    [summonerDetail.summonerInfoRes.summoner],
+    [rankType],
   );
-
-  if (isEmpty(rankInfo.tierRank)) return <UnRank rankType={rankType} />;
-
   return (
     <RankWrapper>
-      <RankImageStyled>
-        <img src={rankInfo.tierRank.imageUrl} alt={'rank_img'} />
-      </RankImageStyled>
-      <RankContent>
-        <RankType>{rankTypeName}</RankType>
-        <RankPosition>
-          <span>탑</span> (총 <span>{totalGame}</span>게임)
-        </RankPosition>
-        <RankRank>{rankInfo.tierRank.tier}</RankRank>
-        <RankInfo>
-          <span>{rankInfo.tierRank.rankLp} </span> / {rankInfo.wins}승 {rankInfo.losses}패
-        </RankInfo>
-        <RankRate>승률 {winningRateInfo}%</RankRate>
-      </RankContent>
+      {isEmpty(rankInfo.tierRank.tier) ? (
+        <UnRank rankType={rankType} />
+      ) : (
+        <>
+          <RankImageStyled>
+            <img src={rankInfo.tierRank.imageUrl} alt={'rank_img'} />
+          </RankImageStyled>
+          <RankContent>
+            <RankType>{rankTypeName}</RankType>
+            <RankPosition>
+              <span>탑</span> (총 <span>{totalGame}</span>게임)
+            </RankPosition>
+            <RankRank>{rankInfo.tierRank.tier}</RankRank>
+            <RankInfo>
+              <span>{rankInfo.tierRank.rankLp} </span> / {rankInfo.wins}승 {rankInfo.losses}패
+            </RankInfo>
+            <RankRate>승률 {winningRateValue}%</RankRate>
+          </RankContent>
+        </>
+      )}
     </RankWrapper>
   );
 }

@@ -1,6 +1,8 @@
 import { Ieague, SummonerData } from '@src/store/user/Summoner_types';
+import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
-import { parenthesisExtraction, winningRate } from './formatter';
+import { parenthesisExtraction } from './formatter';
+import { winningRate } from './match';
 
 const initTierRank = {
   imageUrl: '',
@@ -53,11 +55,12 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
     return info.tierRank.name === rankType;
   });
 
+  console.log(rankSeason);
   console.log(rankFilter);
 
   const leagueRank = {
     ...rankFilter[0],
-    tierRank: rankSeason ? rankSeason[0] : initTierRank,
+    tierRank: !isEmpty(rankSeason) ? rankSeason[0] : initTierRank,
     totalGame: rankFilter ? rankFilter[0].wins + rankFilter[0].losses : 0,
     winningRateInfo: rankFilter
       ? winningRate(rankFilter[0].wins, rankFilter[0].wins + rankFilter[0].losses)
@@ -68,10 +71,11 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
 
   const rankInfo = leagueRank;
   const totalGame = rankInfo.wins + rankInfo.losses;
-  const winningRateInfo = winningRate(rankInfo.wins, totalGame);
+  const { winningRateColor, winningRateValue } = winningRate(rankInfo.wins, totalGame);
   return {
     rankInfo,
     totalGame,
-    winningRateInfo,
+    winningRateColor,
+    winningRateValue,
   };
 };

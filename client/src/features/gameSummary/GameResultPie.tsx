@@ -1,18 +1,31 @@
 import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
 import { PieChart } from 'react-minimal-pie-chart';
+import React, { useMemo } from 'react';
+import { SummonerMatchResultApi } from '@src/store/match/Match_types';
+import { kdaStyled, matchSummary, winningRate } from '@src/utils/match';
 
-const kdaStyled = (kills: number, assists: number, deaths: number) => {
-  //KDA 공식 : kills + assists / deaths
-  const kda = (kills + assists / deaths).toFixed(2);
-  console.log(kda);
-};
+interface GameResultPiePropTypes {
+  matchResult: SummonerMatchResultApi;
+}
 
 //NOTE: kills/ assists/ deaths
-export function GameResultPie() {
+export function GameResultPie({ matchResult }: GameResultPiePropTypes) {
+  const { kills, assists, deaths, wins, losses } = matchResult.summary;
+  const { kdaColor, kdaValue } = useMemo(() => kdaStyled(kills, assists, deaths), [matchResult]);
+  const { winningRateColor, winningRateValue } = useMemo(
+    () => winningRate(wins, losses),
+    [matchResult],
+  );
+  const { total, win, lose } = useMemo(() => matchSummary(wins, losses), [matchResult]);
+
   return (
     <GameResultPieWrapper>
-      <TitleWrapper>20전 11승 9패</TitleWrapper>
+      <TitleWrapper>
+        <span>{total}</span>
+        <span> {win}</span>
+        <span> {lose}</span>
+      </TitleWrapper>
       <ContentWrapper>
         <PieStyled>
           <PieChart
@@ -21,11 +34,11 @@ export function GameResultPie() {
             animationEasing="ease-out"
             data={[
               {
-                value: 65,
+                value: winningRateValue,
                 color: colors.bluish,
               },
             ]}
-            reveal={65}
+            reveal={winningRateValue}
             lineWidth={30}
             background={colors.coral}
             lengthAngle={360}
@@ -34,18 +47,18 @@ export function GameResultPie() {
               fontFamily: 'Helvetica',
               fontSize: '14px',
               fontWeight: 'bold',
-              color: '#555555',
+              color: colors.greyish_brown,
             }}
             labelPosition={0}
           ></PieChart>
         </PieStyled>
         <ResultSummaryWrapper>
           <KdaWrapper>
-            <span>25.9</span> / <span>15.8</span> / <span>14.1</span>
+            <span>{kills}</span> / <span>{assists}</span> / <span>{deaths}</span>
           </KdaWrapper>
-          <KdaRatioWrapper>
-            <span>3.45:1</span>
-            <span> (58%)</span>
+          <KdaRatioWrapper kdaColor={kdaColor} winningRateColor={winningRateColor}>
+            <span>{kdaValue}:1</span>
+            <span> ({winningRateValue}%)</span>
           </KdaRatioWrapper>
         </ResultSummaryWrapper>
       </ContentWrapper>
@@ -67,7 +80,7 @@ const TitleWrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 16px;
 `;
 
 const PieStyled = styled.div`
@@ -91,16 +104,21 @@ const KdaWrapper = styled.div`
   }
 `;
 
-const KdaRatioWrapper = styled.div`
-  width: 92px;
+const KdaRatioWrapper = styled.div<{ kdaColor: string; winningRateColor: string }>`
+  width: 103px;
   font-family: 'Helvetica';
   font-size: 16px;
   margin-top: 6px;
   > span:nth-of-type(1) {
     font-weight: bold;
-    color: ${colors.bluey_green};
+    color: ${(props) => props.kdaColor};
   }
   > span:nth-of-type(2) {
-    color: ${colors.reddish};
+    color: ${(props) => props.winningRateColor};
   }
 `;
+
+// export default React.memo(
+//   GameResultPie,
+//   (prevProps, nextProps) => prevProps.matchResult === nextProps.matchResult,
+// );

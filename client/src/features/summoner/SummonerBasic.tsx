@@ -1,23 +1,36 @@
 import styled from '@emotion/styled';
+import { summonerDetailResult } from '@src/store/user/SummonerState';
 import { fonts } from '@src/themes';
 import { colors } from '@src/themes/index';
+import { numberMark } from '@src/utils/formatter';
+import { isNull } from 'lodash';
+import { useRecoilValue } from 'recoil';
+import TierTag from './TierTag';
 
 export function SummonerBasic() {
+  const summonerDetail = useRecoilValue(summonerDetailResult);
+  if (isNull(summonerDetail.summonerInfoRes))
+    return <SummonerBasicWrapper>로딩 중..</SummonerBasicWrapper>;
+
+  const { ladderRank, name, level, profileBorderImageUrl, profileImageUrl, previousTiers } =
+    summonerDetail.summonerInfoRes.summoner;
+
   return (
     <SummonerBasicWrapper>
-      <TierTag />
+      <TierTag previousTiers={previousTiers} />
       <SummonerBasicStyled>
         <SummonerAvatar>
-          <img src={'https://opgg-static.akamaized.net/images/profile_icons/profileIcon1625.jpg'} />
-          <img src={'https://opgg-static.akamaized.net/images/borders2/challenger.png'} />
+          <img src={profileImageUrl} alt={'summoner_profile_image'} />
+          <img src={profileBorderImageUrl} alt={'summoner_profile_border_image'} />
           <div>
-            <span>32</span>
+            <span>{level}</span>
           </div>
         </SummonerAvatar>
         <SummonerInfoWrapper>
-          <div>플레이어 아이디</div>
+          <div>{name}</div>
           <div>
-            <span>레더 랭킹</span> <span>363,499</span>위 <span>(상위 40.7%)</span>
+            <span>레더 랭킹</span> <span>{numberMark(String(ladderRank.rank), ',')}</span>위
+            <span> (상위 {ladderRank.rankPercentOfTop.toFixed(1)}%)</span>
           </div>
         </SummonerInfoWrapper>
       </SummonerBasicStyled>
@@ -29,6 +42,8 @@ const SummonerBasicWrapper = styled.div`
   border-bottom: 1px solid ${colors.white_three};
   padding: 15px 200px 12px 200px;
   min-width: 1000px;
+  height: 175px;
+  min-height: 175px;
 `;
 const SummonerBasicStyled = styled.div`
   display: flex;
@@ -88,49 +103,3 @@ const SummonerInfoWrapper = styled.div`
     }
   }
 `;
-
-const TierTag = () => {
-  const TierTagWrapper = styled.ul`
-    padding-bottom: 6px;
-    > li:last-of-type {
-      margin-right: 0px;
-    }
-  `;
-  const TierTagStyled = styled.li`
-    display: inline;
-    height: 20px;
-    padding: 3px 5px;
-    border-radius: 2px;
-    border: solid 1px ${colors.silver_two};
-    background-color: ${colors.silver};
-    margin-right: 7px;
-    ${fonts.textStyle06}
-    > span {
-      ${fonts.textStyle05}
-      font-weight: bold;
-    }
-  `;
-
-  return (
-    <TierTagWrapper>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-      <TierTagStyled>
-        <span>S3</span> Bronze
-      </TierTagStyled>
-    </TierTagWrapper>
-  );
-};

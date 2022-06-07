@@ -6,6 +6,8 @@ export const parenthesisExtraction = (value: string) => {
   return isNil(matches) ? '' : matches[1];
 };
 
-export const winningRate = (wins: number, totalGame: number) => {
-  return isNaN(wins) || isNaN(totalGame) ? 0 : Math.ceil((wins / totalGame) * 100);
+export const numberMark = (value: string, mark?: string): string => {
+  const markStr = mark ? mark : ',';
+  const regExp = /\B(?=(\d{3})+(?!\d))/g;
+  return value.toString().replace(regExp, markStr);
 };

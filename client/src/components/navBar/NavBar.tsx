@@ -3,12 +3,17 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { colors } from '@src/themes';
 
-export function NavBar({ options, activeId }: NavBarOptions) {
+export function NavBar({ options, activeId, onChange }: NavBarOptions) {
   return (
     <NavBarWrapper>
       <NavBarStyled flex={options.length}>
         {options.map((obj) => (
-          <NavBarOption id={obj.id} key={obj.id} active={obj.id === activeId}>
+          <NavBarOption
+            id={obj.id}
+            key={obj.id}
+            active={obj.id === activeId}
+            onClick={() => onChange(obj.id)}
+          >
             {obj.text}
           </NavBarOption>
         ))}

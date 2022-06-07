@@ -1,18 +1,18 @@
-// NOTE: 소환자 Match List 정보
-interface Champion {
+export type Position_Type = 'Support' | 'Bottom' | 'Jungle' | 'Top';
+export interface Champion {
   imageUrl: string;
   level: number;
 }
 
-interface Spell {
+export interface Spell {
   imageUrl: string;
 }
 
-interface Items {
+export interface Items {
   imageUrl: string;
 }
 
-interface Stats {
+export interface Stats {
   general: {
     kill: number;
     death: number;
@@ -37,6 +37,11 @@ interface MapInfo {
   mapId: string;
 }
 
+export interface Teams {
+  gameId: string;
+  teams: Team[];
+}
+
 export interface Games {
   mmr: number | null;
   champion: Champion;
@@ -54,7 +59,7 @@ export interface Games {
   mapInfo: MapInfo;
   peak: string[];
   isWin: boolean;
-  teams: { gameId: string; teams: Team[] };
+  teams: Teams;
 }
 
 interface Position {
@@ -83,6 +88,18 @@ export interface MatchesApi {
 // ================================================================================================
 // NOTE: 소환자 Match 상세정보
 
+interface FavoriteChampion {
+  assists: number;
+  deaths: number;
+  games: number;
+  id: number;
+  imageUrl: string;
+  key: string;
+  kills: number;
+  losses: number;
+  name: string;
+  wins: number;
+}
 interface player {
   champion: {
     imageUrl: string;
@@ -92,7 +109,7 @@ interface player {
   summonerName: string;
 }
 
-interface Team {
+export interface Team {
   players: player[];
   teamId: number;
 }
@@ -103,7 +120,7 @@ export interface MatchDetailApi {
 }
 
 export interface SummonerMatchResultApi {
-  champions: Champion;
+  champions: FavoriteChampion[];
   games: Games[];
   positions: Position[];
   summary: Summary;

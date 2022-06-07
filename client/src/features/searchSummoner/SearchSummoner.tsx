@@ -1,13 +1,9 @@
 import styled from '@emotion/styled';
 import { SearchInput } from '@src/components/searchInput/SearchInput';
-import {
-  summonerDetailQuery,
-  summonerDetailResult,
-  summonerInfoResult,
-} from '@src/store/user/SummonerState';
+import { summonerDetailQuery, summonerDetailResult } from '@src/store/user/SummonerState';
 import { colors, fonts } from '@src/themes';
 import { useOutsideClick } from '@src/utils/common';
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useRecoilCallback, useRecoilState } from 'recoil';
 import { SearchSummonerHistory } from './SearchSummonerHistory';
 import { debounce, isEmpty } from 'lodash';
@@ -69,8 +65,6 @@ export function SearchSummoner() {
     setKeywords(nextKeyword);
   };
 
-  console.log(summonerDetail);
-
   return (
     <SearchSummonerWrapper ref={outsideRef}>
       <SearchInput
@@ -91,8 +85,6 @@ export function SearchSummoner() {
           />
         </SearchSummonerHistoryWrapper>
       )}
-
-      {summonerInfoResult && <div>테스트</div>}
     </SearchSummonerWrapper>
   );
 }

@@ -4,41 +4,68 @@ import { MatchInfo } from './MatchInfo';
 import { MatchItem } from './MatchItem';
 import { MatchStats } from './MatchStats';
 import { MatchTeam } from './MatchTeam';
-import MatchData from './match.Data.json';
 import { ICON_LIST } from '@src/components/icon';
 import styled from '@emotion/styled';
-
-const sampleData = {
-  isWin: MatchData.games[0].isWin,
-};
+import { summonerMatchResult } from '@src/store/match/MatchState';
+import { isNil } from 'lodash';
+import { useRecoilValue } from 'recoil';
 
 export function MatchBox() {
-  console.log(sampleData.isWin);
+  const matchResult = useRecoilValue(summonerMatchResult);
+  if (isNil(matchResult)) return <></>;
 
-  const viewDetailImg = sampleData.isWin ? ICON_LIST.viewDetailBlue : ICON_LIST.viewDetailRed;
+  console.log('[INFO]================matchResult==================');
+  console.log(matchResult);
+  const { games } = matchResult;
   return (
-    <MatchBoxWrapper isWin={sampleData.isWin}>
-      <InfoWrapper>
-        <MatchInfo />
-      </InfoWrapper>
-      <ChampionWrapper>
-        <MatchChampion />
-      </ChampionWrapper>
-      <StatusWrapper>
-        <MatchStats />
-      </StatusWrapper>
-      <ItemWrapper>
-        <MatchItem />
-      </ItemWrapper>
-      <TeamWrapper>
-        <MatchTeam />
-      </TeamWrapper>
-      <SuffixWrapper isWin={sampleData.isWin}>
-        <ViewDetailBtnStyled>
-          <img src={viewDetailImg} alt={'view_detail_button_img'} />
-        </ViewDetailBtnStyled>
-      </SuffixWrapper>
-    </MatchBoxWrapper>
+    <>
+      {games.map((game) => {
+        const {
+          createDate,
+          gameLength,
+          gameType,
+          isWin,
+          gameId,
+          champion,
+          spells,
+          peak,
+          stats,
+          items,
+          teams,
+          summonerName,
+        } = game;
+        const viewDetailImg = isWin ? ICON_LIST.viewDetailBlue : ICON_LIST.viewDetailRed;
+        return (
+          <MatchBoxWrapper isWin={isWin} key={gameId}>
+            <InfoWrapper>
+              <MatchInfo
+                createDate={createDate}
+                gameLength={gameLength}
+                gameType={gameType}
+                isWin={isWin}
+              />
+            </InfoWrapper>
+            <ChampionWrapper>
+              <MatchChampion champion={champion} spells={spells} peak={peak} />
+            </ChampionWrapper>
+            <StatusWrapper>
+              <MatchStats champion={champion} stats={stats} />
+            </StatusWrapper>
+            <ItemWrapper>
+              <MatchItem items={items} ward={stats.ward} isWin={isWin} />
+            </ItemWrapper>
+            <TeamWrapper>
+              <MatchTeam teams={teams} summonerName={summonerName} />
+            </TeamWrapper>
+            <SuffixWrapper isWin={isWin}>
+              <ViewDetailBtnStyled>
+                <img src={viewDetailImg} alt={'view_detail_button_img'} />
+              </ViewDetailBtnStyled>
+            </SuffixWrapper>
+          </MatchBoxWrapper>
+        );
+      })}
+    </>
   );
 }
 
@@ -59,6 +86,8 @@ const ChampionWrapper = styled.div`
   align-items: center;
 `;
 const StatusWrapper = styled.div`
+  display: flex;
+  align-items: center;
   width: 204px;
   padding-top: 13px;
 `;

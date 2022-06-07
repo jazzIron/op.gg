@@ -1,30 +1,42 @@
 import styled from '@emotion/styled';
+import { Teams } from '@src/store/match/Match_types';
 import { colors } from '@src/themes';
-import sampleData from './matchTeam.Data.json';
+import { makeMatchTeam } from '@src/utils/match';
 
-// TODO: 검색한 소환사 아이디 색이 다름!
-export function MatchTeam() {
-  const redTeam = sampleData.teams.filter((team) => team.teamId === 1);
-  const blueTeam = sampleData.teams.filter((team) => team.teamId === 2);
+interface MatchTeamPropTypes {
+  teams: Teams;
+  summonerName: string;
+}
+
+export function MatchTeam({ teams, summonerName }: MatchTeamPropTypes) {
+  const { redTeam, blueTeam } = makeMatchTeam(teams);
   return (
     <MatchTeamWrapper>
       <MatchTeamItemWrapper>
-        {redTeam[0].players.map((player) => (
-          <MatchTeamItem
-            key={player.summonerId}
-            champion={player.champion}
-            summonerName={player.summonerName}
-          />
-        ))}
+        {redTeam[0].players.map((player) => {
+          const targetSummoner = player.summonerName === summonerName ? true : false;
+          return (
+            <MatchTeamItem
+              key={player.summonerId}
+              champion={player.champion}
+              summonerName={player.summonerName}
+              targetSummoner={targetSummoner}
+            />
+          );
+        })}
       </MatchTeamItemWrapper>
       <MatchTeamItemWrapper>
-        {blueTeam[0].players.map((player) => (
-          <MatchTeamItem
-            key={player.summonerId}
-            champion={player.champion}
-            summonerName={player.summonerName}
-          />
-        ))}
+        {blueTeam[0].players.map((player) => {
+          const targetSummoner = player.summonerName === summonerName ? true : false;
+          return (
+            <MatchTeamItem
+              key={player.summonerId}
+              champion={player.champion}
+              summonerName={player.summonerName}
+              targetSummoner={targetSummoner}
+            />
+          );
+        })}
       </MatchTeamItemWrapper>
     </MatchTeamWrapper>
   );
@@ -44,9 +56,11 @@ const MatchTeamItemWrapper = styled.ul`
 const MatchTeamItem = ({
   champion,
   summonerName,
+  targetSummoner,
 }: {
   champion: { imageUrl: string; level: number };
   summonerName: string;
+  targetSummoner: boolean;
 }) => {
   const TeamItemStyled = styled.li`
     display: flex;
@@ -67,11 +81,12 @@ const MatchTeamItem = ({
     }
   `;
 
-  const SummonerInfoWrapper = styled.div`
+  const SummonerInfoWrapper = styled.div<{ targetSummoner: boolean }>`
     font-family: AppleSDGothicNeo;
     font-size: 11px;
     letter-spacing: -0.42px;
     color: ${colors.greyish_brown};
+    font-weight: ${(props) => (props.targetSummoner ? 'bold' : 'normal')};
     max-width: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -83,7 +98,7 @@ const MatchTeamItem = ({
       <ChampionAvatarWrapper>
         <img src={champion.imageUrl} alt="summoner_champion_img" />
       </ChampionAvatarWrapper>
-      <SummonerInfoWrapper>{summonerName}</SummonerInfoWrapper>
+      <SummonerInfoWrapper targetSummoner={targetSummoner}>{summonerName}</SummonerInfoWrapper>
     </TeamItemStyled>
   );
 };

@@ -27,7 +27,6 @@ const UnRankWrapper = styled.div`
   padding: 16px 28px;
   border-radius: 2px;
   background-color: ${colors.white_four};
-  box-shadow: 0 0 0 1px ${colors.silver_three} inset;
   gap: 28px;
 `;
 

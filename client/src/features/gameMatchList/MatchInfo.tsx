@@ -19,8 +19,14 @@ const gameLengthLabel = (gameLength: number) => {
   return `${min}분 ${second}초`;
 };
 
-export function MatchInfo() {
-  const { createDate, gameLength, gameType, isWin } = sampleData;
+interface MatchInfoPropTypes {
+  createDate: number;
+  gameLength: number;
+  gameType: string;
+  isWin: boolean;
+}
+
+export function MatchInfo({ createDate, gameLength, gameType, isWin }: MatchInfoPropTypes) {
   return (
     <MatchInfoWrapper>
       <MatchTypeStyled>{gameType}</MatchTypeStyled>
@@ -36,6 +42,7 @@ const MatchInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70px;
   gap: 4px;
 `;
 

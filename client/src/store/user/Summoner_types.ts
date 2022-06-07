@@ -22,7 +22,7 @@ export interface Ieague {
   wins: number;
 }
 
-interface PreviousTier {
+export interface PreviousTier {
   division: string;
   imageUrl: string;
   lp: number;

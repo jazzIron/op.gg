@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
+import { Champion, Spell } from '@src/store/match/Match_types';
 import { fonts, colors } from '@src/themes';
-import MatchData from './match.Data.json';
 
-const sampleData = {
-  champion: MatchData.games[0].champion,
-  spells: MatchData.games[0].spells,
-  peak: MatchData.games[0].peak,
-};
+interface MatchChampionPropTypes {
+  champion: Champion;
+  spells: Spell[];
+  peak: string[];
+}
 
-export function MatchChampion() {
-  const { champion, spells, peak } = sampleData;
+export function MatchChampion({ champion, spells, peak }: MatchChampionPropTypes) {
   return (
     <MatchChampionWrapper>
       <MatchChampionStyled>
@@ -32,7 +31,7 @@ export function MatchChampion() {
         </PeakWrapper>
       </MatchChampionStyled>
 
-      <ChampionNameStyled>레오나</ChampionNameStyled>
+      <ChampionNameStyled>ChampionName</ChampionNameStyled>
     </MatchChampionWrapper>
   );
 }
