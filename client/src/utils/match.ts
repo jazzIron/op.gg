@@ -3,15 +3,37 @@ import { ICON_LIST } from '@src/components/icon';
 import { Items, SummonerMatchResultApi, Teams } from '@src/store/match/Match_types';
 import { colors } from '@src/themes';
 import axios from 'axios';
+import itemData from '../json/items.json';
+import { isEmpty } from 'lodash';
 
 const ITEM_AREA_LENGTH = 6;
 
+export const OPTIONS = [
+  {
+    id: 'ALL',
+    text: '전체',
+  },
+  {
+    id: 'SOLO',
+    text: '솔로게임',
+  },
+  {
+    id: 'FREE',
+    text: '자유랭크',
+  },
+];
+
 export const getMatchParser = async (
   summonerName: string,
+  rankType: string,
   summonerMatchRes: SummonerMatchResultApi,
 ) => {
+  const checkRankType = rankType === 'ALL' ? '' : rankType === 'SOLO' ? '솔랭' : '자유 5:5 랭크';
+  const targetMatch = isEmpty(checkRankType)
+    ? summonerMatchRes.games
+    : summonerMatchRes.games.filter((game) => game.gameType === checkRankType);
   const result = await Promise.all(
-    summonerMatchRes.games.map((game: any) => {
+    targetMatch.map((game: any) => {
       const gameId = game.gameId;
       return axios
         .get(OP_GG_API.GET_SUMMONER_MATCH_DETAIL(summonerName, gameId)) // [C]
@@ -20,7 +42,8 @@ export const getMatchParser = async (
         });
     }),
   );
-  const summonerMatch = summonerMatchRes.games.map((game, idx) => {
+
+  const summonerMatch = targetMatch.map((game, idx) => {
     return {
       ...game,
       teams: result[idx],
@@ -132,4 +155,22 @@ export const makeMatchTeam = ({ teams }: Teams) => {
     redTeam,
     blueTeam,
   };
+};
+
+export const getChampionName = (championImageUrl: string) => {
+  const ChampionImageUrlStr = championImageUrl.split('/');
+  const ChampionName = ChampionImageUrlStr[ChampionImageUrlStr.length - 1].replace(/\.png/g, '');
+  return ChampionName;
+};
+
+export const getItemName = (imageUrl: string) => {
+  const itemImageUrlStr = imageUrl.split('/');
+  const itemId = itemImageUrlStr[itemImageUrlStr.length - 1].replace(/\.png/g, '');
+  const itemDataInfo: any = itemData.data;
+  const selectedItems = Object.entries(itemDataInfo)
+    .filter(([key, value]) => {
+      return key === itemId;
+    })
+    .map((item) => item[1]);
+  return selectedItems ? selectedItems[0] : {};
 };

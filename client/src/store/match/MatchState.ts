@@ -1,6 +1,5 @@
 import { getSummonerMatchApi, getSummonerMatchDetailApi } from '@src/api/match/summonerMatchApi';
 import { getMatchParser } from '@src/utils/match';
-import { match } from 'assert';
 import { isEmpty } from 'lodash';
 import { atom, atomFamily } from 'recoil';
 import { MatchesApi, MatchDetailApi, SummonerMatchResultApi } from './Match_types';
@@ -18,11 +17,6 @@ export const summonerMatchQuery = atomFamily<MatchesApi, summonerMatchParams>({
     return summonerMatchList;
   },
 });
-
-// export const summonerMatchResult = atom<MatchesApi | null>({
-//   key: 'summonerMatchResult',
-//   default: null,
-// });
 
 interface summonerMatchDetailParams {
   [key: string]: string | number;
@@ -50,6 +44,7 @@ export const summonerMatchDetailResult = atom<MatchDetailApi | null>({
 interface summonerMatchResultQueryParam {
   [key: string]: string | number;
   summonerName: string;
+  rankType: string;
   refreshId: number;
 }
 
@@ -65,10 +60,10 @@ export const summonerMatchResultQuery = atomFamily<
   Readonly<summonerMatchResultQueryParam>
 >({
   key: 'testQuery',
-  default: async ({ summonerName, refreshId }) => {
+  default: async ({ summonerName, rankType, refreshId }) => {
     const summonerMatchRes: any = await getSummonerMatchApi(summonerName);
     if (isEmpty(summonerMatchRes)) return [];
-    const games = await getMatchParser(summonerName, summonerMatchRes);
+    const games = await getMatchParser(summonerName, rankType, summonerMatchRes);
     const result = {
       ...summonerMatchRes,
       games: games,

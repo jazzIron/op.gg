@@ -2,7 +2,7 @@ import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { Items } from '@src/store/match/Match_types';
-import { makeChampionItems } from '@src/utils/match';
+import { getItemName, makeChampionItems } from '@src/utils/match';
 
 interface MatchItemPropTypes {
   items: Items[];
@@ -24,6 +24,8 @@ export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
       <ItemWrapper>
         <ItemStyled>
           {itemList.map((item, idx) => {
+            const itemInfo = getItemName(item.imageUrl);
+            //console.log(itemInfo);
             return (
               <ItemImageStyled key={idx}>
                 <img src={item.imageUrl} alt={'item_img'} />

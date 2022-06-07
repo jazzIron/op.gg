@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { ChampionRate, ChampionRateSummary } from '../championRate';
 import { isNull } from 'lodash';
 import { Rank } from '../rank/Rank';
+import { Spinner } from '@src/components/loadingSpinner';
 
 const tabItems = [
   {
@@ -28,7 +29,7 @@ const tabContents = [
 
 export function LeftContent() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  if (isNull(summonerDetail.summonerInfoRes)) return <div>로딩 중..</div>;
+  if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
   return (
     <LeftContentWrapper>
       <Rank rankType={'SOLO'} />

@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { Champion, Spell } from '@src/store/match/Match_types';
 import { fonts, colors } from '@src/themes';
+import { getChampionName } from '@src/utils/match';
+import { useMemo } from 'react';
 
 interface MatchChampionPropTypes {
   champion: Champion;
@@ -9,6 +11,7 @@ interface MatchChampionPropTypes {
 }
 
 export function MatchChampion({ champion, spells, peak }: MatchChampionPropTypes) {
+  const ChampionName = useMemo(() => getChampionName(champion.imageUrl), [champion]);
   return (
     <MatchChampionWrapper>
       <MatchChampionStyled>
@@ -30,8 +33,7 @@ export function MatchChampion({ champion, spells, peak }: MatchChampionPropTypes
           ))}
         </PeakWrapper>
       </MatchChampionStyled>
-
-      <ChampionNameStyled>ChampionName</ChampionNameStyled>
+      <ChampionNameStyled>{ChampionName}</ChampionNameStyled>
     </MatchChampionWrapper>
   );
 }

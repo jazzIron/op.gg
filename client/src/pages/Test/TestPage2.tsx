@@ -11,7 +11,7 @@ export function TestPage2() {
       const refreshId = Math.random();
       const summonerName = 'hide on bush';
       const response = await snapshot.getPromise(
-        summonerMatchResultQuery({ summonerName, refreshId }),
+        summonerMatchResultQuery({ summonerName, rankType: 'ALL', refreshId }),
       );
       if (isEmpty(response)) throw Error();
       set(summonerMatchResult, response);

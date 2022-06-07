@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Spinner } from '@src/components/loadingSpinner';
 import { summonerDetailResult } from '@src/store/user/SummonerState';
 import { colors, fonts } from '@src/themes';
 import { makeLeagueRank } from '@src/utils/common';
@@ -15,7 +16,7 @@ export function Rank({ rankType }: RankTypePropTypes) {
   }, []);
 
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  if (isNull(summonerDetail.summonerInfoRes)) return <div>로딩 중..</div>;
+  if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
   const { summoner } = summonerDetail.summonerInfoRes;
   const { rankInfo, totalGame, winningRateValue } = useMemo(
     () => makeLeagueRank(rankType, SEASON, summoner),
@@ -33,7 +34,7 @@ export function Rank({ rankType }: RankTypePropTypes) {
           <RankContent>
             <RankType>{rankTypeName}</RankType>
             <RankPosition>
-              <span>탑</span> (총 <span>{totalGame}</span>게임)
+              <span></span> (총 <span>{totalGame}</span>게임)
             </RankPosition>
             <RankRank>{rankInfo.tierRank.tier}</RankRank>
             <RankInfo>

@@ -7,6 +7,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { useRecoilCallback, useRecoilState } from 'recoil';
 import { SearchSummonerHistory } from './SearchSummonerHistory';
 import { debounce, isEmpty } from 'lodash';
+import { Spinner } from '@src/components/loadingSpinner';
 
 export function SearchSummoner() {
   const outsideRef = useRef(null);
@@ -28,15 +29,14 @@ export function SearchSummoner() {
   useOutsideClick(outsideRef, outsideCallback);
 
   const searchSummoner = useRecoilCallback(({ snapshot, set }) => async (newValue: string) => {
-    if (isEmpty(newValue)) return false;
     setLoading(true);
     const refreshId = Math.random();
+    const targetSummoner = isEmpty(newValue) ? 'hide on bush' : newValue;
     const params = {
-      summonerName: newValue,
+      summonerName: targetSummoner,
       refreshId: refreshId,
     };
     const response = await snapshot.getPromise(summonerDetailQuery(params));
-    console.log(response);
     setIsHaveInputValue(false);
     set(summonerDetailResult, response);
     setLoading(false);

@@ -1,61 +1,54 @@
 import styled from '@emotion/styled';
 import { NavBar } from '@src/components/navBar';
 import { summonerMatchResult, summonerMatchResultQuery } from '@src/store/match/MatchState';
-import { isEmpty, isNull, isNil } from 'lodash';
 import { useRecoilValue, useRecoilCallback } from 'recoil';
 import { MatchList } from '../gameMatchList/MatchList';
 import { useEffect, useState } from 'react';
 import { GameSummary } from '../gameSummary/GameSummary';
-
-const options = [
-  {
-    id: 'ALL',
-    text: '전체',
-  },
-  {
-    id: 'SOLO',
-    text: '솔로게임',
-  },
-  {
-    id: 'FREE',
-    text: '자유랭크',
-  },
-];
+import { MatchEmpty } from './MatchEmpty';
+import { OPTIONS } from '@src/utils/match';
+import { Spinner } from '@src/components/loadingSpinner';
 
 export function MainContent() {
   const [activeNav, setActiveNav] = useState('ALL');
+  const [loading, setLoading] = useState(true);
   const matchResult = useRecoilValue(summonerMatchResult);
   const getMatchResult = useRecoilCallback(({ snapshot, set }) => async () => {
     try {
       const refreshId = Math.random();
       const summonerName = 'hide on bush';
       const response = await snapshot.getPromise(
-        summonerMatchResultQuery({ summonerName, refreshId }),
+        summonerMatchResultQuery({ summonerName, rankType: activeNav, refreshId }),
       );
-
-      console.log(response);
       set(summonerMatchResult, response);
+      setLoading(false);
     } catch (error) {
+      // TODO: 에러 페이지로 보내기
       console.error(`[ERROR] getMatchResult: ${error}`);
     }
   });
 
   useEffect(() => {
+    setLoading(true);
     getMatchResult();
   }, [activeNav]);
-
-  console.log(matchResult);
 
   const handleChangeNav = (id: string) => {
     setActiveNav(id);
   };
-  if (isNull(matchResult)) return <div>로딩 중..</div>;
+  if (loading) return <Spinner onActive={true} fullCover={false} />;
 
   return (
     <MainContentWrapper>
-      <NavBar options={options} activeId={activeNav} onChange={handleChangeNav} />
-      <GameSummary />
-      <MatchList />
+      <NavBar options={OPTIONS} activeId={activeNav} onChange={handleChangeNav} />
+      {matchResult ? (
+        <>
+          <GameSummary />
+          <MatchList />
+        </>
+      ) : (
+        <MatchEmpty />
+      )}
     </MainContentWrapper>
   );
 }

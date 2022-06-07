@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Spinner } from '@src/components/loadingSpinner';
 import { summonerDetailResult } from '@src/store/user/SummonerState';
 import { fonts } from '@src/themes';
 import { colors } from '@src/themes/index';
@@ -10,7 +11,11 @@ import TierTag from './TierTag';
 export function SummonerBasic() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
   if (isNull(summonerDetail.summonerInfoRes))
-    return <SummonerBasicWrapper>로딩 중..</SummonerBasicWrapper>;
+    return (
+      <SummonerBasicLoadingWrapper>
+        <Spinner onActive={true} fullCover={false} />
+      </SummonerBasicLoadingWrapper>
+    );
 
   const { ladderRank, name, level, profileBorderImageUrl, profileImageUrl, previousTiers } =
     summonerDetail.summonerInfoRes.summoner;
@@ -37,6 +42,17 @@ export function SummonerBasic() {
     </SummonerBasicWrapper>
   );
 }
+
+const SummonerBasicLoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid ${colors.white_three};
+  padding: 15px 200px 12px 200px;
+  min-width: 1000px;
+  height: 175px;
+  min-height: 175px;
+`;
 
 const SummonerBasicWrapper = styled.div`
   border-bottom: 1px solid ${colors.white_three};
