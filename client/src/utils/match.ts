@@ -7,6 +7,7 @@ import itemData from '../json/items.json';
 import { isEmpty } from 'lodash';
 
 const ITEM_AREA_LENGTH = 6;
+export const SEASON = 9;
 
 export const OPTIONS = [
   {
@@ -173,4 +174,8 @@ export const getItemName = (imageUrl: string) => {
     })
     .map((item) => item[1]);
   return selectedItems ? selectedItems[0] : {};
+};
+
+export const getRankTypeName = (rankType: string) => {
+  return rankType === 'SOLO' ? '솔로랭크' : '자유 5:5 랭크';
 };

@@ -44,7 +44,6 @@ export function useAutoComplete(searchData: AutoCompleteItem[], defaultValue: st
 
   //dropdown keyboard event
   const handleDropDownKey = (event: KeyboardEvent<HTMLInputElement>) => {
-    // console.log(event.key, dropDownItemIndex, dropDownList);
     if (isHaveInputValue) {
       if (event.key === 'ArrowDown' && dropDownList.length - 1 > dropDownItemIndex) {
         setDropDownItemIndex(dropDownItemIndex + 1);

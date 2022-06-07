@@ -1,26 +1,20 @@
 import styled from '@emotion/styled';
 import { Spinner } from '@src/components/loadingSpinner';
-import { summonerDetailResult } from '@src/store/user/SummonerState';
 import { colors, fonts } from '@src/themes';
 import { makeLeagueRank } from '@src/utils/common';
+import { getRankTypeName, SEASON } from '@src/utils/match';
 import { isEmpty, isNull } from 'lodash';
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
 import { RankTypePropTypes } from './Rank_types';
 import { UnRank } from './UnRank';
 
-const SEASON = 9;
-export function Rank({ rankType }: RankTypePropTypes) {
-  const rankTypeName = useMemo(() => {
-    return rankType === 'SOLO' ? '솔로랭크' : '자유 5:5 랭크';
-  }, []);
-
-  const summonerDetail = useRecoilValue(summonerDetailResult);
+export function Rank({ rankType, summonerDetail }: RankTypePropTypes) {
+  const rankTypeName = useMemo(() => getRankTypeName(rankType), [rankType]);
   if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
   const { summoner } = summonerDetail.summonerInfoRes;
   const { rankInfo, totalGame, winningRateValue } = useMemo(
     () => makeLeagueRank(rankType, SEASON, summoner),
-    [rankType],
+    [summonerDetail.summonerInfoRes],
   );
   return (
     <RankWrapper>
@@ -34,7 +28,7 @@ export function Rank({ rankType }: RankTypePropTypes) {
           <RankContent>
             <RankType>{rankTypeName}</RankType>
             <RankPosition>
-              <span></span> (총 <span>{totalGame}</span>게임)
+              (총 <span>{totalGame}</span>게임)
             </RankPosition>
             <RankRank>{rankInfo.tierRank.tier}</RankRank>
             <RankInfo>

@@ -53,7 +53,6 @@ export function SearchSummoner() {
   };
 
   const handleAddKeyword = (text: string) => {
-    console.log('text', text);
     const newKeyword = {
       id: Date.now(),
       text: text,

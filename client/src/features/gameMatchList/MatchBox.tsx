@@ -13,9 +13,6 @@ import { useRecoilValue } from 'recoil';
 export function MatchBox() {
   const matchResult = useRecoilValue(summonerMatchResult);
   if (isNil(matchResult)) return <></>;
-
-  console.log('[INFO]================matchResult==================');
-  console.log(matchResult);
   const { games } = matchResult;
   return (
     <>

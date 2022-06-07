@@ -30,10 +30,11 @@ const tabContents = [
 export function LeftContent() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
   if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
+
   return (
     <LeftContentWrapper>
-      <Rank rankType={'SOLO'} />
-      <Rank rankType={'FREE'} />
+      <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
+      <Rank rankType={'FREE'} summonerDetail={summonerDetail} />
       <Tab tabItem={tabItems} tabContent={tabContents} />
     </LeftContentWrapper>
   );

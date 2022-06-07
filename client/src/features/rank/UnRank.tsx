@@ -4,7 +4,7 @@ import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
 import { RankTypePropTypes } from './Rank_types';
 
-export function UnRank({ rankType }: RankTypePropTypes) {
+export function UnRank({ rankType }: Pick<RankTypePropTypes, 'rankType'>) {
   const rankTypeName = useMemo(() => {
     return rankType === 'SOLO' ? '솔로랭크' : '자유 5:5 랭크';
   }, []);

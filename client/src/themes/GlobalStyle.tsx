@@ -1,5 +1,5 @@
 import { css, Global } from '@emotion/react';
-import { theme } from '@src/themes';
+import { colors, theme } from '@src/themes';
 import { AppleSDGothicNeoB, AppleSDGothicNeoR, Helvetica, HelveticaBold } from '@src/asset/fonts';
 export default function GlobalStyle(): JSX.Element {
   return (
@@ -78,7 +78,7 @@ export default function GlobalStyle(): JSX.Element {
         }
 
         #root {
-          font-family: 'Gothic';
+          font-family: 'Helvetica';
           word-break: break-word;
         }
 
@@ -151,6 +151,19 @@ export default function GlobalStyle(): JSX.Element {
         @font-face {
           font-family: 'HelveticaBold';
           src: url(${HelveticaBold});
+        }
+
+        body::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+          height: 20%;
+          background: ${colors.azure};
+          border-radius: 8px;
+        }
+        body::-webkit-scrollbar-track {
+          background: ${colors.ocean_blue};
         }
       `}
     />

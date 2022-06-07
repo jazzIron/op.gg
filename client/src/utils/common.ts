@@ -54,10 +54,6 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
   const rankFilter = summonerData.leagues.filter((info) => {
     return info.tierRank.name === rankType;
   });
-
-  console.log(rankSeason);
-  console.log(rankFilter);
-
   const leagueRank = {
     ...rankFilter[0],
     tierRank: !isEmpty(rankSeason) ? rankSeason[0] : initTierRank,
@@ -66,9 +62,6 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
       ? winningRate(rankFilter[0].wins, rankFilter[0].wins + rankFilter[0].losses)
       : 0,
   };
-
-  console.log(leagueRank);
-
   const rankInfo = leagueRank;
   const totalGame = rankInfo.wins + rankInfo.losses;
   const { winningRateColor, winningRateValue } = winningRate(rankInfo.wins, totalGame);

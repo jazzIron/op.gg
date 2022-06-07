@@ -42,7 +42,6 @@ export async function api(apiConfig: AxiosRequestConfig) {
           throw new Error();
         }
       }
-
       // 401: Unauthorized
       // 403: Forbidden
       // 404: Not Found
