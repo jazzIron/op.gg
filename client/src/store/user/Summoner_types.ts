@@ -4,7 +4,7 @@ interface IadderRank {
   rankPercentOfTop: number;
 }
 
-interface Ieague {
+export interface Ieague {
   hasResults: boolean;
   losses: number;
   tierRank: {

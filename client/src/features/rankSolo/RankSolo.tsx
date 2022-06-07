@@ -1,22 +1,39 @@
 import styled from '@emotion/styled';
+import { summonerDetailResult } from '@src/store/user/SummonerState';
+import { Ieague } from '@src/store/user/Summoner_types';
 import { colors, fonts } from '@src/themes/';
+import { makeLeagueRank } from '@src/utils/common';
+import { parenthesisExtraction, winningRate } from '@src/utils/formatter';
+import { isNull } from 'lodash';
+import { useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
 
+const LEAGUE_TYPE = '솔랭';
+const SEASON = 9;
 export function RankSolo() {
+  const summonerDetail = useRecoilValue(summonerDetailResult);
+  if (isNull(summonerDetail.summonerInfoRes)) return <div>로딩 중..</div>;
+  const { summoner } = summonerDetail.summonerInfoRes;
+  const { rankInfo, rankLp, totalGame, winningRateInfo } = useMemo(
+    () => makeLeagueRank(LEAGUE_TYPE, SEASON, summoner),
+    [summonerDetail.summonerInfoRes.summoner],
+  );
+
   return (
     <RankSoloWrapper>
       <RankSoloImageStyled>
-        <img src="https://opgg-static.akamaized.net/images/medals/diamond_1.png" />
+        <img src={rankInfo.tierRank.imageUrl} alt={'rank_img'} />
       </RankSoloImageStyled>
       <RankSoloContent>
         <RankSoloType>솔로 랭크</RankSoloType>
         <RankSoloPosition>
-          <span>탑</span> (총 <span>27</span>게임)
+          <span>탑</span> (총 <span>{totalGame}</span>게임)
         </RankSoloPosition>
-        <RankSoloRank>Platinum 2</RankSoloRank>
+        <RankSoloRank>{rankInfo.tierRank.tier}</RankSoloRank>
         <RankSoloInfo>
-          <span>80 LP </span> / 28승 30패
+          <span>{rankLp} </span> / {rankInfo.wins}승 {rankInfo.losses}패
         </RankSoloInfo>
-        <RankSoloRate>승률 51%</RankSoloRate>
+        <RankSoloRate>승률 {winningRateInfo}%</RankSoloRate>
       </RankSoloContent>
     </RankSoloWrapper>
   );

@@ -1,20 +1,26 @@
 import styled from '@emotion/styled';
 import { SearchInput } from '@src/components/searchInput/SearchInput';
-import { summonerInfoQuery } from '@src/store/user/SummonerState';
+import {
+  summonerDetailQuery,
+  summonerDetailResult,
+  summonerInfoResult,
+} from '@src/store/user/SummonerState';
 import { colors, fonts } from '@src/themes';
 import { useOutsideClick } from '@src/utils/common';
 import { useState, useCallback, useRef } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useRecoilCallback, useRecoilState } from 'recoil';
 import { SearchSummonerHistory } from './SearchSummonerHistory';
 import { debounce, isEmpty } from 'lodash';
-import { SummonerApi } from '@src/store/user/Summoner_types';
 
 export function SearchSummoner() {
   const outsideRef = useRef(null);
   const [searchInput, setSearchInput] = useState('');
-  const [searchResult, setSearchResult] = useState<SummonerApi>();
+  const [summonerDetail, setSummonerDetail] = useRecoilState(summonerDetailResult);
   const [loading, setLoading] = useState(false);
   const [isHaveInputValue, setIsHaveInputValue] = useState(false); //dropdown 표시 유무
+  const [keywords, setKeywords] = useState(
+    JSON.parse(localStorage.getItem('searchKeywords') || '[]'),
+  );
 
   const handleClick = () => {
     setIsHaveInputValue(true);
@@ -33,10 +39,10 @@ export function SearchSummoner() {
       summonerName: newValue,
       refreshId: refreshId,
     };
-    const response = await snapshot.getPromise(summonerInfoQuery(params));
+    const response = await snapshot.getPromise(summonerDetailQuery(params));
     console.log(response);
     setIsHaveInputValue(false);
-    setSearchResult(response);
+    set(summonerDetailResult, response);
     setLoading(false);
   });
 
@@ -49,6 +55,21 @@ export function SearchSummoner() {
     setSearchInput(newValue);
     debouncedCallback(newValue);
   };
+
+  const handleAddKeyword = (text: string) => {
+    console.log('text', text);
+    const newKeyword = {
+      id: Date.now(),
+      text: text,
+    };
+    setKeywords([newKeyword, ...keywords]);
+  };
+
+  const handleKeyHistoryKeyword = (nextKeyword: any) => {
+    setKeywords(nextKeyword);
+  };
+
+  console.log(summonerDetail);
 
   return (
     <SearchSummonerWrapper ref={outsideRef}>
@@ -64,11 +85,14 @@ export function SearchSummoner() {
             <div>최근검색</div>
             <div>즐겨찾기</div>
           </SearchSummonerHistoryTabWrapper>
-          <SearchSummonerHistory />
+          <SearchSummonerHistory
+            keywords={keywords}
+            onKeyHistoryKeyword={handleKeyHistoryKeyword}
+          />
         </SearchSummonerHistoryWrapper>
       )}
 
-      {searchResult && <div>{searchResult.summoner.name}</div>}
+      {summonerInfoResult && <div>테스트</div>}
     </SearchSummonerWrapper>
   );
 }

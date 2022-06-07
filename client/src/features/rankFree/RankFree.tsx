@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
 import { colors, fonts } from '@src/themes';
 
+const LEAGUE_TYPE = '솔랭';
+
 export function RankFree() {
   return (
     <RankFreeWrapper>

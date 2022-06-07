@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { Tab } from '@src/components/tab/Tab';
+import { summonerDetailResult } from '@src/store/user/SummonerState';
+import { useRecoilValue } from 'recoil';
 import { ChampionRate, ChampionRateSummary } from '../championRate';
 import { RankFree } from '../rankFree/RankFree';
 import { RankSolo } from '../rankSolo/RankSolo';
+import { isNull } from 'lodash';
 
 const tabItems = [
   {
@@ -25,6 +28,14 @@ const tabContents = [
 ];
 
 export function LeftContent() {
+  const summonerDetail = useRecoilValue(summonerDetailResult);
+
+  console.log('[INFO] LeftContent==============');
+  console.log(summonerDetail);
+  console.log(isNull(summonerDetail));
+
+  if (isNull(summonerDetail.summonerInfoRes)) return <div>로딩 중..</div>;
+
   return (
     <LeftContentWrapper>
       <RankSolo />

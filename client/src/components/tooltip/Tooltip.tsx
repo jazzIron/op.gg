@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ToolTip } from './Tooltip_types';

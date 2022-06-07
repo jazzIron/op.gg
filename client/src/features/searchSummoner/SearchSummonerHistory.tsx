@@ -1,9 +1,25 @@
 import styled from '@emotion/styled';
 import { fonts, colors } from '@src/themes';
+import { useState, useEffect } from 'react';
 
-export function SearchSummonerHistory() {
-  const deleteHistoryHandler = () => {
-    return true;
+interface SearchSummonerHistoryPropTypes {
+  keywords: [{ id: number; text: string }];
+  onKeyHistoryKeyword: (nextKeyword: [{ id: number; text: string }]) => void;
+}
+
+export function SearchSummonerHistory({
+  keywords,
+  onKeyHistoryKeyword,
+}: SearchSummonerHistoryPropTypes) {
+  useEffect(() => {
+    localStorage.setItem('searchKeywords', JSON.stringify(keywords));
+  }, [keywords]);
+
+  const deleteHistoryHandler = (id: number) => {
+    const nextKeyword = keywords.filter(
+      (keyword: { id: number; text: string }) => keyword.id !== id,
+    );
+    //onKeyHistoryKeyword(nextKeyword);
   };
 
   return (
@@ -17,7 +33,7 @@ export function SearchSummonerHistory() {
               alt={'favorite_icon'}
             />
           </FavoriteIcon>
-          <DeleteHistory onClick={deleteHistoryHandler}>
+          <DeleteHistory onClick={() => deleteHistoryHandler(1)}>
             <img
               src="https://s-lol-web.op.gg/images/site/icon-history-delete.png?v=1654157118674"
               alt={'history_delete_icon'}

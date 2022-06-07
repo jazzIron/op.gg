@@ -8,7 +8,7 @@ interface summonerParams {
   refreshId: number;
 }
 
-export const summonerInfoQuery = atomFamily<SummonerApi, summonerParams>({
+export const summonerInfoQuery = atomFamily<SummonerApi | null, summonerParams>({
   key: 'summonerInfoQuery',
   default: async ({ summonerName, refreshId }) => {
     const summonerInfo: SummonerApi = await getSummonerInfoApi(summonerName);
@@ -29,7 +29,34 @@ export const summonerMostInfoQuery = atomFamily<MostInfoApi, summonerParams>({
   },
 });
 
-export const summonerMatchDetailResult = atom<MostInfoApi | null>({
-  key: 'summonerMatchDetailResult',
+export const summonerMostInfoResult = atom<MostInfoApi | null>({
+  key: 'summonerMostInfoResult',
   default: null,
+});
+
+export interface SummonerDetailResult {
+  summonerInfoRes: SummonerApi | null;
+  summonerMostInfoRes: MostInfoApi | null;
+}
+
+export const summonerDetailQuery = atomFamily<SummonerDetailResult, Readonly<summonerParams>>({
+  key: 'summonerDetailQuery',
+  default: async ({ summonerName, refreshId }) => {
+    const [summonerInfoRes, summonerMostInfoRes]: [
+      summonerInfoRes: SummonerApi,
+      summonerMostInfoRes: MostInfoApi,
+    ] = await Promise.all([getSummonerInfoApi(summonerName), getSummonerMostInfo(summonerName)]);
+    return {
+      summonerInfoRes,
+      summonerMostInfoRes,
+    };
+  },
+});
+
+export const summonerDetailResult = atom<SummonerDetailResult>({
+  key: 'summonerDetailResult',
+  default: {
+    summonerInfoRes: null,
+    summonerMostInfoRes: null,
+  },
 });

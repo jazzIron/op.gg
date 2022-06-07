@@ -15,7 +15,7 @@ export const getSummonerInfoApi = (summonerName: string) => {
 // NOTE: 소환사 most info API
 export const getSummonerMostInfo = (summonerName: string) => {
   const apiConfig: AxiosRequestConfig = {
-    url: OP_GG_API.GET_SUMMONER_INFO(summonerName),
+    url: OP_GG_API.GET_SUMMONER_MOST_INFO(summonerName),
     method: 'GET',
     params: {},
   };
