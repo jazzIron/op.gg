@@ -54,6 +54,7 @@ export interface Games {
   mapInfo: MapInfo;
   peak: string[];
   isWin: boolean;
+  teams: { gameId: string; teams: Team[] };
 }
 
 interface Position {
@@ -99,4 +100,11 @@ interface Team {
 export interface MatchDetailApi {
   gameId: string;
   teams: Team[];
+}
+
+export interface SummonerMatchResultApi {
+  champions: Champion;
+  games: Games[];
+  positions: Position[];
+  summary: Summary;
 }
