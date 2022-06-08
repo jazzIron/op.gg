@@ -10,11 +10,11 @@ import { UnRank } from './UnRank';
 
 export function Rank({ rankType, summonerDetail }: RankTypePropTypes) {
   const rankTypeName = useMemo(() => getRankTypeName(rankType), [rankType]);
-  if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
-  const { summoner } = summonerDetail.summonerInfoRes;
+  if (isNull(summonerDetail.summoner)) return <Spinner onActive={true} fullCover={false} />;
+  const { summoner } = summonerDetail;
   const { rankInfo, totalGame, winningRateValue } = useMemo(
     () => makeLeagueRank(rankType, SEASON, summoner),
-    [summonerDetail.summonerInfoRes],
+    [summonerDetail.summoner],
   );
   return (
     <RankWrapper>

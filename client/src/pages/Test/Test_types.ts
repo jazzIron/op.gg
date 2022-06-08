@@ -72,7 +72,7 @@ export interface SummonerDetailResult {
 }
 
 export const summonerDetailResult = atom<SummonerDetailResult>({
-  key: 'summonerDetailResult',
+  key: 'summonerDetailResult2',
   default: {
     summoner: [],
   },
@@ -86,8 +86,9 @@ export const getSummonerInfoApi = (summonerName: string) => {
   };
   return api(apiConfig);
 };
+
 export const summonerDetailQuery = atomFamily<SummonerDetailQuery, Readonly<summonerParams>>({
-  key: 'summonerDetailQuery',
+  key: 'summonerDetailQuery2',
   default: async ({ summonerName, refreshId }) => {
     const [summonerInfoRes]: [summonerInfoRes: SummonerApi] = await Promise.all([
       getSummonerInfoApi(summonerName),

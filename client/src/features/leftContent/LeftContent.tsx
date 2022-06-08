@@ -29,7 +29,7 @@ const tabContents = [
 
 export function LeftContent() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  if (isNull(summonerDetail.summonerInfoRes)) return <Spinner onActive={true} fullCover={false} />;
+  if (isNull(summonerDetail.summoner)) return <Spinner onActive={true} fullCover={false} />;
 
   return (
     <LeftContentWrapper>

@@ -11,9 +11,9 @@ export function SearchSummonerHistory({
   keywords,
   onKeyHistoryKeyword,
 }: SearchSummonerHistoryPropTypes) {
-  useEffect(() => {
-    localStorage.setItem('searchKeywords', JSON.stringify(keywords));
-  }, [keywords]);
+  // useEffect(() => {
+  //   localStorage.setItem('searchKeywords', JSON.stringify(keywords));
+  // }, [keywords]);
 
   const deleteHistoryHandler = (id: number) => {
     const nextKeyword = keywords.filter(

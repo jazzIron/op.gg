@@ -4,64 +4,118 @@ import { summonerDetailQuery, summonerDetailResult } from '@src/store/user/Summo
 import { colors, fonts } from '@src/themes';
 import { useOutsideClick } from '@src/utils/common';
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { useRecoilCallback, useRecoilState } from 'recoil';
-import { SearchSummonerHistory } from './SearchSummonerHistory';
+import { useRecoilCallback } from 'recoil';
 import { debounce, isEmpty } from 'lodash';
 import { Spinner } from '@src/components/loadingSpinner';
+import { HistorySearchItem, SummonerData } from '@src/store/user/Summoner_types';
+import { duplicationVerifyLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
+import { v4 as uuidv4 } from 'uuid';
+
+const LOCAL_STORAGE_SEARCH_NAME = process.env.LOCAL_STORAGE_SEARCH_KEYWORD;
+
+type SEARCH_TYPE = 'SEARCH_SUBMIT' | 'SEARCH_AUTO';
 
 export function SearchSummoner() {
   const outsideRef = useRef(null);
+  const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
+  const [autoCompleteData, setAutoCompleteData] = useState<SummonerData[] | []>();
   const [searchInput, setSearchInput] = useState('');
-  const [summonerDetail, setSummonerDetail] = useRecoilState(summonerDetailResult);
-  const [loading, setLoading] = useState(false);
-  const [isHaveInputValue, setIsHaveInputValue] = useState(false); //dropdown 표시 유무
-  const [keywords, setKeywords] = useState(
-    JSON.parse(localStorage.getItem('searchKeywords') || '[]'),
-  );
-
-  const handleClick = () => {
-    setIsHaveInputValue(true);
-  };
+  const [isHaveInputValue, setIsHaveInputValue] = useState(false);
 
   const outsideCallback = () => {
     setIsHaveInputValue(false);
   };
   useOutsideClick(outsideRef, outsideCallback);
 
-  const searchSummoner = useRecoilCallback(({ snapshot, set }) => async (newValue: string) => {
-    setLoading(true);
-    const refreshId = Math.random();
-    const targetSummoner = isEmpty(newValue) ? 'hide on bush' : newValue;
-    const params = {
-      summonerName: targetSummoner,
-      refreshId: refreshId,
-    };
-    const response = await snapshot.getPromise(summonerDetailQuery(params));
-    setIsHaveInputValue(false);
-    set(summonerDetailResult, response);
-    setLoading(false);
-  });
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const result = localStorage.getItem(LOCAL_STORAGE_SEARCH_NAME!) || '[]';
+      setKeywords(JSON.parse(result));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
+  }, [keywords]);
+
+  const searchSummoner = useRecoilCallback(
+    ({ snapshot, set }) =>
+      async (newValue: string, searchType: SEARCH_TYPE) => {
+        setAutoCompleteData([]);
+        setIsHaveInputValue(false);
+        const refreshId = Math.random();
+        const targetSummoner = isEmpty(newValue) ? 'hide on bush' : newValue;
+        const params = {
+          summonerName: targetSummoner,
+          refreshId: refreshId,
+        };
+        const response = await snapshot.getPromise(summonerDetailQuery(params));
+        console.log('====================searchSummoner===============');
+        console.log(response);
+        if (searchType === 'SEARCH_AUTO') {
+          setAutoCompleteData(response.summoner);
+        } else {
+          if (response.summoner) {
+            const summonerDetailResultData = {
+              summoner: response.summoner[0],
+              summonerMost: response.summonerMost,
+              loading: false,
+              error: false,
+            };
+            set(summonerDetailResult, summonerDetailResultData);
+            addSearchHistory(response.summoner[0].name);
+          }
+        }
+      },
+  );
+
+  const handleChange = (inputValue: string) => {
+    setSearchInput(inputValue);
+    debouncedCallback(inputValue);
+  };
 
   const debouncedCallback = useCallback(
-    debounce((newValue: string) => searchSummoner(newValue), 500),
+    debounce((newValue: string) => searchSummoner(newValue, 'SEARCH_AUTO'), 500),
     [],
   );
 
-  const handleChange = (newValue: string) => {
-    setSearchInput(newValue);
-    debouncedCallback(newValue);
+  const searchHandler = (searchInput: string) => {
+    setIsHaveInputValue(false);
+    searchSummoner(searchInput, 'SEARCH_SUBMIT');
   };
 
-  const handleAddKeyword = (text: string) => {
+  const selectSearchItemHandler = (
+    event: React.MouseEvent<HTMLDivElement>,
+    summoner: SummonerData,
+  ) => {
+    event.preventDefault();
+    addSearchHistory(summoner.name);
+    searchSummoner(summoner.name, 'SEARCH_SUBMIT');
+  };
+
+  const addSearchHistory = (searchKeyword: string) => {
     const newKeyword = {
-      id: Date.now(),
-      text: text,
+      id: uuidv4(),
+      keyword: searchKeyword,
+      data: Date.now(),
+      hasFavorite: false,
     };
-    setKeywords([newKeyword, ...keywords]);
+    const searchHistory = duplicationVerifyLocalStorage(
+      LOCAL_STORAGE_SEARCH_NAME!,
+      'keyword',
+      searchKeyword,
+    );
+    searchHistory.unshift(newKeyword);
+    setKeywords([...searchHistory]);
   };
 
-  const handleKeyHistoryKeyword = (nextKeyword: any) => {
-    setKeywords(nextKeyword);
+  const searchHistoryHandler = () => {
+    setIsHaveInputValue(true);
+  };
+
+  const removeSearchHistoryHandler = (id: string) => {
+    const newLocalStorageData = removeLocalStorage('searchHistory', id);
+    setKeywords([...newLocalStorageData]);
   };
 
   return (
@@ -69,9 +123,10 @@ export function SearchSummoner() {
       <SearchInput
         inputValue={searchInput}
         onChange={handleChange}
-        onClick={handleClick}
-        onSubmit={searchSummoner}
+        onClick={searchHistoryHandler}
+        onSubmit={(event) => searchHandler(event)}
       />
+      {/*
       {!loading && isHaveInputValue && (
         <SearchSummonerHistoryWrapper>
           <SearchSummonerHistoryTabWrapper>
@@ -83,7 +138,21 @@ export function SearchSummoner() {
             onKeyHistoryKeyword={handleKeyHistoryKeyword}
           />
         </SearchSummonerHistoryWrapper>
-      )}
+      )} */}
+      {autoCompleteData &&
+        autoCompleteData.map((summoner) => (
+          <div key={summoner.name} onClick={(event) => selectSearchItemHandler(event, summoner)}>
+            {summoner.name}
+          </div>
+        ))}
+      {isHaveInputValue &&
+        keywords.map((data) => {
+          return (
+            <div key={data.id} onClick={() => removeSearchHistoryHandler(data.id)}>
+              {data.keyword}
+            </div>
+          );
+        })}
     </SearchSummonerWrapper>
   );
 }

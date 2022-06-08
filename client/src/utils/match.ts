@@ -4,7 +4,8 @@ import { Items, SummonerMatchResultApi, Teams } from '@src/store/match/Match_typ
 import { colors } from '@src/themes';
 import axios from 'axios';
 import itemData from '../json/items.json';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
+import { SummonerApi } from '@src/store/user/Summoner_types';
 
 const ITEM_AREA_LENGTH = 6;
 export const SEASON = 9;
@@ -178,4 +179,9 @@ export const getItemName = (imageUrl: string) => {
 
 export const getRankTypeName = (rankType: string) => {
   return rankType === 'SOLO' ? '솔로랭크' : '자유 5:5 랭크';
+};
+
+export const searchSummonerResult = (summonerDetail: SummonerApi | null) => {
+  if (isNull(summonerDetail)) return [];
+  return summonerDetail ? Object.entries(summonerDetail).map((item) => item[1]) : [];
 };

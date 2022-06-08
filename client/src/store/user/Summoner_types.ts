@@ -50,6 +50,19 @@ export interface SummonerData {
 export interface SummonerApi {
   summoner: SummonerData;
 }
+
+export interface SummonerDetailQuery {
+  summoner: SummonerData[] | [];
+  summonerMost: MostInfoApi | null;
+}
+
+export interface SummonerDetailResult {
+  summoner: SummonerData | null;
+  summonerMost: MostInfoApi | null;
+  loading: boolean;
+  error: boolean;
+}
+
 // ===============================================================================
 // NOTE: 소환사 most info API
 interface Champion {
@@ -79,4 +92,11 @@ interface RecentWinRate {
 export interface MostInfoApi {
   champions: Champion[];
   recentWinRate: RecentWinRate[];
+}
+
+export interface HistorySearchItem {
+  id: string;
+  keyword: string;
+  data: number;
+  hasFavorite: boolean;
 }

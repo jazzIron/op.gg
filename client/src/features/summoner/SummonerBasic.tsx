@@ -10,7 +10,7 @@ import TierTag from './TierTag';
 
 export function SummonerBasic() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  if (isNull(summonerDetail.summonerInfoRes))
+  if (isNull(summonerDetail.summoner))
     return (
       <SummonerBasicLoadingWrapper>
         <Spinner onActive={true} fullCover={false} />
@@ -18,7 +18,7 @@ export function SummonerBasic() {
     );
 
   const { ladderRank, name, level, profileBorderImageUrl, profileImageUrl, previousTiers } =
-    summonerDetail.summonerInfoRes.summoner;
+    summonerDetail.summoner;
 
   return (
     <SummonerBasicWrapper>
