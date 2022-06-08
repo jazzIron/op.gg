@@ -155,15 +155,16 @@ export default function GlobalStyle(): JSX.Element {
 
         body::-webkit-scrollbar {
           width: 4px;
+          height: 4px;
         }
 
         body::-webkit-scrollbar-thumb {
           height: 20%;
           background: ${colors.azure};
-          border-radius: 8px;
+          border-radius: 1px;
         }
         body::-webkit-scrollbar-track {
-          background: ${colors.ocean_blue};
+          background: ${colors.white_four};
         }
       `}
     />

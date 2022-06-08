@@ -1,4 +1,11 @@
 // NOTE: 소환사 기본 정보 API
+
+export interface summonerParams {
+  [key: string]: string | number;
+  summonerName: string;
+  refreshId: number;
+}
+
 interface IadderRank {
   rank: number;
   rankPercentOfTop: number;

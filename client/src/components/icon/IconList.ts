@@ -13,6 +13,11 @@ import wardRed from '../../asset/images/icons/icon-ward-red.svg';
 import viewDetailBlue from '../../asset/images/icons/icon-viewdetail-blue.png';
 import viewDetailRed from '../../asset/images/icons/icon-viewdetail-red.png';
 import viewDetailGrey from '../../asset/images/icons/icon-viewdetail-grey.png';
+import historyInfo from '../../asset/images/icons/icon-history-info.png';
+import iconFavoriteStarGray from '../../asset/images/icons/icon-favoriteStar-gray.png';
+import iconHistoryDelete from '../../asset/images/icons/icon-history-delete.png';
+import iconFavoriteOn from '../../asset/images/icons/icon-favorite-on.png';
+import iconFavoriteOff from '../../asset/images/icons/icon-favorite-off.png';
 
 export const ICON_LIST: { [key: string]: string } = {
   adc,
@@ -30,4 +35,9 @@ export const ICON_LIST: { [key: string]: string } = {
   viewDetailBlue,
   viewDetailRed,
   viewDetailGrey,
+  historyInfo,
+  iconFavoriteStarGray,
+  iconHistoryDelete,
+  iconFavoriteOn,
+  iconFavoriteOff,
 };

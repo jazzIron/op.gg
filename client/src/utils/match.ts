@@ -25,6 +25,17 @@ export const OPTIONS = [
   },
 ];
 
+export const HISTORY_OPTIONS = [
+  {
+    id: 'SEARCH',
+    text: '최근검색',
+  },
+  {
+    id: 'FAVORITE',
+    text: '즐겨찾기',
+  },
+];
+
 export const getMatchParser = async (
   summonerName: string,
   rankType: string,
@@ -64,7 +75,6 @@ export const matchSummary = (wins: number, losses: number) => {
 };
 
 export const kdaStyled = (kills: number, assists: number, deaths: number) => {
-  //NOTE: KDA 공식 : kills + assists / deaths
   const kdaValue = Number((kills + assists / deaths).toFixed(2));
   switch (true) {
     case kdaValue >= 5:

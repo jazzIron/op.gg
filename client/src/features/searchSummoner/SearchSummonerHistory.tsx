@@ -1,46 +1,52 @@
 import styled from '@emotion/styled';
+import { ICON_LIST } from '@src/components/icon';
+import { HistorySearchItem } from '@src/store/user';
 import { fonts, colors } from '@src/themes';
-import { useState, useEffect } from 'react';
+import { MouseEvent } from 'react';
 
 interface SearchSummonerHistoryPropTypes {
-  keywords: [{ id: number; text: string }];
-  onKeyHistoryKeyword: (nextKeyword: [{ id: number; text: string }]) => void;
+  keywords: HistorySearchItem[];
+  onSelectSearchHistory: (name: string) => void;
+  onRemoveSearchHistory: (id: string) => void;
 }
 
 export function SearchSummonerHistory({
   keywords,
-  onKeyHistoryKeyword,
+  onSelectSearchHistory,
+  onRemoveSearchHistory,
 }: SearchSummonerHistoryPropTypes) {
-  // useEffect(() => {
-  //   localStorage.setItem('searchKeywords', JSON.stringify(keywords));
-  // }, [keywords]);
-
-  const deleteHistoryHandler = (id: number) => {
-    const nextKeyword = keywords.filter(
-      (keyword: { id: number; text: string }) => keyword.id !== id,
-    );
-    //onKeyHistoryKeyword(nextKeyword);
-  };
-
+  const handleMouseDown = (e: MouseEvent<HTMLInputElement>) => e.preventDefault();
   return (
     <SearchSummonerHistoryItemWrapper>
-      <SearchSummonerHistoryItemStyled>
-        <SummonerName>리신신신</SummonerName>
-        <RightItem>
-          <FavoriteIcon>
-            <img
-              src="https://s-lol-web.op.gg/images/icon/icon-favorite-off.png"
-              alt={'favorite_icon'}
-            />
-          </FavoriteIcon>
-          <DeleteHistory onClick={() => deleteHistoryHandler(1)}>
-            <img
-              src="https://s-lol-web.op.gg/images/site/icon-history-delete.png?v=1654157118674"
-              alt={'history_delete_icon'}
-            />
-          </DeleteHistory>
-        </RightItem>
-      </SearchSummonerHistoryItemStyled>
+      {keywords.length > 0 ? (
+        keywords.map((keyword) => {
+          return (
+            <SearchSummonerHistoryItemStyled key={keyword.id}>
+              <SummonerName
+                onClick={() => onSelectSearchHistory(keyword.keyword)}
+                onMouseDown={handleMouseDown}
+              >
+                {keyword.keyword}
+              </SummonerName>
+              <RightItem>
+                <FavoriteIcon>
+                  <img src={ICON_LIST.iconFavoriteOff} alt={'favorite_icon_off'} />
+                </FavoriteIcon>
+                <DeleteHistory onClick={() => onRemoveSearchHistory(keyword.id)}>
+                  <img src={ICON_LIST.iconHistoryDelete} alt={'history_delete_icon'} />
+                </DeleteHistory>
+              </RightItem>
+            </SearchSummonerHistoryItemStyled>
+          );
+        })
+      ) : (
+        <EmptySearchSummonerHistoryWrapper>
+          <div>
+            <img src={ICON_LIST.HistoryInfo} alt="Info" />
+          </div>
+          <div>최근에 본 소환사가 없습니다.</div>
+        </EmptySearchSummonerHistoryWrapper>
+      )}
     </SearchSummonerHistoryItemWrapper>
   );
 }
@@ -60,6 +66,7 @@ const SummonerName = styled.div`
   ${fonts.textStyle01};
   color: ${colors.black};
   cursor: pointer;
+  flex-grow: 2;
 `;
 const RightItem = styled.div`
   display: flex;
@@ -75,4 +82,22 @@ const DeleteHistory = styled.div`
   width: 16px;
   height: 16px;
   cursor: pointer;
+`;
+
+const EmptySearchSummonerHistoryWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px;
+  width: 100%;
+  > div {
+    font-size: 12px;
+    line-height: 15px;
+    color: #666666;
+    > img {
+      width: 16px;
+      height: 16px;
+    }
+  }
 `;

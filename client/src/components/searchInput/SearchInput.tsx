@@ -6,7 +6,8 @@ export interface SearchInputPropTypes {
   inputValue: string;
   placeholder: string;
   onChange: (value: string) => void;
-  onClick: () => void;
+  onFocus: () => void;
+  onBlur: () => void;
   onSubmit: (value: string) => void;
 }
 
@@ -14,7 +15,8 @@ export function SearchInput({
   inputValue,
   placeholder,
   onChange,
-  onClick,
+  onFocus,
+  onBlur,
   onSubmit,
 }: SearchInputPropTypes) {
   const handleMouseDown = (e: MouseEvent<HTMLInputElement>) => e.preventDefault();
@@ -29,15 +31,14 @@ export function SearchInput({
     onChange(value);
   };
 
-  const handleClick = () => onClick();
-
   return (
     <SearchInputWrapper>
       <SearchInputStyled
         value={inputValue}
         placeholder={placeholder}
         onChange={handleChange}
-        onClick={handleClick}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       <SearchIconStyled onClick={handleSearchSubmit} onMouseDown={handleMouseDown}>
         <img
@@ -56,7 +57,7 @@ SearchInput.defaultProps = {
 
 const SearchInputWrapper = styled.div`
   width: 260px;
-  display: inline-flex;
+  display: flex;
   padding: 9px 12px 8px 14px;
   border-radius: 2px;
   background-color: ${colors.white_two};
@@ -71,6 +72,7 @@ const SearchInputStyled = styled.input`
   :focus {
     outline: none;
   }
+  flex-grow: 2;
 `;
 const SearchIconStyled = styled.span`
   cursor: pointer;

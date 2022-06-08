@@ -6,56 +6,19 @@ import {
   MostInfoApi,
   SummonerDetailQuery,
   SummonerDetailResult,
+  summonerParams,
 } from './Summoner_types';
-
-interface summonerParams {
-  [key: string]: string | number;
-  summonerName: string;
-  refreshId: number;
-}
-
-export const summonerInfoQuery = atomFamily<SummonerApi | null, summonerParams>({
-  key: 'summonerInfoQuery',
-  default: async ({ summonerName, refreshId }) => {
-    const summonerInfo: SummonerApi = await getSummonerInfoApi(summonerName);
-    return summonerInfo;
-  },
-});
-
-export const summonerInfoResult = atom<SummonerApi | null>({
-  key: 'summonerInfoResult',
-  default: null,
-});
-
-export const summonerMostInfoQuery = atomFamily<MostInfoApi, summonerParams>({
-  key: 'summonerInfoQuery',
-  default: async ({ summonerName, refreshId }) => {
-    const summonerMostInfo: MostInfoApi = await getSummonerMostInfo(summonerName);
-    return summonerMostInfo;
-  },
-});
-
-export const summonerMostInfoResult = atom<MostInfoApi | null>({
-  key: 'summonerMostInfoResult',
-  default: null,
-});
 
 export const summonerDetailQuery = atomFamily<SummonerDetailQuery, Readonly<summonerParams>>({
   key: 'summonerDetailQuery',
   default: async ({ summonerName, refreshId }) => {
-    const [summoner, summonerMost]: [summoner: SummonerApi, summonerMost: MostInfoApi] =
+    const [summonerRes, summonerMost]: [summoner: SummonerApi, summonerMost: MostInfoApi] =
       await Promise.all([getSummonerInfoApi(summonerName), getSummonerMostInfo(summonerName)]);
-
-    const summonerSearchResult = searchSummonerResult(summoner);
+    const summoner = searchSummonerResult(summonerRes);
     return {
-      summoner: summonerSearchResult,
+      summoner,
       summonerMost,
     };
-
-    // return {
-    //   summonerInfoRes,
-    //   summonerMostInfoRes,
-    // };
   },
 });
 
