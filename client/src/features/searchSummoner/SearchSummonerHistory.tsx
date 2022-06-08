@@ -42,7 +42,7 @@ export function SearchSummonerHistory({
       ) : (
         <EmptySearchSummonerHistoryWrapper>
           <div>
-            <img src={ICON_LIST.HistoryInfo} alt="Info" />
+            <img src={ICON_LIST.historyInfo} alt="Info" />
           </div>
           <div>최근에 본 소환사가 없습니다.</div>
         </EmptySearchSummonerHistoryWrapper>

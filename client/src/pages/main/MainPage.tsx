@@ -2,15 +2,23 @@ import styled from '@emotion/styled';
 import { SummonerBasic } from '@src/features/summoner/SummonerBasic';
 import { Content } from '@src/layout/content/Content';
 import { Header } from '@src/layout/header/Header';
+import { colors } from '@src/themes';
 
 export function MainPage() {
   return (
     <MainPageStyled>
       <Header />
-      <SummonerBasic />
+      <SummonerBasicWrapper>
+        <SummonerBasic />
+      </SummonerBasicWrapper>
+
       <Content />
     </MainPageStyled>
   );
 }
 
 const MainPageStyled = styled.div``;
+
+const SummonerBasicWrapper = styled.div`
+  border-bottom: 1px solid ${colors.white_three};
+`;

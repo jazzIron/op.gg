@@ -22,7 +22,10 @@ export function SummonerBasic() {
 
   return (
     <SummonerBasicWrapper>
-      <TierTag previousTiers={previousTiers} />
+      <TierTagWrapper>
+        <TierTag previousTiers={previousTiers} />
+      </TierTagWrapper>
+
       <SummonerBasicStyled>
         <SummonerAvatar>
           <img src={profileImageUrl} alt={'summoner_profile_image'} />
@@ -45,25 +48,30 @@ export function SummonerBasic() {
 
 const SummonerBasicLoadingWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid ${colors.white_three};
-  padding: 15px 200px 12px 200px;
-  min-width: 1000px;
+  width: 1080px;
   height: 175px;
   min-height: 175px;
+  margin: 0px auto;
 `;
 
 const SummonerBasicWrapper = styled.div`
-  border-bottom: 1px solid ${colors.white_three};
-  padding: 15px 200px 12px 200px;
-  min-width: 1000px;
+  display: flex;
+  width: 1080px;
   height: 175px;
   min-height: 175px;
+  margin: 0px auto;
+  flex-direction: column;
+  margin-top: 15px;
 `;
+
+const TierTagWrapper = styled.div`
+  margin-left: 12px;
+`;
+
 const SummonerBasicStyled = styled.div`
   display: flex;
   gap: 16px;
+  margin-top: 6px;
 `;
 
 const SummonerAvatar = styled.div`

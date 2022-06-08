@@ -34,8 +34,8 @@ export function LeftContent() {
 
   return (
     <LeftContentWrapper>
-      {/* <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
-      <Rank rankType={'FREE'} summonerDetail={summonerDetail} /> */}
+      <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
+      <Rank rankType={'FREE'} summonerDetail={summonerDetail} />
       <Tab tabItem={tabItems} tabContent={tabContents} />
     </LeftContentWrapper>
   );

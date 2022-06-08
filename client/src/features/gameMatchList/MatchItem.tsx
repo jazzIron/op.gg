@@ -25,6 +25,7 @@ export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
         <ItemStyled>
           {itemList.map((item, idx) => {
             const itemInfo = getItemName(item.imageUrl);
+            // NOTE: 마우스 오버 효과 툴팁
             //console.log(itemInfo);
             return (
               <ItemImageStyled key={idx}>

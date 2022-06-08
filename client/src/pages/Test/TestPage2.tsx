@@ -46,7 +46,6 @@ export function TestPage2() {
   }, []);
 
   useEffect(() => {
-    console.log('================================= setItem useEffect====================');
     localStorage.setItem('searchHistory', JSON.stringify(keywords));
   }, [keywords]);
 
@@ -65,7 +64,6 @@ export function TestPage2() {
   });
 
   const handleChange = (e: any) => {
-    console.log(`[INFO] ======handleChange====`);
     const newValue = e.target.value;
     setSearchInput(newValue);
     debouncedCallback(newValue);
@@ -77,11 +75,7 @@ export function TestPage2() {
   );
 
   const searchHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(`[INFO] ======handleClick====`);
-    console.log(searchInput);
-    console.log(summonerDetail);
     event.preventDefault();
-    // NOTE: localStorage 저장하기
     addSearchHistory(searchInput);
     setIsHaveInputValue(false);
     resetSummonerDetail();

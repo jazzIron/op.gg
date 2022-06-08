@@ -22,7 +22,7 @@ function TierTag({ previousTiers }: TierTagPropTypes) {
 }
 
 const TierTagWrapper = styled.ul`
-  padding-bottom: 6px;
+  display: flex;
   > li:last-of-type {
     margin-right: 0px;
   }

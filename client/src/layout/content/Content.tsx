@@ -12,7 +12,8 @@ export function Content() {
 }
 
 const ContentWrapper = styled.div`
-  padding: 10px 180px;
+  width: 1080px;
+  margin: 0px auto;
   display: flex;
   flex-direction: row;
 

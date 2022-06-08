@@ -12,6 +12,7 @@ import { SEARCH_TYPE } from './SearchSummoner_types';
 import { SearchSummonerAutoComplete } from './SearchSummonerAutoComplete';
 import { SearchHistoryContents } from './SearchHistoryContents';
 import { ToastHook, TOAST_OPTION_POSITION, TOAST_TYPE } from '@src/components/toast';
+import { useMainContent } from '../mainContent/useMainContent';
 
 const LOCAL_STORAGE_SEARCH_NAME = process.env.LOCAL_STORAGE_SEARCH_KEYWORD;
 
@@ -22,6 +23,8 @@ export function SearchSummoner() {
   const [autoCompleteData, setAutoCompleteData] = useState<SummonerData[] | []>();
   const [searchInput, setSearchInput] = useState('');
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
+  const { summonerDetail, getMatchResult } = useMainContent();
+
   const outsideCallback = () => {
     setAutoCompleteData([]);
     setIsHaveInputValue(false);
@@ -38,6 +41,10 @@ export function SearchSummoner() {
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
   }, [keywords]);
+
+  useEffect(() => {
+    getMatchResult('ALL');
+  }, [summonerDetail]);
 
   const checkSearchKeyword = useCallback(() => {
     toastMake({
@@ -64,8 +71,6 @@ export function SearchSummoner() {
           refreshId: refreshId,
         };
         const response = await snapshot.getPromise(summonerDetailQuery(params));
-        console.log('====================searchSummoner===============');
-        console.log(response);
         if (searchType === 'SEARCH_AUTO') {
           setAutoCompleteData(response.summoner);
         } else {

@@ -19,6 +19,7 @@ import iconHistoryDelete from '../../asset/images/icons/icon-history-delete.png'
 import iconFavoriteOn from '../../asset/images/icons/icon-favorite-on.png';
 import iconFavoriteOff from '../../asset/images/icons/icon-favorite-off.png';
 import bgNoData from '../../asset/images/icons/bg-noData.png';
+import opggLogo from '../../asset/images/icons/opgglogo.svg';
 
 export const ICON_LIST: { [key: string]: string } = {
   adc,
@@ -42,4 +43,5 @@ export const ICON_LIST: { [key: string]: string } = {
   iconFavoriteOn,
   iconFavoriteOff,
   bgNoData,
+  opggLogo,
 };
