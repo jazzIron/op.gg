@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { SearchInput } from '@src/components/searchInput/SearchInput';
 import { summonerDetailQuery, summonerDetailResult } from '@src/store/user/SummonerState';
-import { colors, fonts } from '@src/themes';
 import { useOutsideClick } from '@src/utils/common';
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useRecoilCallback } from 'recoil';
@@ -10,21 +9,23 @@ import { HistorySearchItem, SummonerData } from '@src/store/user/Summoner_types'
 import { duplicationVerifyLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
 import { v4 as uuidv4 } from 'uuid';
 import { SEARCH_TYPE } from './SearchSummoner_types';
-import { SearchSummonerHistory } from './SearchSummonerHistory';
 import { SearchSummonerAutoComplete } from './SearchSummonerAutoComplete';
 import { SearchHistoryContents } from './SearchHistoryContents';
+import { ToastHook, TOAST_OPTION_POSITION, TOAST_TYPE } from '@src/components/toast';
 
 const LOCAL_STORAGE_SEARCH_NAME = process.env.LOCAL_STORAGE_SEARCH_KEYWORD;
 
-// TODO: INPUT 포커스 감지
-
 export function SearchSummoner() {
+  const { toastMake } = ToastHook();
   const outsideRef = useRef(null);
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
   const [autoCompleteData, setAutoCompleteData] = useState<SummonerData[] | []>();
   const [searchInput, setSearchInput] = useState('');
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
-  const outsideCallback = () => setIsHaveInputValue(false);
+  const outsideCallback = () => {
+    setAutoCompleteData([]);
+    setIsHaveInputValue(false);
+  };
 
   useOutsideClick(outsideRef, outsideCallback);
 
@@ -38,15 +39,28 @@ export function SearchSummoner() {
     localStorage.setItem(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
   }, [keywords]);
 
+  const checkSearchKeyword = useCallback(() => {
+    toastMake({
+      content: '소환사 이름을 입력 해 주세요.',
+      type: TOAST_TYPE.ERROR,
+      options: {
+        autoClose: true,
+        position: TOAST_OPTION_POSITION.TOP_LEFT,
+      },
+    });
+    return false;
+  }, []);
+
   const searchSummoner = useRecoilCallback(
     ({ snapshot, set }) =>
       async (newValue: string, searchType: SEARCH_TYPE) => {
+        if (isEmpty(newValue)) return checkSearchKeyword();
         setAutoCompleteData([]);
         setIsHaveInputValue(false);
         const refreshId = Math.random();
-        const targetSummoner = isEmpty(newValue) ? 'hide on bush' : newValue;
+        // const targetSummoner = isEmpty(newValue) ? 'hide on bush' : newValue;
         const params = {
-          summonerName: targetSummoner,
+          summonerName: newValue,
           refreshId: refreshId,
         };
         const response = await snapshot.getPromise(summonerDetailQuery(params));
@@ -116,7 +130,7 @@ export function SearchSummoner() {
   };
 
   const inputBlurHandler = () => {
-    //setIsHaveInputValue(false);
+    setIsHaveInputValue(false);
   };
 
   const removeSearchHistoryHandler = (id: string) => {

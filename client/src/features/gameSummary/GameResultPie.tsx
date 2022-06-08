@@ -22,7 +22,7 @@ export function GameResultPie({ matchResult }: GameResultPiePropTypes) {
   return (
     <GameResultPieWrapper>
       <TitleWrapper>
-        <span>{total}</span>
+        <span>{total}전</span>
         <span> {win}</span>
         <span> {lose}</span>
       </TitleWrapper>

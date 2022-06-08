@@ -72,7 +72,7 @@ export interface SummonerDetailResult {
 
 // ===============================================================================
 // NOTE: 소환사 most info API
-interface Champion {
+export interface Champion {
   assists: number;
   cs: number;
   deaths: number;
@@ -87,7 +87,7 @@ interface Champion {
   wins: number;
 }
 
-interface RecentWinRate {
+export interface RecentWinRate {
   id: number;
   imageUrl: string;
   key: string;

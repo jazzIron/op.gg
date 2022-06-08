@@ -35,12 +35,14 @@ const GraphBarWrapper = styled.div<{ leftWidth: number; rightWidth: number }>`
   > div:nth-of-type(1) {
     padding: 4px;
     width: ${(props) => props.leftWidth}%;
+    min-width: 30%;
     border-radius: 2px 0px 0px 2px;
     background-color: ${colors.bluish};
   }
   > div:nth-of-type(2) {
     padding: 4px;
     width: ${(props) => props.rightWidth}%;
+    min-width: 30%;
     border-radius: 0px 2px 2px 0px;
     background-color: ${colors.coral};
     text-align: right;

@@ -5,7 +5,7 @@ import { colors } from '@src/themes';
 import axios from 'axios';
 import itemData from '../json/items.json';
 import { isEmpty, isNull } from 'lodash';
-import { SummonerApi } from '@src/store/user/Summoner_types';
+import { MostInfoApi, SummonerApi } from '@src/store/user/Summoner_types';
 
 const ITEM_AREA_LENGTH = 6;
 export const SEASON = 9;
@@ -68,14 +68,14 @@ export const getMatchParser = async (
 export const matchSummary = (wins: number, losses: number) => {
   const totalMatch = wins + losses;
   return {
-    total: `${totalMatch}전`,
+    total: `${totalMatch}`,
     win: `${wins}승`,
     lose: `${losses}패`,
   };
 };
 
 export const kdaStyled = (kills: number, assists: number, deaths: number) => {
-  const kdaValue = Number((kills + assists / deaths).toFixed(2));
+  const kdaValue = Number(((kills + assists) / deaths).toFixed(2));
   switch (true) {
     case kdaValue >= 5:
       return { kdaColor: colors.yellow_ochre, kdaValue };
@@ -194,4 +194,17 @@ export const getRankTypeName = (rankType: string) => {
 export const searchSummonerResult = (summonerDetail: SummonerApi | null) => {
   if (isNull(summonerDetail)) return [];
   return summonerDetail ? Object.entries(summonerDetail).map((item) => item[1]) : [];
+};
+
+export const searchSummonerMostResult = (summonerMost: MostInfoApi | null) => {
+  const champions = isNull(summonerMost)
+    ? []
+    : summonerMost.champions.sort((a, b) => b.games - a.games);
+  const recentWinRate = isNull(summonerMost)
+    ? []
+    : summonerMost.recentWinRate.sort((a, b) => b.wins + b.losses - (a.wins + a.losses));
+  return {
+    champions,
+    recentWinRate,
+  };
 };

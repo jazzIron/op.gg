@@ -67,7 +67,7 @@ const KdaWrapper = styled.div`
   font-size: 15px;
   letter-spacing: -0.58px;
   font-weight: bold;
-  color: ${colors.warm_grey_three};
+  color: ${colors.gunmetal};
   > span:nth-of-type(2) {
     color: ${colors.scarlet};
   }

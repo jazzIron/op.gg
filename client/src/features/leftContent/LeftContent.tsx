@@ -18,23 +18,24 @@ const tabItems = [
   },
 ];
 
-const tabContents = [
-  {
-    content: <ChampionRate />,
-  },
-  {
-    content: <ChampionRateSummary />,
-  },
-];
-
 export function LeftContent() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  if (isNull(summonerDetail.summoner)) return <Spinner onActive={true} fullCover={false} />;
+  if (isNull(summonerDetail.summoner) || isNull(summonerDetail.summonerMost))
+    return <Spinner onActive={true} fullCover={false} />;
+
+  const tabContents = [
+    {
+      content: <ChampionRate champions={summonerDetail.summonerMost?.champions} />,
+    },
+    {
+      content: <ChampionRateSummary recentWinRate={summonerDetail.summonerMost?.recentWinRate} />,
+    },
+  ];
 
   return (
     <LeftContentWrapper>
-      <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
-      <Rank rankType={'FREE'} summonerDetail={summonerDetail} />
+      {/* <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
+      <Rank rankType={'FREE'} summonerDetail={summonerDetail} /> */}
       <Tab tabItem={tabItems} tabContent={tabContents} />
     </LeftContentWrapper>
   );

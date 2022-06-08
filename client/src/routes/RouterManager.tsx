@@ -8,9 +8,9 @@ export function RouterManager() {
   return (
     <Router>
       <Routes>
+        <Route path={RouteList.MAIN} element={<MainPage />} />
         <Route path={RouteList.TEST} element={<TestPage />} />
         <Route path={RouteList.TEST2} element={<TestPage2 />} />
-        <Route path={RouteList.MAIN} element={<MainPage />} />
       </Routes>
     </Router>
   );

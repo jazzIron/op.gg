@@ -6,7 +6,6 @@ import { FavoriteChampion } from './FavoriteChampion';
 import { FavoritePosition } from './FavoritePosition';
 import { GameResultPie } from './GameResultPie';
 import { isNil } from 'lodash';
-import React from 'react';
 
 export function GameSummary() {
   const matchResult = useRecoilValue(summonerMatchResult);

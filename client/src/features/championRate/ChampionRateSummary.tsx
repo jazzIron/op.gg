@@ -1,32 +1,64 @@
 import styled from '@emotion/styled';
 import { GraphBar } from '@src/components/graphBar';
+import { RecentWinRate } from '@src/store/user';
 import { colors, fonts } from '@src/themes';
+import { positionItem } from '@src/utils/match';
+import { ChampionMatchEmpty } from './ChampionMatchEmpty';
 
-export function ChampionRateSummary() {
+// id: 246
+// imageUrl: "https://opgg-static.akamaized.net/images/lol/champion/Qiyana.png?image=w_30&v=1"
+// key: "Qiyana"
+// losses: 9
+// name: "키아나"
+// wins: 16
+
+interface ChampionRateSummaryPropTypes {
+  recentWinRate: RecentWinRate[];
+}
+
+export function ChampionRateSummary({ recentWinRate }: ChampionRateSummaryPropTypes) {
   return (
     <ChampionRateSummaryWrapper>
-      <ChampionBoxWrapper>
-        <ChampionAvatarWrapper>
-          <img
-            src="https://opgg-static.akamaized.net/images/lol/champion/Jayce.png?image=w_30&v=1"
-            alt="ChampionAvatarImg"
-          />
-        </ChampionAvatarWrapper>
-        <ChampionDetailWrapper>
-          <InfoWrapper>신지드</InfoWrapper>
-          <RateWrapper>69%</RateWrapper>
-          <RateGraphWrapper>
-            <GraphBar leftValue={23} leftLabel={'6승'} rightLabel={'4패'} />
-          </RateGraphWrapper>
-        </ChampionDetailWrapper>
-      </ChampionBoxWrapper>
+      {recentWinRate.length > 0 ? (
+        recentWinRate.map((champion, idx) => {
+          const games = champion.wins + champion.losses;
+          const { positionWinningRateValue, winningRateColor } = positionItem(
+            champion.wins,
+            games,
+            0,
+          );
+          return (
+            <ChampionBoxWrapper key={idx}>
+              <ChampionBoxStyled>
+                <ChampionAvatarWrapper>
+                  <ChampionAvatarStyled>
+                    <img src={champion.imageUrl} alt="ChampionAvatarImg" />
+                  </ChampionAvatarStyled>
+                </ChampionAvatarWrapper>
+                <InfoWrapper>{champion.name}</InfoWrapper>
+                <RateWrapper winningRateColor={winningRateColor}>
+                  {positionWinningRateValue}%
+                </RateWrapper>
+                <RateGraphWrapper>
+                  <GraphBar
+                    leftValue={positionWinningRateValue}
+                    leftLabel={`${champion.wins}승`}
+                    rightLabel={`${champion.losses}패`}
+                  />
+                </RateGraphWrapper>
+              </ChampionBoxStyled>
+            </ChampionBoxWrapper>
+          );
+        })
+      ) : (
+        <ChampionMatchEmpty />
+      )}
     </ChampionRateSummaryWrapper>
   );
 }
 
 const ChampionRateSummaryWrapper = styled.div`
   background-color: ${colors.white_five};
-  padding: 4px 8px 4px 15px;
   width: 100%;
   > div:last-child {
     border-bottom: 0px;
@@ -34,44 +66,46 @@ const ChampionRateSummaryWrapper = styled.div`
 `;
 
 const ChampionBoxWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
   border-bottom: 1px solid ${colors.silver_three};
 `;
 
-const ChampionAvatarWrapper = styled.div`
-  max-width: 45px;
-  max-height: 45px;
-  min-width: 45px;
-  min-height: 45px;
+const ChampionBoxStyled = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px 8px 15px;
+`;
+
+const ChampionAvatarWrapper = styled.div``;
+
+const ChampionAvatarStyled = styled.div`
+  min-width: 32px;
+  min-height: 32px;
   border-radius: 70%;
   overflow: hidden;
   img {
-    width: 45px;
-    height: 45px;
+    width: 32px;
+    height: 32px;
     object-fit: cover;
   }
 `;
-const ChampionDetailWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
 const InfoWrapper = styled.div`
-  min-width: 61px;
-  > div {
-    font-family: AppleSDGothicNeo;
-    font-size: 13px;
-    font-weight: bold;
-    color: ${colors.brownish_grey};
-  }
+  width: 55px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: AppleSDGothicNeo;
+  font-size: 13px;
+  font-weight: bold;
+  color: ${colors.brownish_grey};
 `;
 
-const RateWrapper = styled.div`
+const RateWrapper = styled.div<{ winningRateColor: string }>`
   width: 27px;
-  ${fonts.textStyle11}
   font-weight: bold;
+  ${fonts.textStyle11};
+  color: ${(props) => props.winningRateColor};
 `;
 
 const RateGraphWrapper = styled.div`

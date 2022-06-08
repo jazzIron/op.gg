@@ -38,6 +38,7 @@ export function MainContent() {
   };
   if (loading) return <Spinner onActive={true} fullCover={false} />;
 
+  // TODO: 전적이 없는 경우 화면 생성
   return (
     <MainContentWrapper>
       <NavBar options={OPTIONS} activeId={activeNav} onChange={handleChangeNav} />

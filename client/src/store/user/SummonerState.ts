@@ -1,5 +1,5 @@
 import { getSummonerInfoApi, getSummonerMostInfo } from '@src/api/summonerApi/SummonerApi';
-import { searchSummonerResult } from '@src/utils/match';
+import { searchSummonerMostResult, searchSummonerResult } from '@src/utils/match';
 import { atomFamily, atom } from 'recoil';
 import {
   SummonerApi,
@@ -12,9 +12,10 @@ import {
 export const summonerDetailQuery = atomFamily<SummonerDetailQuery, Readonly<summonerParams>>({
   key: 'summonerDetailQuery',
   default: async ({ summonerName, refreshId }) => {
-    const [summonerRes, summonerMost]: [summoner: SummonerApi, summonerMost: MostInfoApi] =
+    const [summonerRes, summonerMostRes]: [summoner: SummonerApi, summonerMostRes: MostInfoApi] =
       await Promise.all([getSummonerInfoApi(summonerName), getSummonerMostInfo(summonerName)]);
     const summoner = searchSummonerResult(summonerRes);
+    const summonerMost = searchSummonerMostResult(summonerMostRes);
     return {
       summoner,
       summonerMost,
