@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
 import { ToolTips } from '@src/components/tooltip';
 import { isEmpty, debounce } from 'lodash';
-import { useState, useEffect, useCallback } from 'react';
-import { useRecoilValue, useRecoilCallback } from 'recoil';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useRecoilValue, useRecoilCallback, useResetRecoilState } from 'recoil';
 import { summonerDetailResult, summonerDetailQuery, SummonerData } from './Test_types';
 import { v4 as uuidv4 } from 'uuid';
+import { useOutsideClick } from '@src/utils/common';
+import { duplicationVerifyLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
+
+const LOCAL_STORAGE_SEARCH_NAME = process.env.LOCAL_STORAGE_SEARCH_KEYWORD;
 
 /**
 https://www.npmjs.com/package/react-portal-tooltip
@@ -17,16 +21,26 @@ interface HistorySearchItem {
   hasFavorite: boolean;
 }
 
+// 검색 시 토스트 메세지 빈값인 경우 토스트 메세지
+
 export function TestPage2() {
+  const outsideRef = useRef(null);
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
   const [searchInput, setSearchInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
   const summonerDetail = useRecoilValue(summonerDetailResult);
+  const resetSummonerDetail = useResetRecoilState(summonerDetailResult);
+
+  const outsideCallback = () => {
+    resetSummonerDetail();
+    setIsHaveInputValue(false);
+  };
+  useOutsideClick(outsideRef, outsideCallback);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const result = localStorage.getItem('searchHistory') || '[]';
+      const result = localStorage.getItem(LOCAL_STORAGE_SEARCH_NAME!) || '[]';
       setKeywords(JSON.parse(result));
     }
   }, []);
@@ -62,10 +76,15 @@ export function TestPage2() {
     [],
   );
 
-  const searchHandler = () => {
+  const searchHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.log(`[INFO] ======handleClick====`);
     console.log(searchInput);
     console.log(summonerDetail);
+    event.preventDefault();
+    // NOTE: localStorage 저장하기
+    addSearchHistory(searchInput);
+    setIsHaveInputValue(false);
+    resetSummonerDetail();
     searchSummoner(searchInput);
   };
 
@@ -88,29 +107,42 @@ export function TestPage2() {
       data: Date.now(),
       hasFavorite: false,
     };
-    const searchHistory = duplicationVerifyLocalStorage('searchHistory', searchKeyword);
+    const searchHistory = duplicationVerifyLocalStorage(
+      LOCAL_STORAGE_SEARCH_NAME!,
+      'keyword',
+      searchKeyword,
+    );
     searchHistory.unshift(newKeyword);
     setKeywords([...searchHistory]);
   };
 
-  const duplicationVerifyLocalStorage = (localStorageName: string, value: string) => {
-    const localStorageData = JSON.parse(localStorage.getItem(localStorageName) || '[]');
-    const hasDuplication = localStorageData.some((data: any) => data.keyword === value);
-    if (hasDuplication) return localStorageData.filter((data: any) => data.keyword !== value);
-    return localStorageData;
+  const searchHistoryHandler = () => {
+    setIsHaveInputValue(true);
   };
-  return (
-    <RecoilTesterStyled>
-      {/* <ToolTips label="테스트영역">Hover</ToolTips> */}
 
-      <input type="text" onChange={handleChange} />
-      <button onClick={searchHandler}>검색하기</button>
+  const removeSearchHistoryHandler = (id: string) => {
+    const newLocalStorageData = removeLocalStorage('searchHistory', id);
+    setKeywords([...newLocalStorageData]);
+  };
+
+  return (
+    <RecoilTesterStyled ref={outsideRef}>
+      <input type="text" onChange={handleChange} onClick={searchHistoryHandler} />
+      <button onClick={(event) => searchHandler(event)}>검색하기</button>
       {summonerDetail &&
         summonerDetail.summoner.map((summoner) => (
           <div key={summoner.name} onClick={(event) => selectSearchItemHandler(event, summoner)}>
             {summoner.name}
           </div>
         ))}
+      {isHaveInputValue &&
+        keywords.map((data) => {
+          return (
+            <div key={data.id} onClick={() => removeSearchHistoryHandler(data.id)}>
+              {data.keyword}
+            </div>
+          );
+        })}
     </RecoilTesterStyled>
   );
 }

@@ -1,9 +1,21 @@
-export const removeLocalStorageItem = (key: string) => {
-  window.localStorage.removeItem(key);
+export const duplicationVerifyLocalStorage = (
+  localStorageName: string,
+  checkKey: string,
+  value: string,
+) => {
+  const localStorageData = getLocalStorage(localStorageName);
+  const hasDuplication = localStorageData.some((data: any) => data[checkKey] === value);
+  if (hasDuplication) return localStorageData.filter((data: any) => data[checkKey] !== value);
+  return localStorageData;
 };
-export const setLocalStorageSetItem = (key: string, value: any) => {
-  window.localStorage.setItem(key, JSON.stringify(value));
+
+export const removeLocalStorage = (localStorageName: string, id: string) => {
+  const localStorageData = getLocalStorage(localStorageName);
+  const index = localStorageData.findIndex((data: any) => data.id === id);
+  if (index > -1) localStorageData.splice(index, 1);
+  return localStorageData;
 };
-export const getLocalStorageItem = (key: string) => {
-  return window.localStorage.getItem(key);
+
+export const getLocalStorage = (localStorageName: string) => {
+  return JSON.parse(window.localStorage.getItem(localStorageName) || '[]');
 };
