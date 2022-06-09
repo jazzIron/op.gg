@@ -178,13 +178,13 @@ export const getChampionName = (championImageUrl: string) => {
 export const getItemName = (imageUrl: string) => {
   const itemImageUrlStr = imageUrl.split('/');
   const itemId = itemImageUrlStr[itemImageUrlStr.length - 1].replace(/\.png/g, '');
-  const itemDataInfo: any = itemData.data;
+  const itemDataInfo: typeof itemData.data = itemData.data;
   const selectedItems = Object.entries(itemDataInfo)
     .filter(([key, value]) => {
       return key === itemId;
     })
     .map((item) => item[1]);
-  return selectedItems ? selectedItems[0] : {};
+  return selectedItems ? selectedItems[0] : null;
 };
 
 export const getRankTypeName = (rankType: string) => {

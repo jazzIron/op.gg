@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { SearchInput } from '@src/components/searchInput/SearchInput';
 import { summonerDetailQuery, summonerDetailResult } from '@src/store/user/SummonerState';
-import { useOutsideClick } from '@src/utils/common';
+import { titleBarLabelCustom, useOutsideClick } from '@src/utils/common';
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { debounce, isEmpty } from 'lodash';
@@ -44,6 +44,7 @@ export function SearchSummoner() {
 
   useEffect(() => {
     getMatchResult('ALL');
+    titleBarLabelCustom(summonerDetail.summoner?.name);
   }, [summonerDetail]);
 
   const checkSearchKeyword = useCallback(() => {

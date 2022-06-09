@@ -2,7 +2,9 @@ import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { Items } from '@src/store/match/Match_types';
-import { getItemName, makeChampionItems } from '@src/utils/match';
+import { makeChampionItems } from '@src/utils/match';
+import { ToolTips } from '@src/components/tooltip';
+import { MatchItemDetail } from './MatchItemDetail';
 
 interface MatchItemPropTypes {
   items: Items[];
@@ -24,13 +26,16 @@ export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
       <ItemWrapper>
         <ItemStyled>
           {itemList.map((item, idx) => {
-            const itemInfo = getItemName(item.imageUrl);
-            // NOTE: 마우스 오버 효과 툴팁
-            //console.log(itemInfo);
             return (
-              <ItemImageStyled key={idx}>
-                <img src={item.imageUrl} alt={'item_img'} />
-              </ItemImageStyled>
+              <ToolTips
+                key={idx}
+                content={<MatchItemDetail imageUrl={item.imageUrl} />}
+                label={
+                  <ItemImageStyled key={idx}>
+                    <img src={item.imageUrl} alt={'item_img'} />
+                  </ItemImageStyled>
+                }
+              />
             );
           })}
           {emptyItem.map((item, idx) => {
@@ -38,13 +43,20 @@ export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
           })}
         </ItemStyled>
         <EtcItemStyled>
-          <ItemImageStyled>
-            {wardItem.length === 0 ? (
-              <ItemEmptyStyled isWin={isWin} />
-            ) : (
-              <img src={wardItem[0].imageUrl} alt={'ward_img'} />
-            )}
-          </ItemImageStyled>
+          {wardItem.length === 0 ? (
+            <ItemImageStyled>
+              <ItemEmptyStyled isWin={isWin} />{' '}
+            </ItemImageStyled>
+          ) : (
+            <ToolTips
+              content={<MatchItemDetail imageUrl={wardItem[0].imageUrl} />}
+              label={
+                <ItemImageStyled>
+                  <img src={wardItem[0].imageUrl} alt={'ward_img'} />
+                </ItemImageStyled>
+              }
+            />
+          )}
           <ItemImageStyled>
             <img src={buildItem} alt={'build_img'} />
           </ItemImageStyled>

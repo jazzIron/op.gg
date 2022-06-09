@@ -1,9 +1,12 @@
-import { Ieague, SummonerData } from '@src/store/user/Summoner_types';
+import { SummonerData } from '@src/store/user/Summoner_types';
 import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
 import { parenthesisExtraction } from './formatter';
 import { winningRate } from './match';
 
+/**
+ * 랭크 티어 초기값 설정
+ */
 const initTierRank = {
   imageUrl: '',
   lp: 0,
@@ -14,6 +17,11 @@ const initTierRank = {
   rankLp: '',
 };
 
+/**
+ * 특정 DOM 요소의 외부 클릭 이벤트를 처리 함수
+ * @param ref container useRef
+ * @param handlerCallback 콜백 함수
+ */
 export const useOutsideClick = (
   ref: React.MutableRefObject<any>,
   handlerCallback: (event?: CustomEvent<MouseEvent>) => void,
@@ -34,6 +42,13 @@ export const useOutsideClick = (
   }, [ref, handlerCallback]);
 };
 
+/**
+ * 소환사 랭크 정보 생성
+ * @param type  매치 타입 'SOLO' | 'FREE'
+ * @param season  시즌 (default : 9 [최근 시즌 설정])
+ * @param summonerData 소환사 정보
+ * @returns rankInfo, totalGame, winningRateColor, winningRateValue
+ */
 export const makeLeagueRank = (type: string, season: number, summonerData: SummonerData) => {
   const rankType = type === 'SOLO' ? '솔랭' : '자유 5:5 랭크';
   const rankSeason = summonerData.previousTiers
@@ -71,4 +86,11 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
     winningRateColor,
     winningRateValue,
   };
+};
+
+export const titleBarLabelCustom = (titleLabel: string | undefined) => {
+  const oldTitle = window.document.title;
+  const label = titleLabel;
+  if (isEmpty(titleLabel)) return false;
+  document.title = `${titleLabel} - ${window.document.title}`;
 };

@@ -2,14 +2,6 @@ import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
 import moment from 'moment';
 import 'moment/locale/ko';
-import MatchData from './match.Data.json';
-
-const sampleData = {
-  createDate: MatchData.games[0].createDate,
-  gameLength: MatchData.games[0].gameLength,
-  gameType: MatchData.games[0].gameType,
-  isWin: MatchData.games[0].isWin,
-};
 
 //TODO: 다시하기 필요
 const isWinLabel = (isWin: boolean) => (isWin ? '승리' : '패배');

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { LeftContent } from '@src/features/leftContent/LeftContent';
 import { MainContent } from '@src/features/mainContent/MainContent';
+import { SearchSummonerEmpty } from '@src/features/searchSummoner/SearchSummonerEmpty';
 
 export function Content() {
   return (

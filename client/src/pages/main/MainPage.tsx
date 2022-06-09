@@ -11,8 +11,9 @@ export function MainPage() {
       <SummonerBasicWrapper>
         <SummonerBasic />
       </SummonerBasicWrapper>
-
-      <Content />
+      <ContentWrapper>
+        <Content />
+      </ContentWrapper>
     </MainPageStyled>
   );
 }
@@ -21,4 +22,8 @@ const MainPageStyled = styled.div``;
 
 const SummonerBasicWrapper = styled.div`
   border-bottom: 1px solid ${colors.white_three};
+`;
+
+const ContentWrapper = styled.div`
+  margin-top: 10px;
 `;

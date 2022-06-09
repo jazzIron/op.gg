@@ -1,28 +1,15 @@
 import { ToolTipPropTypes } from './Tooltip_types';
 import styled from '@emotion/styled';
-import ToolTip from 'react-portal-tooltip';
-import { useState } from 'react';
+import { fonts, colors } from '@src/themes';
 
-export function ToolTips({ label, children }: ToolTipPropTypes) {
-  const [isTooltipActive, setIsTooltipActive] = useState(false);
-
-  const handleShowTooltip = () => setIsTooltipActive(true);
-  const handleHideTooltip = () => setIsTooltipActive(false);
-
+export function ToolTips({ label, content }: ToolTipPropTypes) {
   return (
-    <TooltipWrapper>
-      <ToolTipLabel>{label}</ToolTipLabel>
-      <ToolTipContent>{children}</ToolTipContent>
-
-      <p id="text" onMouseEnter={handleShowTooltip} onMouseLeave={handleHideTooltip}>
-        This is a cool component
-      </p>
-      <ToolTip active={isTooltipActive} position="bottom" arrow="center" parent="#text">
-        <div>
-          <p>This is the content of the tooltip</p>
-        </div>
-      </ToolTip>
-    </TooltipWrapper>
+    <ToolTipsWrapper>
+      <ToolTipsStyled>
+        <ToolTipsLabel>{label}</ToolTipsLabel>
+        <ToolTipsContent>{content}</ToolTipsContent>
+      </ToolTipsStyled>
+    </ToolTipsWrapper>
   );
 }
 
@@ -31,43 +18,57 @@ ToolTips.defaultProps = {
   children: '',
 };
 
-const TooltipWrapper = styled.div`
-  position: relative;
-`;
-
-const ToolTipLabel = styled.div`
-  position: relative;
-  display: inline-block;
+const ToolTipsWrapper = styled.div``;
+const ToolTipsStyled = styled.div`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2.5rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
   &:hover {
-    & + span {
+    > div:last-child {
       visibility: visible;
-      opacity: 0.8;
+      opacity: 1;
+      transform: translate(-50%, -110%);
     }
   }
 `;
-const ToolTipContent = styled.span`
+
+const ToolTipsLabel = styled.div``;
+const ToolTipsContent = styled.div`
   position: absolute;
-  background-color: green;
-  border-radius: 0.4em;
-  padding: 5px;
-  /* visibility: hidden;
-  opacity: 0; */
-  transition: all 0.5s;
-  left: 0px;
-  top: 0px;
-  transform: translate(0%, -40px);
-  :after {
+  top: 0;
+  left: 50%;
+  padding: 8px;
+  border-radius: 4px;
+  ${fonts.textStyle01};
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  transition: all 0.3s ease;
+  z-index: 3;
+  width: 200px;
+  max-width: 200px;
+  background-color: ${colors.black_two};
+  ::after {
+    display: block;
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
     height: 0;
-    border: 6px solid transparent;
-    border-top-color: green;
+    border: 4px solid transparent;
+    border-top-color: ${colors.black_two};
     border-bottom: 0;
-    margin-left: -6px;
-    margin-bottom: -6px;
+    margin-left: -4px;
+    margin-bottom: -4px;
   }
 `;
