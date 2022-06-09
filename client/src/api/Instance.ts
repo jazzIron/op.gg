@@ -42,17 +42,26 @@ export async function api(apiConfig: AxiosRequestConfig) {
       console.log('=========== [INFO] API upload response ==========\n', response);
       if (response.data) {
         if (response.status === 200) {
-          return response.data;
+          return {
+            status: response.status,
+            data: response.data,
+            error: false,
+            message: response.statusText,
+          };
         }
         if (response.status !== 200) {
-          throw new Error();
+          throw new Error(`[ERROR] AXIOS API REST ERROR ${response.status}`);
         }
       }
     })
     .catch((error) => {
-      console.error(`[ERROR] AXIOS API REST ERROR ===> ${error.toJSON()}`);
+      console.error(`[ERROR] AXIOS API REST ERROR!!! ===> ${error.toJSON()}`);
+      console.log(error);
       return {
         status: error.response && error.response.status !== 0 ? error.response.status : 9999,
+        data: null,
+        error: true,
+        message: error,
       };
     });
 }

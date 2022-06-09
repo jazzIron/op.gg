@@ -1,13 +1,13 @@
+import { IApiResponse } from '../summoner';
+
 export type Position_Type = 'Support' | 'Bottom' | 'Jungle' | 'Top';
 export interface Champion {
   imageUrl: string;
   level: number;
 }
-
 export interface Spell {
   imageUrl: string;
 }
-
 export interface Items {
   imageUrl: string;
 }
@@ -36,12 +36,10 @@ interface MapInfo {
   imageUrl: string;
   mapId: string;
 }
-
 export interface Teams {
   gameId: string;
   teams: Team[];
 }
-
 export interface Games {
   mmr: number | null;
   champion: Champion;
@@ -62,7 +60,7 @@ export interface Games {
   teams: Teams;
 }
 
-interface Position {
+export interface Position {
   games: number;
   wins: number;
   losses: number;
@@ -70,7 +68,7 @@ interface Position {
   positionName: string;
 }
 
-interface Summary {
+export interface Summary {
   wins: number;
   losses: number;
   kills: number;
@@ -78,14 +76,7 @@ interface Summary {
   assists: number;
 }
 
-export interface MatchesApi {
-  champions: Champion[];
-  games: Games;
-  position: Position[];
-  summary: Summary;
-}
-
-interface FavoriteChampion {
+export interface FavoriteChampion {
   assists: number;
   deaths: number;
   games: number;
@@ -111,14 +102,40 @@ export interface Team {
   teamId: number;
 }
 
+export interface summonerMatchResultQueryParam {
+  [key: string]: string | number;
+  summonerName: string;
+  rankType: string;
+  refreshId: number;
+}
+
+export type SummonerMatchResultRes = Readonly<IApiResponse<SummonerMatchResultApi>> | undefined;
+
 export interface MatchDetailApi {
   gameId: string;
   teams: Team[];
 }
-
 export interface SummonerMatchResultApi {
   champions: FavoriteChampion[];
   games: Games[];
   positions: Position[];
   summary: Summary;
+}
+
+export interface SummonerMatchResultQuery {
+  champions: FavoriteChampion[];
+  games: Games[];
+  positions: Position[];
+  summary: Summary;
+  loading: boolean;
+  error: boolean;
+}
+
+export interface SummonerMatchResult {
+  champions: FavoriteChampion[] | null;
+  games: Games[] | null;
+  positions: Position[] | null;
+  summary: Summary | null;
+  loading: boolean;
+  error: boolean;
 }

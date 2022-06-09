@@ -3,12 +3,10 @@ export interface summonerParams {
   summonerName: string;
   refreshId: number;
 }
-
 interface AdderRank {
   rank: number;
   rankPercentOfTop: number;
 }
-
 export interface Leagues {
   hasResults: boolean;
   losses: number;
@@ -40,7 +38,7 @@ export interface PreviousTier {
   tierRankPoint: number;
 }
 
-export interface SummonerData {
+export interface SummonerApi {
   ladderRank: AdderRank;
   leagues: Leagues[];
   level: number;
@@ -52,18 +50,22 @@ export interface SummonerData {
   url: string;
 }
 
-export interface SummonerApi {
-  summoner: SummonerData;
+export interface IApiResponse<T> {
+  status: number;
+  data: T | null;
+  message: string | null;
 }
 
 export interface SummonerDetailQuery {
-  summoner: SummonerData[] | [];
-  summonerMost: MostInfoApi | null;
+  summoner: SummonerApi[] | null;
+  summonerMost: SummonerMostApi | null;
+  loading: boolean;
+  error: boolean;
 }
 
 export interface SummonerDetailResult {
-  summoner: SummonerData | null;
-  summonerMost: MostInfoApi | null;
+  summoner: SummonerApi | null;
+  summonerMost: SummonerMostApi | null;
   loading: boolean;
   error: boolean;
 }
@@ -92,14 +94,24 @@ export interface RecentWinRate {
   wins: number;
 }
 
-export interface MostInfoApi {
+export interface SummonerMostApi {
   champions: Champion[];
   recentWinRate: RecentWinRate[];
 }
+
+export type SummonerRes = Readonly<IApiResponse<SummonerApi>> | undefined;
+export type SummonerMostRes = Readonly<IApiResponse<SummonerMostApi>> | undefined;
 
 export interface HistorySearchItem {
   id: string;
   keyword: string;
   data: number;
+  hasFavorite: boolean;
+}
+
+export interface FavoriteSummonerItem {
+  id: string;
+  keyword: string;
+  date: number;
   hasFavorite: boolean;
 }

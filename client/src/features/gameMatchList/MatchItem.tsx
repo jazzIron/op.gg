@@ -2,8 +2,8 @@ import { colors, fonts } from '@src/themes';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { Items } from '@src/store/match/Match_types';
-import { makeChampionItems } from '@src/utils/match';
 import { ToolTips } from '@src/components/tooltip';
+import { makeChampionItems } from '@src/utils/match';
 import { MatchItemDetail } from './MatchItemDetail';
 
 interface MatchItemPropTypes {

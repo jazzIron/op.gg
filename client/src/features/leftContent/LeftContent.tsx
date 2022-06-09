@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { Tab } from '@src/components/tab/Tab';
 import { ChampionRate, ChampionRateSummary } from '../championRate';
 import { isNull } from 'lodash';
-import { Rank } from '../rank/Rank';
 import { Spinner } from '@src/components/loadingSpinner';
 import { SummonerDetailResult } from '@src/store/summoner';
 import { WINNING_RATE_OPTION } from '@src/utils/match';
+import { Rank } from '../rank';
 
 interface LeftContentPropTypes {
   summonerDetail: SummonerDetailResult;

@@ -26,12 +26,6 @@ export function SearchSummoner() {
   const outsideRef = useRef(null);
   const activeMatchType = useRecoilValue(activeMatchTypeState);
   const { summonerDetail, getMatchResult } = useMainContent();
-
-  useEffect(() => {
-    console.log(!isEmpty(pathList));
-    if (!isEmpty(pathList)) searchHandler(pathList[1]);
-  }, []);
-
   const {
     keywords,
     autoCompleteData,
@@ -48,6 +42,10 @@ export function SearchSummoner() {
   } = useSearchSummoner();
 
   useOutsideClick(outsideRef, outsideCallback);
+
+  useEffect(() => {
+    if (!isEmpty(pathList)) searchHandler(pathList[1]);
+  }, []);
 
   useEffect(() => {
     if (!isNull(summonerDetail.summoner)) {

@@ -1,80 +1,61 @@
-import { getSummonerMatchApi, getSummonerMatchDetailApi } from '@src/api/match/summonerMatchApi';
+import { getSummonerMatchApi } from '@src/api/match/summonerMatchApi';
 import { getMatchParser } from '@src/utils/match';
-import { isEmpty } from 'lodash';
 import { atom, atomFamily } from 'recoil';
-import { MatchesApi, MatchDetailApi, SummonerMatchResultApi } from './Match_types';
+import { IApiResponse } from '../summoner';
+import {
+  SummonerMatchResult,
+  SummonerMatchResultApi,
+  SummonerMatchResultQuery,
+  summonerMatchResultQueryParam,
+  SummonerMatchResultRes,
+} from './Match_types';
 
-interface summonerMatchParams {
-  [key: string]: string | number;
-  summonerName: string;
-  refreshId: number;
-}
-
-export const summonerMatchQuery = atomFamily<MatchesApi, summonerMatchParams>({
-  key: 'summonerMatchQuery',
-  default: async ({ summonerName, refreshId }) => {
-    const summonerMatchList: MatchesApi = await getSummonerMatchApi(summonerName);
-    return summonerMatchList;
-  },
-});
-
-interface summonerMatchDetailParams {
-  [key: string]: string | number;
-  summonerName: string;
-  gameId: string;
-  refreshId: number;
-}
-
-export const summonerMatchDetailQuery = atomFamily<MatchDetailApi, summonerMatchDetailParams>({
-  key: 'summonerMatchDetailQuery',
-  default: async ({ summonerName, gameId, refreshId }) => {
-    const summonerMatchDetail: MatchDetailApi = await getSummonerMatchDetailApi(
-      summonerName,
-      gameId,
-    );
-    return summonerMatchDetail;
-  },
-});
-
-export const summonerMatchDetailResult = atom<MatchDetailApi | null>({
-  key: 'summonerMatchDetailResult',
-  default: null,
-});
-
-interface summonerMatchResultQueryParam {
-  [key: string]: string | number;
-  summonerName: string;
-  rankType: string;
-  refreshId: number;
-}
-
-export interface IApiResponse<T> {
-  status: number;
-  data: T;
-}
-
-export type SummonerMatchResultRes = IApiResponse<SummonerMatchResultApi>;
+const isSummonerMatchRes = (
+  res: SummonerMatchResultRes,
+): res is IApiResponse<SummonerMatchResultApi> => {
+  return (
+    (res as IApiResponse<SummonerMatchResultApi>).status === 200 &&
+    (res as IApiResponse<SummonerMatchResultApi>).data !== null
+  );
+};
 
 export const summonerMatchResultQuery = atomFamily<
-  SummonerMatchResultApi,
+  SummonerMatchResultQuery,
   Readonly<summonerMatchResultQueryParam>
 >({
-  key: 'testQuery',
+  key: 'summonerMatchResultQuery',
   default: async ({ summonerName, rankType, refreshId }) => {
-    const summonerMatchRes: any = await getSummonerMatchApi(summonerName);
-    if (isEmpty(summonerMatchRes)) return [];
-    const games = await getMatchParser(summonerName, rankType, summonerMatchRes);
-    const result = {
-      ...summonerMatchRes,
-      games: games,
+    const summonerMatchRes = await getSummonerMatchApi(summonerName);
+    if (isSummonerMatchRes(summonerMatchRes)) {
+      const games = await getMatchParser(summonerName, rankType, summonerMatchRes.data);
+      return {
+        ...summonerMatchRes.data,
+        games,
+        loading: false,
+        error: false,
+      };
+    }
+    return {
+      champions: null,
+      games: null,
+      positions: null,
+      summary: null,
+      loading: false,
+      error: true,
     };
-    return result;
   },
 });
 
-export const summonerMatchResult = atom<SummonerMatchResultApi | null>({
+export const summonerMatchResult = atom<SummonerMatchResult>({
   key: 'summonerMatchResult',
-  default: null,
+  default: {
+    champions: null,
+    games: null,
+    positions: null,
+    summary: null,
+    loading: false,
+    error: true,
+  },
 });
 
 export const activeMatchTypeState = atom({

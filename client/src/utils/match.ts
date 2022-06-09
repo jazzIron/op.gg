@@ -5,7 +5,7 @@ import { colors } from '@src/themes';
 import axios from 'axios';
 import itemData from '../json/items.json';
 import { isEmpty, isNull } from 'lodash';
-import { MostInfoApi, SummonerApi } from '@src/store/summoner/Summoner_types';
+import { SummonerApi, SummonerMostApi } from '@src/store/summoner/Summoner_types';
 
 const ITEM_AREA_LENGTH = 6;
 export const LOCAL_STORAGE_SEARCH_NAME = 'searchHistory';
@@ -219,10 +219,10 @@ export const getRankTypeName = (rankType: string) => {
 
 export const searchSummonerResult = (summonerDetail: SummonerApi | null) => {
   if (isNull(summonerDetail)) return [];
-  return summonerDetail ? Object.entries(summonerDetail).map((item) => item[1]) : [];
+  return summonerDetail ? Object.entries(summonerDetail).map((item) => item[1]) : null;
 };
 
-export const searchSummonerMostResult = (summonerMost: MostInfoApi | null) => {
+export const searchSummonerMostResult = (summonerMost: SummonerMostApi | null) => {
   const champions = isNull(summonerMost)
     ? []
     : summonerMost.champions.sort((a, b) => b.games - a.games);

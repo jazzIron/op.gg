@@ -4,13 +4,18 @@ import { GameSummary } from '../gameSummary/GameSummary';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { NavBar } from '@src/components/navBar';
-import { SummonerMatchResultApi, activeMatchTypeState } from '@src/store/match';
+import {
+  SummonerMatchResultApi,
+  activeMatchTypeState,
+  SummonerMatchResult,
+} from '@src/store/match';
 import { titleBarLabelCustom } from '@src/utils/common';
 import { OPTIONS } from '@src/utils/match';
 import { ChampionMatchEmpty } from '../championRate/ChampionMatchEmpty';
+import { isNil, isNull } from 'lodash';
 
 interface MainContentProps {
-  matchResult: SummonerMatchResultApi | null;
+  matchResult: SummonerMatchResult | null;
 }
 
 export function MainContent({ matchResult }: MainContentProps) {
@@ -19,7 +24,6 @@ export function MainContent({ matchResult }: MainContentProps) {
   useEffect(() => {
     return () => titleBarLabelCustom('');
   }, []);
-
   return (
     <MainContentWrapper>
       <NavBar options={OPTIONS} activeId={activeMatchType} onChange={handleChangeNav} />

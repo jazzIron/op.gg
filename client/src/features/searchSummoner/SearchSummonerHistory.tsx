@@ -29,7 +29,7 @@ export function SearchSummonerHistory({
                 {keyword.keyword}
               </SummonerName>
               <RightItem>
-                <FavoriteIcon>
+                <FavoriteIcon onMouseDown={handleMouseDown}>
                   <img src={ICON_LIST.iconFavoriteOff} alt={'favorite_icon_off'} />
                 </FavoriteIcon>
                 <DeleteHistory

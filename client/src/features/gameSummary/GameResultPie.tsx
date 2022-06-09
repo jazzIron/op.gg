@@ -2,21 +2,23 @@ import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
 import { PieChart } from 'react-minimal-pie-chart';
 import { useMemo } from 'react';
-import { SummonerMatchResultApi } from '@src/store/match/Match_types';
+import { Summary } from '@src/store/match/Match_types';
 import { kdaStyled, matchSummary, winningRate } from '@src/utils/match';
+import { isNull } from 'lodash';
 
 interface GameResultPiePropTypes {
-  matchResult: SummonerMatchResultApi;
+  summary: Summary | null;
 }
 
-export function GameResultPie({ matchResult }: GameResultPiePropTypes) {
-  const { kills, assists, deaths, wins, losses } = matchResult.summary;
-  const { kdaColor, kdaValue } = useMemo(() => kdaStyled(kills, assists, deaths), [matchResult]);
+export function GameResultPie({ summary }: GameResultPiePropTypes) {
+  if (isNull(summary)) return <></>;
+  const { kills, assists, deaths, wins, losses } = summary;
+  const { kdaColor, kdaValue } = useMemo(() => kdaStyled(kills, assists, deaths), [summary]);
   const { winningRateColor, winningRateValue } = useMemo(
     () => winningRate(wins, losses),
-    [matchResult],
+    [summary],
   );
-  const { total, win, lose } = useMemo(() => matchSummary(wins, losses), [matchResult]);
+  const { total, win, lose } = useMemo(() => matchSummary(wins, losses), [summary]);
 
   return (
     <GameResultPieWrapper>

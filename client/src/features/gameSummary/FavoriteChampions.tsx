@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
-import { SummonerMatchResultApi } from '@src/store/match/Match_types';
+import { FavoriteChampion } from '@src/store/match/Match_types';
 import { colors, fonts } from '@src/themes';
-import { kdaStyled, matchSummary, positionItem } from '@src/utils/match';
+import { matchSummary, positionItem, kdaStyled } from '@src/utils/match';
+import { isNull } from 'lodash';
 
 const FAVORITE_CHAMPION_COUNT = 3;
 
@@ -29,11 +30,11 @@ const FavoriteChampionEmpty = ({ championsCount }: { championsCount: number }) =
   );
 };
 interface FavoriteChampionPropTypes {
-  matchResult: SummonerMatchResultApi;
+  champions: FavoriteChampion[] | null;
 }
-export function FavoriteChampion({ matchResult }: FavoriteChampionPropTypes) {
-  const { champions } = matchResult;
 
+export function FavoriteChampions({ champions }: FavoriteChampionPropTypes) {
+  if (isNull(champions)) return <></>;
   return (
     <FavoriteChampionWrapper>
       {champions.map((champion) => {

@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
-import { SummonerData } from '@src/store/summoner';
+import { SummonerApi } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
 
 interface SearchSummonerAutoCompletePropTypes {
-  summoners: SummonerData[];
-  onSelectSummoner: (event: React.MouseEvent<HTMLDivElement>, summoner: SummonerData) => void;
+  summoners: SummonerApi[];
+  onSelectSummoner: (event: React.MouseEvent<HTMLDivElement>, summoner: SummonerApi) => void;
 }
 
-const checkCurrentTier = (summoner: SummonerData) => {
+const checkCurrentTier = (summoner: SummonerApi) => {
   const leagues = summoner.leagues.filter((league) => league.tierRank.name === '솔랭');
   if (summoner.leagues.length === 0 || leagues.length === 0) return `Level ${summoner.level}`;
   return `${leagues[0].tierRank.tier} ${leagues[0].tierRank.shortString.slice(-1)} - ${

@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
-import { SummonerMatchResultApi } from '@src/store/match/Match_types';
+import { Position } from '@src/store/match/Match_types';
 import { colors, fonts } from '@src/themes';
-import { positionInfo, positionItem } from '@src/utils/match';
+import { positionItem, positionInfo } from '@src/utils/match';
+import { isNull } from 'lodash';
 
 interface FavoritePositionPropTypes {
-  matchResult: SummonerMatchResultApi;
+  positions: Position[] | null;
 }
-export function FavoritePosition({ matchResult }: FavoritePositionPropTypes) {
-  const { positions } = matchResult;
-  const positionTotalGame = matchResult.positions.reduce((acc, cur) => acc + cur.games, 0);
+export function FavoritePosition({ positions }: FavoritePositionPropTypes) {
+  if (isNull(positions)) return <></>;
+  const positionTotalGame = positions.reduce((acc, cur) => acc + cur.games, 0);
   return (
     <FavoritePositionWrapper>
       <TitleWrapper>선호 포지션 (랭크)</TitleWrapper>

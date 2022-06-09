@@ -1,22 +1,29 @@
 import { TOAST_TYPE, TOAST_OPTION_POSITION, ToastHook } from '@src/components/toast';
 import {
+  FavoriteSummonerItem,
   HistorySearchItem,
-  SummonerData,
+  SummonerApi,
   summonerDetailQuery,
   summonerDetailResult,
 } from '@src/store/summoner';
-import { duplicationVerifyLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
+import {
+  duplicationVerifyLocalStorage,
+  removeLocalStorage,
+  setLocalStorage,
+} from '@src/utils/localStorage';
 import { debounce, isEmpty, isUndefined } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { SEARCH_TYPE } from './SearchSummoner_types';
 import { v4 as uuidv4 } from 'uuid';
+import { LOCAL_STORAGE_SEARCH_NAME } from '@src/utils/match';
 
-const LOCAL_STORAGE_SEARCH_NAME = process.env.LOCAL_STORAGE_SEARCH_KEYWORD;
+const LOCAL_STORAGE_FAVORITE_NAME = 'favoriteHistory';
 
 export function useSearchSummoner() {
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
-  const [autoCompleteData, setAutoCompleteData] = useState<SummonerData[] | []>();
+  const [favoriteSummoner, setFavoriteSummoner] = useState<FavoriteSummonerItem[]>([]);
+  const [autoCompleteData, setAutoCompleteData] = useState<SummonerApi[] | null>();
   const [searchInput, setSearchInput] = useState('');
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
   const { toastMake } = ToastHook();
@@ -28,8 +35,12 @@ export function useSearchSummoner() {
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
+    setLocalStorage(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
   }, [keywords]);
+
+  useEffect(() => {
+    setLocalStorage(LOCAL_STORAGE_FAVORITE_NAME!, JSON.stringify(keywords));
+  }, [favoriteSummoner]);
 
   const outsideCallback = () => {
     setAutoCompleteData([]);
@@ -70,7 +81,7 @@ export function useSearchSummoner() {
 
   const selectSummonerHandler = (
     event: React.MouseEvent<HTMLDivElement>,
-    summoner: SummonerData,
+    summoner: SummonerApi,
   ) => {
     event.preventDefault();
     addSearchHistory(summoner.name);
@@ -147,7 +158,6 @@ export function useSearchSummoner() {
     autoCompleteData,
     searchInput,
     isHaveInputValue,
-    setKeywordItem,
     outsideCallback,
     handleChangeInput,
     searchHandler,

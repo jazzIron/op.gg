@@ -1,4 +1,4 @@
-import { SummonerData } from '@src/store/summoner/Summoner_types';
+import { SummonerApi } from '@src/store/summoner/Summoner_types';
 import { isEmpty, isUndefined } from 'lodash';
 import { useEffect } from 'react';
 import { parenthesisExtraction } from './formatter';
@@ -46,12 +46,12 @@ export const useOutsideClick = (
  * 소환사 랭크 정보 생성
  * @param type  매치 타입 'SOLO' | 'FREE'
  * @param season  시즌 (default : 9 [최근 시즌 설정])
- * @param summonerData 소환사 정보
+ * @param SummonerApi 소환사 정보
  * @returns rankInfo, totalGame, winningRateColor, winningRateValue
  */
-export const makeLeagueRank = (type: string, season: number, summonerData: SummonerData) => {
+export const makeLeagueRank = (type: string, season: number, SummonerApi: SummonerApi) => {
   const rankType = type === 'SOLO' ? '솔랭' : '자유 5:5 랭크';
-  const rankSeason = summonerData.previousTiers
+  const rankSeason = SummonerApi.previousTiers
     .filter((info) => {
       return info.season === season && info.name === rankType;
     })
@@ -66,7 +66,7 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
         rankLp: parenthesisExtraction(previous.string),
       };
     });
-  const rankFilter = summonerData.leagues.filter((info) => {
+  const rankFilter = SummonerApi.leagues.filter((info) => {
     return info.tierRank.name === rankType;
   });
   const leagueRank = {
@@ -93,5 +93,4 @@ export const titleBarLabelCustom = (titleLabel: string | undefined) => {
     !isEmpty(titleLabel) && !isUndefined(titleLabel)
       ? `${titleLabel} - ${window.document.title}`
       : `롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹`;
-  console.log(titleLabel);
 };
