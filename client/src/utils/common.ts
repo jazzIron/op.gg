@@ -1,5 +1,5 @@
 import { SummonerData } from '@src/store/summoner/Summoner_types';
-import { isEmpty } from 'lodash';
+import { isEmpty, isUndefined } from 'lodash';
 import { useEffect } from 'react';
 import { parenthesisExtraction } from './formatter';
 import { winningRate } from './match';
@@ -89,6 +89,9 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
 };
 
 export const titleBarLabelCustom = (titleLabel: string | undefined) => {
-  if (isEmpty(titleLabel)) return false;
-  document.title = `${titleLabel} - ${window.document.title}`;
+  document.title =
+    !isEmpty(titleLabel) && !isUndefined(titleLabel)
+      ? `${titleLabel} - ${window.document.title}`
+      : `롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹`;
+  console.log(titleLabel);
 };

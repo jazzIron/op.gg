@@ -6,7 +6,7 @@ import {
   summonerDetailResult,
 } from '@src/store/summoner';
 import { duplicationVerifyLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
-import { debounce, isEmpty } from 'lodash';
+import { debounce, isEmpty, isUndefined } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { SEARCH_TYPE } from './SearchSummoner_types';
@@ -63,6 +63,7 @@ export function useSearchSummoner() {
   );
 
   const searchHandler = (searchInput: string) => {
+    if (isUndefined(searchInput)) return false;
     setIsHaveInputValue(false);
     searchSummoner(searchInput, 'SEARCH_SUBMIT');
   };
@@ -113,8 +114,6 @@ export function useSearchSummoner() {
   const searchSummoner = useRecoilCallback(
     ({ snapshot, set }) =>
       async (newValue: string, searchType: SEARCH_TYPE) => {
-        console.log('??????????????????');
-
         if (isEmpty(newValue)) return checkSearchKeyword();
         setAutoCompleteData([]);
         setIsHaveInputValue(false);

@@ -6,7 +6,7 @@ const config: AxiosRequestConfig = {
 
 const axiosClient: AxiosInstance = axios.create(config);
 axiosClient.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
-axiosClient.defaults.timeout = 5000; // 2.5 timeout 설정
+axiosClient.defaults.timeout = 5000; // 5 timeout 설정
 
 axiosClient.interceptors.request.use(
   (config) => {

@@ -7,7 +7,7 @@ import { useMainContent } from '../mainContent/useMainContent';
 import { useSearchSummoner } from './useSearchSummoner';
 import { useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { isEmpty, isNull } from 'lodash';
+import { isEmpty, isNull, isUndefined } from 'lodash';
 import { RouteList } from '@src/routes/RouteList';
 import { activeMatchTypeState } from '@src/store/match';
 import { useRecoilValue } from 'recoil';
@@ -28,6 +28,7 @@ export function SearchSummoner() {
   const { summonerDetail, getMatchResult } = useMainContent();
 
   useEffect(() => {
+    console.log(!isEmpty(pathList));
     if (!isEmpty(pathList)) searchHandler(pathList[1]);
   }, []);
 
@@ -49,7 +50,6 @@ export function SearchSummoner() {
   useOutsideClick(outsideRef, outsideCallback);
 
   useEffect(() => {
-    console.log(summonerDetail);
     if (!isNull(summonerDetail.summoner)) {
       getMatchResult(activeMatchType);
       titleBarLabelCustom(summonerDetail.summoner.name);

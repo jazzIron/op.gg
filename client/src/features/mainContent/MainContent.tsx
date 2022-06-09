@@ -6,6 +6,8 @@ import { OPTIONS } from '@src/utils/match';
 import { ChampionMatchEmpty } from '../championRate/ChampionMatchEmpty';
 import { useRecoilState } from 'recoil';
 import { activeMatchTypeState, SummonerMatchResultApi } from '@src/store/match';
+import { useEffect } from 'react';
+import { titleBarLabelCustom } from '@src/utils/common';
 
 interface MainContentProps {
   matchResult: SummonerMatchResultApi | null;
@@ -14,6 +16,9 @@ interface MainContentProps {
 export function MainContent({ matchResult }: MainContentProps) {
   const [activeMatchType, setActiveMatchType] = useRecoilState(activeMatchTypeState);
   const handleChangeNav = (id: string) => setActiveMatchType(id);
+  useEffect(() => {
+    return () => titleBarLabelCustom('');
+  }, []);
 
   return (
     <MainContentWrapper>
