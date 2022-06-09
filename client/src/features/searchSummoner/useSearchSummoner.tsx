@@ -135,6 +135,7 @@ export function useSearchSummoner() {
             };
             set(summonerDetailResult, summonerDetailResultData);
             addSearchHistory(response.summoner[0].name);
+            setSearchInput('');
           }
         }
       },

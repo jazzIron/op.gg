@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
-import { NavBar } from '@src/components/navBar';
 import { MatchList } from '../gameMatchList/MatchList';
 import { GameSummary } from '../gameSummary/GameSummary';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { NavBar } from '@src/components/navBar';
+import { SummonerMatchResultApi, activeMatchTypeState } from '@src/store/match';
+import { titleBarLabelCustom } from '@src/utils/common';
 import { OPTIONS } from '@src/utils/match';
 import { ChampionMatchEmpty } from '../championRate/ChampionMatchEmpty';
-import { useRecoilState } from 'recoil';
-import { activeMatchTypeState, SummonerMatchResultApi } from '@src/store/match';
-import { useEffect } from 'react';
-import { titleBarLabelCustom } from '@src/utils/common';
 
 interface MainContentProps {
   matchResult: SummonerMatchResultApi | null;

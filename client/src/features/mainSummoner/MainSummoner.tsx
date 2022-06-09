@@ -7,7 +7,6 @@ import { LeftContent } from '../leftContent';
 import { MainContent } from '../mainContent';
 import { SummonerBasic } from '../summoner/SummonerBasic';
 import { summonerMatchResult } from '@src/store/match';
-import { useEffect } from 'react';
 
 export function MainSummoner() {
   const summonerDetail = useRecoilValue(summonerDetailResult);

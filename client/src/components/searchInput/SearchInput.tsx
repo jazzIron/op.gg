@@ -32,19 +32,20 @@ export function SearchInput({
     onChange(value);
   };
 
-  const handleCheckEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  const handleCheckEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') onSubmit(inputValue);
   };
 
   return (
     <SearchInputWrapper>
-      <SearchInputFormWrapper onKeyPress={(e) => handleCheckEnter(e)}>
+      <SearchInputFormWrapper>
         <SearchInputStyled
           value={inputValue}
           placeholder={placeholder}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          onKeyPress={handleCheckEnter}
         />
         <SearchIconStyled onClick={handleSearchSubmit} onMouseDown={handleMouseDown}>
           <img src={ICON_LIST.iconGg} alt={'search_input_icon'} />
@@ -63,7 +64,7 @@ const SearchInputWrapper = styled.div`
   width: 260px;
 `;
 
-const SearchInputFormWrapper = styled.form`
+const SearchInputFormWrapper = styled.div`
   display: flex;
   padding: 9px 12px 8px 14px;
   border-radius: 2px;
