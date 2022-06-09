@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
-import { HistorySearchItem } from '@src/store/user';
+import { HistorySearchItem } from '@src/store/summoner';
 import { fonts, colors } from '@src/themes';
 import { MouseEvent } from 'react';
 
@@ -32,7 +32,10 @@ export function SearchSummonerHistory({
                 <FavoriteIcon>
                   <img src={ICON_LIST.iconFavoriteOff} alt={'favorite_icon_off'} />
                 </FavoriteIcon>
-                <DeleteHistory onClick={() => onRemoveSearchHistory(keyword.id)}>
+                <DeleteHistory
+                  onClick={() => onRemoveSearchHistory(keyword.id)}
+                  onMouseDown={handleMouseDown}
+                >
                   <img src={ICON_LIST.iconHistoryDelete} alt={'history_delete_icon'} />
                 </DeleteHistory>
               </RightItem>
@@ -60,6 +63,10 @@ const SearchSummonerHistoryItemStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
+  cursor: pointer;
+  :hover {
+    background-color: ${colors.light_blue_grey};
+  }
 `;
 
 const SummonerName = styled.div`

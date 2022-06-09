@@ -76,3 +76,8 @@ export const summonerMatchResult = atom<SummonerMatchResultApi | null>({
   key: 'summonerMatchResult',
   default: null,
 });
+
+export const activeMatchTypeState = atom({
+  key: 'activeMatchTypeState',
+  default: 'ALL',
+});

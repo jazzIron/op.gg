@@ -3,13 +3,16 @@ import { ThemeProvider } from '@emotion/react';
 import { RecoilRoot } from 'recoil';
 import { RouterManager } from './routes/RouterManager';
 import { theme } from './themes';
+import ErrorBoundary from './routes/ErrorBoundary';
 
 function App(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
-      <RecoilRoot>
-        <RouterManager />
-      </RecoilRoot>
+      <ErrorBoundary>
+        <RecoilRoot>
+          <RouterManager />
+        </RecoilRoot>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }

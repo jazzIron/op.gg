@@ -1,4 +1,4 @@
-import { SummonerData } from '@src/store/user/Summoner_types';
+import { SummonerData } from '@src/store/summoner/Summoner_types';
 import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
 import { parenthesisExtraction } from './formatter';
@@ -89,8 +89,6 @@ export const makeLeagueRank = (type: string, season: number, summonerData: Summo
 };
 
 export const titleBarLabelCustom = (titleLabel: string | undefined) => {
-  const oldTitle = window.document.title;
-  const label = titleLabel;
   if (isEmpty(titleLabel)) return false;
   document.title = `${titleLabel} - ${window.document.title}`;
 };

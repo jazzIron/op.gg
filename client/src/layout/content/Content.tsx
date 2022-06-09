@@ -1,15 +1,13 @@
 import styled from '@emotion/styled';
 import { LeftContent } from '@src/features/leftContent/LeftContent';
 import { MainContent } from '@src/features/mainContent/MainContent';
-import { SearchSummonerEmpty } from '@src/features/searchSummoner/SearchSummonerEmpty';
 
-export function Content() {
-  return (
-    <ContentWrapper>
-      <LeftContent />
-      <MainContent />
-    </ContentWrapper>
-  );
+interface ContentPropTypes {
+  children: string | JSX.Element | JSX.Element[];
+}
+
+export function Content({ children }: ContentPropTypes) {
+  return <ContentWrapper>{children}</ContentWrapper>;
 }
 
 const ContentWrapper = styled.div`

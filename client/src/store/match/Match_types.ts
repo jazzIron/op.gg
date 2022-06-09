@@ -85,9 +85,6 @@ export interface MatchesApi {
   summary: Summary;
 }
 
-// ================================================================================================
-// NOTE: 소환자 Match 상세정보
-
 interface FavoriteChampion {
   assists: number;
   deaths: number;

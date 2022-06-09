@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Champion } from '@src/store/user';
+import { Champion } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
 import { kdaStyled, matchSummary, positionItem } from '@src/utils/match';
 import { ChampionMatchEmpty } from './ChampionMatchEmpty';

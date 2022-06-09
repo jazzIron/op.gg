@@ -1,5 +1,5 @@
 export enum RouteList {
   MAIN = '/',
+  SUMMONERS = '/summoners',
   TEST = '/test',
-  TEST2 = '/test2',
 }

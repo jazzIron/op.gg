@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { colors } from '@src/themes';
-import { MouseEvent, useState, useRef, useEffect } from 'react';
+import { MouseEvent } from 'react';
+import { ICON_LIST } from '@src/components/icon';
 
 export interface SearchInputPropTypes {
   inputValue: string;
@@ -31,21 +32,24 @@ export function SearchInput({
     onChange(value);
   };
 
+  const handleCheckEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') onSubmit(inputValue);
+  };
+
   return (
     <SearchInputWrapper>
-      <SearchInputStyled
-        value={inputValue}
-        placeholder={placeholder}
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <SearchIconStyled onClick={handleSearchSubmit} onMouseDown={handleMouseDown}>
-        <img
-          src="https://s-lol-web.op.gg/images/icon/icon-gg.svg?v=1654157118862"
-          alt={'search_input_icon'}
+      <SearchInputFormWrapper onKeyPress={(e) => handleCheckEnter(e)}>
+        <SearchInputStyled
+          value={inputValue}
+          placeholder={placeholder}
+          onChange={handleChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
-      </SearchIconStyled>
+        <SearchIconStyled onClick={handleSearchSubmit} onMouseDown={handleMouseDown}>
+          <img src={ICON_LIST.iconGg} alt={'search_input_icon'} />
+        </SearchIconStyled>
+      </SearchInputFormWrapper>
     </SearchInputWrapper>
   );
 }
@@ -57,12 +61,16 @@ SearchInput.defaultProps = {
 
 const SearchInputWrapper = styled.div`
   width: 260px;
+`;
+
+const SearchInputFormWrapper = styled.form`
   display: flex;
   padding: 9px 12px 8px 14px;
   border-radius: 2px;
   background-color: ${colors.white_two};
   justify-content: space-between;
 `;
+
 const SearchInputStyled = styled.input`
   font-family: 'AppleSDGothicNeoB';
   font-size: 12px;

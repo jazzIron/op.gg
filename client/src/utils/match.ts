@@ -5,9 +5,10 @@ import { colors } from '@src/themes';
 import axios from 'axios';
 import itemData from '../json/items.json';
 import { isEmpty, isNull } from 'lodash';
-import { MostInfoApi, SummonerApi } from '@src/store/user/Summoner_types';
+import { MostInfoApi, SummonerApi } from '@src/store/summoner/Summoner_types';
 
 const ITEM_AREA_LENGTH = 6;
+export const LOCAL_STORAGE_SEARCH_NAME = 'searchHistory';
 export const SEASON = 9;
 
 export const OPTIONS = [
@@ -35,6 +36,27 @@ export const HISTORY_OPTIONS = [
     text: '즐겨찾기',
   },
 ];
+
+export const WINNING_RATE_OPTION = [
+  {
+    id: 1,
+    label: '챔피언 승률',
+  },
+  {
+    id: 2,
+    label: '7일간 랭크 승률',
+  },
+];
+
+export const isWinLabel = (isWin: boolean) => (isWin ? '승리' : '패배');
+export const gameLengthLabel = (gameLength: number) => {
+  const min = String(gameLength).slice(0, 2);
+  const second = String(gameLength).slice(2, 4);
+  return `${min}분 ${second}초`;
+};
+export const isAccessory = (colloq: string) => {
+  return colloq.replace(/ /g, '').split(';').includes('장신구');
+};
 
 export const getMatchParser = async (
   summonerName: string,
@@ -91,16 +113,20 @@ export const kdaStyled = (kills: number, assists: number, deaths: number) => {
 export const winningRate = (wins: number, losses: number) => {
   const totalGame = wins + losses;
   const winningRateValue =
-    isNaN(wins) || isNaN(totalGame) ? 0 : Math.round((wins / totalGame) * 100);
+    isNaN(wins) || isNaN(totalGame) || wins === 0 || totalGame === 0
+      ? 0
+      : Math.round((wins / totalGame) * 100);
   const winningRateColor = winningRateValue >= 60 ? colors.reddish : colors.black;
   return { winningRateColor, winningRateValue };
 };
 
 export const positionItem = (wins: number, games: number, positionTotalGame: number) => {
   const positionWinningRateValue =
-    isNaN(wins) || isNaN(games) ? 0 : Math.round((wins / games) * 100);
+    isNaN(wins) || isNaN(games) || wins === 0 || games === 0 ? 0 : Math.round((wins / games) * 100);
   const positionWinningTotalRateValue =
-    isNaN(games) || isNaN(positionTotalGame) ? 0 : Math.round((games / positionTotalGame) * 100);
+    isNaN(games) || isNaN(positionTotalGame) || games === 0 || positionTotalGame === 0
+      ? 0
+      : Math.round((games / positionTotalGame) * 100);
   const winningRateColor = positionWinningRateValue >= 60 ? colors.reddish : colors.black;
   return {
     positionWinningRateValue,

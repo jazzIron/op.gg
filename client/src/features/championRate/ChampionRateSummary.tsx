@@ -1,16 +1,9 @@
 import styled from '@emotion/styled';
 import { GraphBar } from '@src/components/graphBar';
-import { RecentWinRate } from '@src/store/user';
+import { RecentWinRate } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
 import { positionItem } from '@src/utils/match';
 import { ChampionMatchEmpty } from './ChampionMatchEmpty';
-
-// id: 246
-// imageUrl: "https://opgg-static.akamaized.net/images/lol/champion/Qiyana.png?image=w_30&v=1"
-// key: "Qiyana"
-// losses: 9
-// name: "키아나"
-// wins: 16
 
 interface ChampionRateSummaryPropTypes {
   recentWinRate: RecentWinRate[];

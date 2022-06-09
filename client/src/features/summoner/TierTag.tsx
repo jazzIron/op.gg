@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { PreviousTier } from '@src/store/user/Summoner_types';
+import { PreviousTier } from '@src/store/summoner/Summoner_types';
 import { colors, fonts } from '@src/themes';
 import React from 'react';
 

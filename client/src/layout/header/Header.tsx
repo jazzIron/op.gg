@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
 import { SearchSummoner } from '@src/features/searchSummoner/SearchSummoner';
-import { theme } from '@src/themes';
+import { colors } from '@src/themes';
+import { useNavigate } from 'react-router-dom';
+import { RouteList } from '@src/routes/RouteList';
 
 export function Header() {
+  const navigate = useNavigate();
+  const moveHomePage = () => navigate(RouteList.MAIN);
   return (
     <HeaderWrapper>
       <HeaderStyled>
-        <LogoWrapper>
+        <LogoWrapper onClick={moveHomePage}>
           <LogoStyled src={ICON_LIST.opggLogo} alt={'opgg_logo_img'} />
         </LogoWrapper>
         <SearchInputWrapper>
@@ -21,7 +25,7 @@ export function Header() {
 const HeaderWrapper = styled.header`
   width: 100%;
   height: 97px;
-  background-color: ${theme.colors.azure};
+  background-color: ${colors.azure};
 `;
 
 const HeaderStyled = styled.div`
@@ -35,6 +39,7 @@ const HeaderStyled = styled.div`
 
 const LogoWrapper = styled.div`
   padding-left: 24px;
+  cursor: pointer;
 `;
 const LogoStyled = styled.img`
   width: 150px;

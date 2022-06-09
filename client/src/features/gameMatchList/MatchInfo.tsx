@@ -1,15 +1,8 @@
 import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
+import { isWinLabel, gameLengthLabel } from '@src/utils/match';
 import moment from 'moment';
 import 'moment/locale/ko';
-
-//TODO: 다시하기 필요
-const isWinLabel = (isWin: boolean) => (isWin ? '승리' : '패배');
-const gameLengthLabel = (gameLength: number) => {
-  const min = String(gameLength).slice(0, 2);
-  const second = String(gameLength).slice(2, 4);
-  return `${min}분 ${second}초`;
-};
 
 interface MatchInfoPropTypes {
   createDate: number;

@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import { Spinner } from '@src/components/loadingSpinner';
-import { summonerDetailResult } from '@src/store/user/SummonerState';
+import { SummonerDetailResult } from '@src/store/summoner';
 import { fonts } from '@src/themes';
-import { colors } from '@src/themes/index';
 import { numberMark } from '@src/utils/formatter';
 import { isNull } from 'lodash';
-import { useRecoilValue } from 'recoil';
 import TierTag from './TierTag';
 
-export function SummonerBasic() {
-  const summonerDetail = useRecoilValue(summonerDetailResult);
+interface SummonerBasicPropTypes {
+  summonerDetail: SummonerDetailResult;
+}
+
+export function SummonerBasic({ summonerDetail }: SummonerBasicPropTypes) {
   if (isNull(summonerDetail.summoner))
     return (
       <SummonerBasicLoadingWrapper>

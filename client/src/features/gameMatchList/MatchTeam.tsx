@@ -48,6 +48,7 @@ const MatchTeamWrapper = styled.div`
   gap: 13px;
 `;
 const MatchTeamItemWrapper = styled.ul`
+  cursor: pointer;
   > li:last-child() {
     margin-bottom: 0px;
   }

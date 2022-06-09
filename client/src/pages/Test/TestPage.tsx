@@ -43,9 +43,6 @@ export function TestPage() {
           <ItemStyled>
             {itemList.map((item, idx) => {
               const itemInfo = getItemName(item.imageUrl);
-              // NOTE: 마우스 오버 효과 툴팁
-              //console.log(itemInfo);
-              console.log(itemInfo);
               return (
                 <ToolTips
                   key={idx}

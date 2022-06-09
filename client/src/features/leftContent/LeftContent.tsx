@@ -1,25 +1,17 @@
 import styled from '@emotion/styled';
 import { Tab } from '@src/components/tab/Tab';
-import { summonerDetailResult } from '@src/store/user/SummonerState';
-import { useRecoilValue } from 'recoil';
 import { ChampionRate, ChampionRateSummary } from '../championRate';
 import { isNull } from 'lodash';
 import { Rank } from '../rank/Rank';
 import { Spinner } from '@src/components/loadingSpinner';
+import { SummonerDetailResult } from '@src/store/summoner';
+import { WINNING_RATE_OPTION } from '@src/utils/match';
 
-const tabItems = [
-  {
-    id: 1,
-    label: '챔피언 승률',
-  },
-  {
-    id: 2,
-    label: '7일간 랭크 승률',
-  },
-];
+interface LeftContentPropTypes {
+  summonerDetail: SummonerDetailResult;
+}
 
-export function LeftContent() {
-  const summonerDetail = useRecoilValue(summonerDetailResult);
+export function LeftContent({ summonerDetail }: LeftContentPropTypes) {
   if (isNull(summonerDetail.summoner) || isNull(summonerDetail.summonerMost))
     return <Spinner onActive={true} fullCover={false} />;
 
@@ -36,7 +28,7 @@ export function LeftContent() {
     <LeftContentWrapper>
       <Rank rankType={'SOLO'} summonerDetail={summonerDetail} />
       <Rank rankType={'FREE'} summonerDetail={summonerDetail} />
-      <Tab tabItem={tabItems} tabContent={tabContents} />
+      <Tab tabItem={WINNING_RATE_OPTION} tabContent={tabContents} />
     </LeftContentWrapper>
   );
 }

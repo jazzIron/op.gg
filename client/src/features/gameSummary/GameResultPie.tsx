@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { colors, fonts } from '@src/themes';
 import { PieChart } from 'react-minimal-pie-chart';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { SummonerMatchResultApi } from '@src/store/match/Match_types';
 import { kdaStyled, matchSummary, winningRate } from '@src/utils/match';
 
@@ -9,7 +9,6 @@ interface GameResultPiePropTypes {
   matchResult: SummonerMatchResultApi;
 }
 
-//NOTE: kills/ assists/ deaths
 export function GameResultPie({ matchResult }: GameResultPiePropTypes) {
   const { kills, assists, deaths, wins, losses } = matchResult.summary;
   const { kdaColor, kdaValue } = useMemo(() => kdaStyled(kills, assists, deaths), [matchResult]);

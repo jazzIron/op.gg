@@ -21,8 +21,14 @@ axiosClient.interceptors.response.use(
     return onFulfilled;
   },
   (error) => {
-    console.log('error response', error);
-    if (401 === error.code) {
+    if (error.code === 401) {
+      console.error(`[ERROR] : Unauthorized`);
+    }
+    if (error.code === 403) {
+      console.error(`[ERROR] : Forbidden`);
+    }
+    if (error.code === 404) {
+      console.error(`[ERROR] : Not Found`);
     }
     return Promise.reject(error);
   },
@@ -42,16 +48,11 @@ export async function api(apiConfig: AxiosRequestConfig) {
           throw new Error();
         }
       }
-      // 401: Unauthorized
-      // 403: Forbidden
-      // 404: Not Found
     })
     .catch((error) => {
-      console.warn(`[WARN] API REST ERROR ===> ${error.toJSON()}`);
+      console.error(`[ERROR] AXIOS API REST ERROR ===> ${error.toJSON()}`);
       return {
         status: error.response && error.response.status !== 0 ? error.response.status : 9999,
-        data: null,
-        message: null,
       };
     });
 }

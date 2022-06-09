@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { SummonerData } from '@src/store/user';
-import { fonts } from '@src/themes';
+import { SummonerData } from '@src/store/summoner';
+import { colors, fonts } from '@src/themes';
 
 interface SearchSummonerAutoCompletePropTypes {
   summoners: SummonerData[];
@@ -52,8 +52,10 @@ const SummonerBox = styled.div`
   align-items: center;
   padding: 6px 16px;
   height: 53px;
-  box-sizing: border-box;
   cursor: pointer;
+  :hover {
+    background-color: ${colors.light_blue_grey};
+  }
 `;
 
 const SummonerProfileImageStyled = styled.div`

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { getItemName } from '@src/utils/match';
+import { getItemName, isAccessory } from '@src/utils/match';
 import { isNull } from 'lodash';
 import { useMemo } from 'react';
 
@@ -20,10 +20,6 @@ interface ItemData {
   };
   description: string;
 }
-
-const isAccessory = (colloq: string) => {
-  return colloq.replace(/ /g, '').split(';').includes('장신구');
-};
 
 export function MatchItemDetail({ imageUrl }: MatchItemDetailPropTypes) {
   const itemData = useMemo(() => getItemName(imageUrl), [imageUrl]);

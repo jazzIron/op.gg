@@ -1,25 +1,23 @@
 import styled from '@emotion/styled';
 import { NavBar } from '@src/components/navBar';
-import { summonerMatchResult, summonerMatchResultQuery } from '@src/store/match/MatchState';
-import { useRecoilValue, useRecoilCallback } from 'recoil';
 import { MatchList } from '../gameMatchList/MatchList';
-import { useEffect, useState } from 'react';
 import { GameSummary } from '../gameSummary/GameSummary';
 import { OPTIONS } from '@src/utils/match';
-import { useMainContent } from './useMainContent';
 import { ChampionMatchEmpty } from '../championRate/ChampionMatchEmpty';
+import { useRecoilState } from 'recoil';
+import { activeMatchTypeState, SummonerMatchResultApi } from '@src/store/match';
 
-export function MainContent() {
-  const [activeNav, setActiveNav] = useState('ALL');
-  const { matchResult, getMatchResult } = useMainContent();
-  useEffect(() => {
-    getMatchResult(activeNav);
-  }, [activeNav]);
+interface MainContentProps {
+  matchResult: SummonerMatchResultApi | null;
+}
 
-  const handleChangeNav = (id: string) => setActiveNav(id);
+export function MainContent({ matchResult }: MainContentProps) {
+  const [activeMatchType, setActiveMatchType] = useRecoilState(activeMatchTypeState);
+  const handleChangeNav = (id: string) => setActiveMatchType(id);
+
   return (
     <MainContentWrapper>
-      <NavBar options={OPTIONS} activeId={activeNav} onChange={handleChangeNav} />
+      <NavBar options={OPTIONS} activeId={activeMatchType} onChange={handleChangeNav} />
       {matchResult ? (
         <>
           <GameSummary />

@@ -1,17 +1,15 @@
-// NOTE: 소환사 기본 정보 API
-
 export interface summonerParams {
   [key: string]: string | number;
   summonerName: string;
   refreshId: number;
 }
 
-interface IadderRank {
+interface AdderRank {
   rank: number;
   rankPercentOfTop: number;
 }
 
-export interface Ieague {
+export interface Leagues {
   hasResults: boolean;
   losses: number;
   tierRank: {
@@ -43,8 +41,8 @@ export interface PreviousTier {
 }
 
 export interface SummonerData {
-  ladderRank: IadderRank;
-  leagues: Ieague[];
+  ladderRank: AdderRank;
+  leagues: Leagues[];
   level: number;
   name: string;
   previousTiers: PreviousTier[];
@@ -70,8 +68,6 @@ export interface SummonerDetailResult {
   error: boolean;
 }
 
-// ===============================================================================
-// NOTE: 소환사 most info API
 export interface Champion {
   assists: number;
   cs: number;
