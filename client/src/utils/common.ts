@@ -17,6 +17,11 @@ const initTierRank = {
   rankLp: '',
 };
 
+// 소환사 검색 PATH 체크
+export const isSearchSummonerPath = (pathList: string[]) => {
+  return pathList.includes('summoners') && pathList.length === 2 ? true : false;
+};
+
 /**
  * 특정 DOM 요소의 외부 클릭 이벤트를 처리 함수
  * @param ref container useRef
@@ -89,8 +94,10 @@ export const makeLeagueRank = (type: string, season: number, SummonerApi: Summon
 };
 
 export const titleBarLabelCustom = (titleLabel: string | undefined) => {
+  const defaultTitleLabel = `롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹`;
+
   document.title =
     !isEmpty(titleLabel) && !isUndefined(titleLabel)
-      ? `${titleLabel} - ${window.document.title}`
-      : `롤 전적 검색 OP.GG - 전적 검색, 관전, 리플레이, 챔피언 공략, 카운터, 랭킹`;
+      ? `${titleLabel} - ${defaultTitleLabel}`
+      : defaultTitleLabel;
 };

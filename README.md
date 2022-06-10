@@ -12,6 +12,13 @@
 | ☑️       | 과제에서 매치 더 보기 기능은 제외                                            |
 | ☑️       | 탭 선택에 따라 프리시즌과 7일간 랭크 승률 (정렬: 플레이 게임수)              |
 
+#### 추가
+
+- default Page
+- Error Page
+- Skeleton Loading
+- ErrorBoundary Setting
+
 ## Development Environment🛠
 
 - [React] 17.x
@@ -40,7 +47,22 @@
 | routes     | 라우터 설정 페이지 모음                               |
 | store      | recoil 모음 <br/>상태 초기값, 공용 값 정리            |
 | themes     | 테마 설정 모음                                        |
-| utils      | 필요한 공통 유틸                                      |
+| utils      | 필요한 공통 유틸 모음                                 |
+| @types     | 타입스크립트 타입 설정파일 모음                       |
+
+| setting file      | description                                |
+| ----------------- | ------------------------------------------ |
+| .evn              | 환경변수 절정파일                          |
+| eslintrc.js       | lint의 설정                                |
+| prettierrc.js     | prettierrc 설정파일                        |
+| babel.config      | babel 설정 파일                            |
+| tsconfig.json     | typescript 설정 파일                       |
+| webpack.config.js | webpack 설정파일                           |
+| layout            | 레이아웃 컴포넌트                          |
+| routes            | 라우터 설정 페이지 모음                    |
+| store             | recoil 모음 <br/>상태 초기값, 공용 값 정리 |
+| themes            | 테마 설정 모음                             |
+| utils             | 필요한 공통 유틸                           |
 
 ## Project Setting / Start
 
@@ -56,7 +78,10 @@
 
    ```bash
    # react port 3000
+   # production mode
    yarn start
+   # developer mode
+   yarn dev
    ```
 
 ## Libraries📦

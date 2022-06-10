@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { SearchInput } from '@src/components/searchInput/SearchInput';
-import { titleBarLabelCustom, useOutsideClick } from '@src/utils/common';
+import { isSearchSummonerPath, titleBarLabelCustom, useOutsideClick } from '@src/utils/common';
 import { SearchSummonerAutoComplete } from './SearchSummonerAutoComplete';
 import { SearchHistoryContents } from './SearchHistoryContents';
 import { useMainContent } from '../mainContent/useMainContent';
@@ -40,7 +40,7 @@ export function SearchSummoner() {
   useOutsideClick(outsideRef, outsideCallback);
 
   useEffect(() => {
-    if (!isEmpty(pathList)) searchHandler(pathList[1]);
+    if (isSearchSummonerPath(pathList)) searchHandler(pathList[1]);
   }, []);
 
   useEffect(() => {

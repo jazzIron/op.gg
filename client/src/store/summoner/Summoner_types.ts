@@ -108,10 +108,3 @@ export interface HistorySearchItem {
   data: number;
   hasFavorite: boolean;
 }
-
-export interface FavoriteSummonerItem {
-  id: string;
-  keyword: string;
-  date: number;
-  hasFavorite: boolean;
-}

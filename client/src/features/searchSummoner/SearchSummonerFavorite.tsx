@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
-import { FavoriteSummonerItem, HistorySearchItem } from '@src/store/summoner';
+import { HistorySearchItem } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
-import { getLocalStorage, removeLocalStorage } from '@src/utils/localStorage';
-import { MouseEvent, useEffect, useState } from 'react';
+import { getLocalStorage } from '@src/utils/localStorage';
+import { MouseEvent } from 'react';
 
 export function SearchSummonerFavorite() {
   const favoriteHistoryList: HistorySearchItem[] = getLocalStorage('favoriteHistory');

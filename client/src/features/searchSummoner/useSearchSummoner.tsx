@@ -1,6 +1,5 @@
 import { TOAST_TYPE, TOAST_OPTION_POSITION, ToastHook } from '@src/components/toast';
 import {
-  FavoriteSummonerItem,
   HistorySearchItem,
   SummonerApi,
   summonerDetailQuery,
@@ -18,11 +17,8 @@ import { SEARCH_TYPE } from './SearchSummoner_types';
 import { v4 as uuidv4 } from 'uuid';
 import { LOCAL_STORAGE_SEARCH_NAME } from '@src/utils/match';
 
-const LOCAL_STORAGE_FAVORITE_NAME = 'favoriteHistory';
-
 export function useSearchSummoner() {
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
-  const [favoriteSummoner, setFavoriteSummoner] = useState<FavoriteSummonerItem[]>([]);
   const [autoCompleteData, setAutoCompleteData] = useState<SummonerApi[] | null>();
   const [searchInput, setSearchInput] = useState('');
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
@@ -30,7 +26,7 @@ export function useSearchSummoner() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const result = localStorage.getItem(LOCAL_STORAGE_SEARCH_NAME!) || '[]';
+      const result = window.localStorage.getItem(LOCAL_STORAGE_SEARCH_NAME!) || '[]';
       setKeywordItem(JSON.parse(result));
     }
   }, []);
