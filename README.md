@@ -21,8 +21,10 @@
 
 - default Page
 - Error Page
-- Skeleton Loading
 - ErrorBoundary Setting
+- Skeleton Loading
+- 팀원 디테일 새창 이동 (기존 op.gg 사이트)
+- 챔피언 디테일 새창 이동 (기존 op.gg 사이트)
 
 ## Development Environment🛠
 

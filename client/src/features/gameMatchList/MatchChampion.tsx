@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Champion, Spell } from '@src/store/match/Match_types';
 import { fonts, colors } from '@src/themes';
+import { movePageChampionDetailPage } from '@src/utils/common';
 import { getChampionName } from '@src/utils/match';
 import { useMemo } from 'react';
 
@@ -15,7 +16,7 @@ export function MatchChampion({ champion, spells, peak }: MatchChampionPropTypes
   return (
     <MatchChampionWrapper>
       <MatchChampionStyled>
-        <ChampionIconStyled>
+        <ChampionIconStyled onClick={() => movePageChampionDetailPage(ChampionName)}>
           <img src={champion.imageUrl} alt={'pick_Champion_Img'} />
         </ChampionIconStyled>
         <SpellsWrapper>
@@ -51,6 +52,7 @@ const ChampionIconStyled = styled.div`
   margin-right: 2px;
   border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
   > img {
     object-fit: cover;
     max-width: 46px;

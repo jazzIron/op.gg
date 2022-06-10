@@ -17,6 +17,8 @@ import { SEARCH_TYPE } from './SearchSummoner_types';
 import { v4 as uuidv4 } from 'uuid';
 import { LOCAL_STORAGE_SEARCH_NAME } from '@src/utils/match';
 import { summonerMatchResult } from '@src/store/match';
+import { RouteList } from '@src/routes/RouteList';
+import { useNavigate } from 'react-router-dom';
 
 export function useSearchSummoner() {
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
@@ -26,6 +28,7 @@ export function useSearchSummoner() {
   const resetMatchResult = useResetRecoilState(summonerMatchResult);
   const resetSummonerDetail = useResetRecoilState(summonerDetailResult);
   const { toastMake } = ToastHook();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -130,6 +133,9 @@ export function useSearchSummoner() {
           refreshId: refreshId,
         };
         const response = await snapshot.getPromise(summonerDetailQuery(params));
+
+        if (response.error) navigate(RouteList.ERROR);
+
         if (searchType === 'SEARCH_AUTO') {
           setAutoCompleteData(response.summoner);
         } else {

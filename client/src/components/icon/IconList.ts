@@ -21,6 +21,7 @@ import iconFavoriteOff from '../../asset/images/icons/icon-favorite-off.png';
 import bgNoData from '../../asset/images/icons/bg-noData.png';
 import opggLogo from '../../asset/images/icons/opgglogo.svg';
 import iconGg from '../../asset/images/icons/icon-gg.svg';
+import iconMostpositionNone from '../../asset/images/icons/icon-mostposition-none.png';
 
 export const ICON_LIST: { [key: string]: string } = {
   adc,
@@ -46,4 +47,5 @@ export const ICON_LIST: { [key: string]: string } = {
   bgNoData,
   opggLogo,
   iconGg,
+  iconMostpositionNone,
 };
