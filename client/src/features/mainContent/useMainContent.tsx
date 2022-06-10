@@ -11,8 +11,6 @@ const isSummonerMatchQueryResult = (res: SummonerMatchResult): res is SummonerMa
 export function useMainContent() {
   const matchResult = useRecoilValue(summonerMatchResult);
   const summonerDetail = useRecoilValue(summonerDetailResult);
-  const resetMatchResult = useResetRecoilState(summonerMatchResult);
-  const resetSummonerDetail = useResetRecoilState(summonerDetailResult);
   const getMatchResult = useRecoilCallback(({ snapshot, set }) => async (activeNav: string) => {
     if (isNull(summonerDetail.summoner)) return false;
     try {

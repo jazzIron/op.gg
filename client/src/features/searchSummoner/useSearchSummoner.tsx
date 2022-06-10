@@ -12,16 +12,19 @@ import {
 } from '@src/utils/localStorage';
 import { debounce, isEmpty, isUndefined } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useRecoilCallback, useResetRecoilState } from 'recoil';
 import { SEARCH_TYPE } from './SearchSummoner_types';
 import { v4 as uuidv4 } from 'uuid';
 import { LOCAL_STORAGE_SEARCH_NAME } from '@src/utils/match';
+import { summonerMatchResult } from '@src/store/match';
 
 export function useSearchSummoner() {
   const [keywords, setKeywords] = useState<HistorySearchItem[]>([]);
   const [autoCompleteData, setAutoCompleteData] = useState<SummonerApi[] | null>();
   const [searchInput, setSearchInput] = useState('');
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
+  const resetMatchResult = useResetRecoilState(summonerMatchResult);
+  const resetSummonerDetail = useResetRecoilState(summonerDetailResult);
   const { toastMake } = ToastHook();
 
   useEffect(() => {
@@ -39,9 +42,7 @@ export function useSearchSummoner() {
     setIsHaveInputValue(false);
   };
 
-  const setKeywordItem = (keywordItem: HistorySearchItem[]) => {
-    setKeywords(keywordItem);
-  };
+  const setKeywordItem = (keywordItem: HistorySearchItem[]) => setKeywords(keywordItem);
 
   const checkSearchKeyword = useCallback(() => {
     toastMake({
@@ -61,7 +62,7 @@ export function useSearchSummoner() {
   };
 
   const debouncedCallback = useCallback(
-    debounce((newValue: string) => searchSummoner(newValue, 'SEARCH_AUTO'), 500),
+    debounce((newValue: string) => searchSummonerCallback(newValue, 'SEARCH_AUTO'), 500),
     [],
   );
 
@@ -101,20 +102,22 @@ export function useSearchSummoner() {
     setIsHaveInputValue(true);
   };
 
-  const inputBlurHandler = () => {
-    setIsHaveInputValue(false);
-  };
+  const inputBlurHandler = () => setIsHaveInputValue(false);
 
   const removeSearchHistoryHandler = (id: string) => {
     const newLocalStorageData = removeLocalStorage('searchHistory', id);
     setKeywordItem([...newLocalStorageData]);
   };
 
-  const selectSearchHistoryHandler = (keyword: string) => {
-    searchSummoner(keyword, 'SEARCH_SUBMIT');
+  const selectSearchHistoryHandler = (keyword: string) => searchSummoner(keyword, 'SEARCH_SUBMIT');
+
+  const searchSummoner = async (newValue: string, searchType: SEARCH_TYPE) => {
+    await resetSummonerDetail;
+    await resetMatchResult();
+    await searchSummonerCallback(newValue, searchType);
   };
 
-  const searchSummoner = useRecoilCallback(
+  const searchSummonerCallback = useRecoilCallback(
     ({ snapshot, set }) =>
       async (newValue: string, searchType: SEARCH_TYPE) => {
         if (isEmpty(newValue)) return checkSearchKeyword();

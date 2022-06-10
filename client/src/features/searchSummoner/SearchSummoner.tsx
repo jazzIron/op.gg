@@ -4,13 +4,13 @@ import { isSearchSummonerPath, titleBarLabelCustom, useOutsideClick } from '@src
 import { SearchSummonerAutoComplete } from './SearchSummonerAutoComplete';
 import { SearchHistoryContents } from './SearchHistoryContents';
 import { useMainContent } from '../mainContent/useMainContent';
-import { useSearchSummoner } from './useSearchSummoner';
 import { useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isNull } from 'lodash';
 import { RouteList } from '@src/routes/RouteList';
 import { activeMatchTypeState } from '@src/store/match';
 import { useRecoilValue } from 'recoil';
+import { useSearchSummoner } from './useSearchSummoner';
 
 export function SearchSummoner() {
   const navigate = useNavigate();
@@ -70,7 +70,6 @@ export function SearchSummoner() {
         onSelectSearchHistory={selectSearchHistoryHandler}
         onRemoveSearchHistory={removeSearchHistoryHandler}
       />
-
       <SearchSummonerAutoComplete
         summoners={autoCompleteData}
         onSelectSummoner={selectSummonerHandler}
