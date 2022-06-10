@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Spinner } from '@src/components/loadingSpinner';
 import { Skeleton } from '@src/components/skeleton';
 import {
   SkeletonImgWrapper,
