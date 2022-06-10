@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ORIGIN_URL_SUMMONERS } from '@src/api';
 import { Teams } from '@src/store/match/Match_types';
 import { colors } from '@src/themes';
 import { makeMatchTeam } from '@src/utils/match';
@@ -83,15 +84,15 @@ const MatchTeamItem = ({
   `;
 
   const SummonerInfoWrapper = styled.div<{ targetSummoner: boolean }>`
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-family: AppleSDGothicNeo;
     font-size: 11px;
     letter-spacing: -0.42px;
     color: ${colors.greyish_brown};
     font-weight: ${(props) => (props.targetSummoner ? 'bold' : 'normal')};
-    max-width: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   `;
 
   return (
@@ -99,7 +100,15 @@ const MatchTeamItem = ({
       <ChampionAvatarWrapper>
         <img src={champion.imageUrl} alt="summoner_champion_img" />
       </ChampionAvatarWrapper>
-      <SummonerInfoWrapper targetSummoner={targetSummoner}>{summonerName}</SummonerInfoWrapper>
+      <SummonerInfoWrapper targetSummoner={targetSummoner}>
+        <a
+          href={`${ORIGIN_URL_SUMMONERS}/${summonerName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {summonerName}
+        </a>
+      </SummonerInfoWrapper>
     </TeamItemStyled>
   );
 };

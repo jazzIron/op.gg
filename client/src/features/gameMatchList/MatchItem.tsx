@@ -45,7 +45,7 @@ export function MatchItem({ items, ward, isWin }: MatchItemPropTypes) {
         <EtcItemStyled>
           {wardItem.length === 0 ? (
             <ItemImageStyled>
-              <ItemEmptyStyled isWin={isWin} />{' '}
+              <ItemEmptyStyled isWin={isWin} />
             </ItemImageStyled>
           ) : (
             <ToolTips

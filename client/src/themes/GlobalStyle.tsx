@@ -132,6 +132,7 @@ export default function GlobalStyle(): JSX.Element {
         a:active,
         a:hover {
           text-decoration: none;
+          color: #000;
         }
 
         table {

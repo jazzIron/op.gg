@@ -1,4 +1,4 @@
-const ROOT_URL = `${process.env.ROOT_URL}/summoner`;
+import { ROOT_URL } from './urlConfig';
 
 const OP_GG_API = {
   // 소환사 기본 정보 API

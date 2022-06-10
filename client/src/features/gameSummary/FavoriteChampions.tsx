@@ -2,8 +2,10 @@ import styled from '@emotion/styled';
 import { ICON_LIST } from '@src/components/icon';
 import { FavoriteChampion } from '@src/store/match/Match_types';
 import { colors, fonts } from '@src/themes';
-import { matchSummary, positionItem, kdaStyled } from '@src/utils/match';
+import { movePageChampionDetailPage } from '@src/utils/common';
+import { matchSummary, positionItem, kdaStyled, getChampionName } from '@src/utils/match';
 import { isNull } from 'lodash';
+import { FavoritePositionEmpty } from './FavoritePositionEmpty';
 
 const FAVORITE_CHAMPION_COUNT = 3;
 
@@ -34,10 +36,11 @@ interface FavoriteChampionPropTypes {
 }
 
 export function FavoriteChampions({ champions }: FavoriteChampionPropTypes) {
-  if (isNull(champions)) return <></>;
+  if (isNull(champions)) return <FavoritePositionEmpty type={'CHAMPION'} />;
   return (
     <FavoriteChampionWrapper>
       {champions.map((champion) => {
+        const ChampionName = getChampionName(champion.imageUrl);
         const { win, lose } = matchSummary(champion.wins, champion.losses);
         const { positionWinningRateValue, winningRateColor } = positionItem(
           champion.wins,
@@ -47,7 +50,7 @@ export function FavoriteChampions({ champions }: FavoriteChampionPropTypes) {
         const { kdaColor, kdaValue } = kdaStyled(champion.kills, champion.assists, champion.deaths);
         return (
           <ChampionBoxWrapper key={champion.id}>
-            <ChampionAvatarWrapper>
+            <ChampionAvatarWrapper onClick={() => movePageChampionDetailPage(ChampionName)}>
               <img src={champion.imageUrl} alt="ChampionAvatarImg" />
             </ChampionAvatarWrapper>
             <ChampionDetailWrapper>
@@ -94,6 +97,7 @@ const ChampionAvatarWrapper = styled.div`
   min-height: 34px;
   border-radius: 70%;
   overflow: hidden;
+  cursor: pointer;
   img {
     width: 34px;
     height: 34px;

@@ -3,12 +3,14 @@ import { Position } from '@src/store/match/Match_types';
 import { colors, fonts } from '@src/themes';
 import { positionItem, positionInfo } from '@src/utils/match';
 import { isNull } from 'lodash';
+import { FavoritePositionEmpty } from './FavoritePositionEmpty';
 
 interface FavoritePositionPropTypes {
   positions: Position[] | null;
 }
 export function FavoritePosition({ positions }: FavoritePositionPropTypes) {
-  if (isNull(positions)) return <></>;
+  if (isNull(positions)) return <FavoritePositionEmpty type={'POSITION'} />;
+
   const positionTotalGame = positions.reduce((acc, cur) => acc + cur.games, 0);
   return (
     <FavoritePositionWrapper>

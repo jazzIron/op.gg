@@ -10,10 +10,11 @@ import {
 } from '@src/components/skeleton/skeleton_styled';
 import { SummonerDetailResult } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
-import { positionItem } from '@src/utils/match';
+import { getChampionName, positionItem } from '@src/utils/match';
 import { isNull } from 'lodash';
 import { ChampionMatchEmpty } from './ChampionMatchEmpty';
 import React from 'react';
+import { movePageChampionDetailPage } from '@src/utils/common';
 
 interface ChampionRateSummaryPropTypes {
   summonerDetail: SummonerDetailResult;
@@ -40,6 +41,7 @@ export function MemoizedChampionRateSummary({ summonerDetail }: ChampionRateSumm
     <ChampionRateSummaryWrapper>
       {recentWinRate.length > 0 ? (
         recentWinRate.map((champion, idx) => {
+          const ChampionName = getChampionName(champion.imageUrl);
           const games = champion.wins + champion.losses;
           const { positionWinningRateValue, winningRateColor } = positionItem(
             champion.wins,
@@ -50,7 +52,7 @@ export function MemoizedChampionRateSummary({ summonerDetail }: ChampionRateSumm
             <ChampionBoxWrapper key={idx}>
               <ChampionBoxStyled>
                 <ChampionAvatarWrapper>
-                  <ChampionAvatarStyled>
+                  <ChampionAvatarStyled onClick={() => movePageChampionDetailPage(ChampionName)}>
                     <img src={champion.imageUrl} alt="ChampionAvatarImg" />
                   </ChampionAvatarStyled>
                 </ChampionAvatarWrapper>
@@ -110,6 +112,7 @@ const ChampionAvatarStyled = styled.div`
   min-height: 32px;
   border-radius: 70%;
   overflow: hidden;
+  cursor: pointer;
   img {
     width: 32px;
     height: 32px;

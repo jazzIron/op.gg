@@ -1,3 +1,4 @@
+import { ORIGIN_URL_CHAMPIONS, ORIGIN_URL_SUMMONERS } from '@src/api';
 import { SummonerApi } from '@src/store/summoner/Summoner_types';
 import { isEmpty, isUndefined } from 'lodash';
 import { useEffect } from 'react';
@@ -15,6 +16,14 @@ const initTierRank = {
   tier: '',
   shortString: '',
   rankLp: '',
+};
+
+export const movePageChampionDetailPage = (searchKeyword: string) => {
+  window.open(`${ORIGIN_URL_CHAMPIONS}/${searchKeyword}`, '_blank');
+};
+
+export const movePageSummonerDetailPage = (searchKeyword: string) => {
+  window.open(`${ORIGIN_URL_SUMMONERS}/${searchKeyword}`, '_blank');
 };
 
 // 소환사 검색 PATH 체크
