@@ -1,6 +1,13 @@
 import { css, Global } from '@emotion/react';
 import { colors, theme } from '@src/themes';
-import { AppleSDGothicNeoB, AppleSDGothicNeoR, Helvetica, HelveticaBold } from '@src/asset/fonts';
+import {
+  AppleSDGothicNeoB,
+  AppleSDGothicNeoR,
+  Helvetica,
+  HelveticaBold,
+  NanumBarunGothic,
+  NanumBarunGothicBold,
+} from '@src/asset/fonts';
 export default function GlobalStyle(): JSX.Element {
   return (
     <Global
@@ -153,6 +160,14 @@ export default function GlobalStyle(): JSX.Element {
           src: url(${HelveticaBold});
         }
 
+        @font-face {
+          font-family: 'NanumBarunGothic';
+          src: url(${NanumBarunGothic});
+        }
+        @font-face {
+          font-family: 'NanumBarunGothicBold';
+          src: url(${NanumBarunGothicBold});
+        }
         body::-webkit-scrollbar {
           width: 4px;
           height: 4px;

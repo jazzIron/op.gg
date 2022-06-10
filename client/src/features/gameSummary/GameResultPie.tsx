@@ -68,8 +68,8 @@ export function GameResultPie({ summary }: GameResultPiePropTypes) {
 }
 
 const GameResultPieWrapper = styled.div`
-  padding: 16px 35px;
-  background-color: ${colors.white_four};
+  padding: 16px 24px;
+  background-color: transparent;
 `;
 
 const TitleWrapper = styled.div`

@@ -49,7 +49,7 @@ const NavBarStyled = styled.div<{ flex: number }>`
 
 const NavBarOption = styled.div<{ active: boolean }>`
   max-width: 43px;
-  font-family: 'AppleSDGothicNeoR';
+  font-family: 'NanumBarunGothic';
   font-size: 12px;
   letter-spacing: 0px;
   cursor: pointer;

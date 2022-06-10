@@ -71,12 +71,14 @@
 1. package install
 
    ```bash
+   cd client
    yarn install
    ```
 
 2. project start
 
    ```bash
+   cd client
    # react port 3000
    # production mode
    yarn start

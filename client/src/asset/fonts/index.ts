@@ -9,6 +9,9 @@ import AppleSDGothicNeoUL from './AppleSDGothicNeo/AppleSDGothicNeoUL.ttf';
 import Helvetica from './Helvetica/Helvetica.ttf';
 import HelveticaBold from './Helvetica/HelveticaBold.ttf';
 
+import NanumBarunGothic from './NanumBarunGothic/NanumBarunGothic.otf';
+import NanumBarunGothicBold from './NanumBarunGothic/NanumBarunGothicBold.otf';
+
 export {
   AppleSDGothicNeoB,
   AppleSDGothicNeoEB,
@@ -20,4 +23,6 @@ export {
   AppleSDGothicNeoUL,
   Helvetica,
   HelveticaBold,
+  NanumBarunGothic,
+  NanumBarunGothicBold,
 };

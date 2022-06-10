@@ -112,6 +112,7 @@ export function useSearchSummoner() {
   const selectSearchHistoryHandler = (keyword: string) => searchSummoner(keyword, 'SEARCH_SUBMIT');
 
   const searchSummoner = async (newValue: string, searchType: SEARCH_TYPE) => {
+    if (searchType === 'SEARCH_SUBMIT' && isEmpty(newValue)) return checkSearchKeyword();
     await resetSummonerDetail;
     await resetMatchResult();
     await searchSummonerCallback(newValue, searchType);
@@ -120,7 +121,7 @@ export function useSearchSummoner() {
   const searchSummonerCallback = useRecoilCallback(
     ({ snapshot, set }) =>
       async (newValue: string, searchType: SEARCH_TYPE) => {
-        if (isEmpty(newValue)) return checkSearchKeyword();
+        if (isEmpty(newValue)) return false;
         setAutoCompleteData([]);
         setIsHaveInputValue(false);
         const refreshId = Math.random();
