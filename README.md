@@ -58,11 +58,6 @@
 | babel.config      | babel 설정 파일                            |
 | tsconfig.json     | typescript 설정 파일                       |
 | webpack.config.js | webpack 설정파일                           |
-| layout            | 레이아웃 컴포넌트                          |
-| routes            | 라우터 설정 페이지 모음                    |
-| store             | recoil 모음 <br/>상태 초기값, 공용 값 정리 |
-| themes            | 테마 설정 모음                             |
-| utils             | 필요한 공통 유틸                           |
 
 ## Project Setting / Start
 
