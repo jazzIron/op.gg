@@ -1,16 +1,37 @@
 import styled from '@emotion/styled';
-import { Spinner } from '@src/components/loadingSpinner';
 import { colors, fonts } from '@src/themes';
 import { makeLeagueRank } from '@src/utils/common';
 import { getRankTypeName, SEASON } from '@src/utils/match';
 import { isEmpty, isNull } from 'lodash';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { RankTypePropTypes } from './Rank_types';
 import { UnRank } from './UnRank';
+import {
+  SkeletonImgWrapper,
+  SkeletonImg,
+  SkeletonInfo,
+  SkeletonContentItem,
+  SKELETON_SIZE,
+} from '@src/components/skeleton/skeleton_styled';
+import { Skeleton } from '@src/components/skeleton';
 
-export function Rank({ rankType, summonerDetail }: RankTypePropTypes) {
+export function MemoizedRank({ rankType, summonerDetail }: RankTypePropTypes) {
+  if (summonerDetail.loading || isNull(summonerDetail.summoner)) {
+    return (
+      <Skeleton gap={8} padding={20}>
+        <SkeletonImgWrapper>
+          <SkeletonImg imageSize={80} />
+        </SkeletonImgWrapper>
+        <SkeletonInfo>
+          <SkeletonContentItem size={SKELETON_SIZE.MEDIUM} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+        </SkeletonInfo>
+      </Skeleton>
+    );
+  }
+
   const rankTypeName = useMemo(() => getRankTypeName(rankType), [rankType]);
-  if (isNull(summonerDetail.summoner)) return <Spinner onActive={true} fullCover={false} />;
   const { summoner } = summonerDetail;
   const { rankInfo, totalGame, winningRateValue } = useMemo(
     () => makeLeagueRank(rankType, SEASON, summoner),
@@ -41,6 +62,14 @@ export function Rank({ rankType, summonerDetail }: RankTypePropTypes) {
     </RankWrapper>
   );
 }
+
+function RankPropsAreEqual(prevProps: any, nextProps: any) {
+  return (
+    prevProps.summonerDetail === nextProps.summonerDetail &&
+    prevProps.rankType === nextProps.rankType
+  );
+}
+export const Rank = React.memo(MemoizedRank, RankPropsAreEqual);
 
 const RankWrapper = styled.div`
   display: flex;

@@ -118,8 +118,3 @@ const KdaRatioWrapper = styled.div<{ kdaColor: string; winningRateColor: string 
     color: ${(props) => props.winningRateColor};
   }
 `;
-
-// export default React.memo(
-//   GameResultPie,
-//   (prevProps, nextProps) => prevProps.matchResult === nextProps.matchResult,
-// );

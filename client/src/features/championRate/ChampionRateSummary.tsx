@@ -1,15 +1,41 @@
 import styled from '@emotion/styled';
 import { GraphBar } from '@src/components/graphBar';
-import { RecentWinRate } from '@src/store/summoner';
+import { Skeleton } from '@src/components/skeleton';
+import {
+  SkeletonImgWrapper,
+  SkeletonImg,
+  SkeletonInfo,
+  SkeletonContentItem,
+  SKELETON_SIZE,
+} from '@src/components/skeleton/skeleton_styled';
+import { SummonerDetailResult } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
 import { positionItem } from '@src/utils/match';
+import { isNull } from 'lodash';
 import { ChampionMatchEmpty } from './ChampionMatchEmpty';
+import React from 'react';
 
 interface ChampionRateSummaryPropTypes {
-  recentWinRate: RecentWinRate[];
+  summonerDetail: SummonerDetailResult;
 }
 
-export function ChampionRateSummary({ recentWinRate }: ChampionRateSummaryPropTypes) {
+export function MemoizedChampionRateSummary({ summonerDetail }: ChampionRateSummaryPropTypes) {
+  if (summonerDetail.loading || isNull(summonerDetail.summonerMost)) {
+    return (
+      <Skeleton gap={8} padding={10} bordered={false}>
+        <SkeletonImgWrapper>
+          <SkeletonImg imageSize={40} />
+        </SkeletonImgWrapper>
+        <SkeletonInfo>
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+        </SkeletonInfo>
+      </Skeleton>
+    );
+  }
+  const { recentWinRate } = summonerDetail.summonerMost;
+
   return (
     <ChampionRateSummaryWrapper>
       {recentWinRate.length > 0 ? (
@@ -49,6 +75,14 @@ export function ChampionRateSummary({ recentWinRate }: ChampionRateSummaryPropTy
     </ChampionRateSummaryWrapper>
   );
 }
+
+function ChampionRateSummaryPropsAreEqual(prevProps: any, nextProps: any) {
+  return prevProps.summonerDetail === nextProps.summonerDetail;
+}
+export const ChampionRateSummary = React.memo(
+  MemoizedChampionRateSummary,
+  ChampionRateSummaryPropsAreEqual,
+);
 
 const ChampionRateSummaryWrapper = styled.div`
   background-color: ${colors.white_five};

@@ -11,7 +11,6 @@ import { summonerMatchResult } from '@src/store/match';
 export function MainSummoner() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
   const matchResult = useRecoilValue(summonerMatchResult);
-
   return (
     <MainSummonerWrapper>
       <SummonerBasicWrapper>

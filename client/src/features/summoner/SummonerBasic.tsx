@@ -1,22 +1,40 @@
 import styled from '@emotion/styled';
 import { Spinner } from '@src/components/loadingSpinner';
+import { Skeleton } from '@src/components/skeleton';
+import {
+  SkeletonImgWrapper,
+  SkeletonImg,
+  SkeletonInfo,
+  SkeletonContentItem,
+  SKELETON_SIZE,
+} from '@src/components/skeleton/skeleton_styled';
 import { SummonerDetailResult } from '@src/store/summoner';
 import { fonts } from '@src/themes';
 import { numberMark } from '@src/utils/formatter';
 import { isNull } from 'lodash';
 import TierTag from './TierTag';
-
+import React from 'react';
 interface SummonerBasicPropTypes {
   summonerDetail: SummonerDetailResult;
 }
 
-export function SummonerBasic({ summonerDetail }: SummonerBasicPropTypes) {
-  if (isNull(summonerDetail.summoner))
+export function MemoizedSummonerBasic({ summonerDetail }: SummonerBasicPropTypes) {
+  if (summonerDetail.loading || isNull(summonerDetail.summoner)) {
     return (
-      <SummonerBasicLoadingWrapper>
-        <Spinner onActive={true} fullCover={false} />
-      </SummonerBasicLoadingWrapper>
+      <SkeletonLoadingWrapper>
+        <Skeleton gap={16} padding={40} bordered={false}>
+          <SkeletonImgWrapper>
+            <SkeletonImg imageSize={100} />
+          </SkeletonImgWrapper>
+          <SkeletonInfo>
+            <SkeletonContentItem size={SKELETON_SIZE.MEDIUM} />
+            <SkeletonContentItem size={SKELETON_SIZE.MEDIUM} />
+            <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          </SkeletonInfo>
+        </Skeleton>
+      </SkeletonLoadingWrapper>
     );
+  }
 
   const { ladderRank, name, level, profileBorderImageUrl, profileImageUrl, previousTiers } =
     summonerDetail.summoner;
@@ -47,12 +65,19 @@ export function SummonerBasic({ summonerDetail }: SummonerBasicPropTypes) {
   );
 }
 
-const SummonerBasicLoadingWrapper = styled.div`
+function SummonerBasicPropsAreEqual(prevProps: any, nextProps: any) {
+  return prevProps.summonerDetail === nextProps.summonerDetail;
+}
+export const SummonerBasic = React.memo(MemoizedSummonerBasic, SummonerBasicPropsAreEqual);
+
+const SkeletonLoadingWrapper = styled.div`
   display: flex;
-  width: 1080px;
+  width: 500px;
   height: 175px;
-  min-height: 175px;
-  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
 `;
 
 const SummonerBasicWrapper = styled.div`

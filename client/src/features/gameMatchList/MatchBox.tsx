@@ -9,11 +9,20 @@ import { summonerMatchResult } from '@src/store/match/MatchState';
 import { isNull } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
+import { MatchSkeleton } from './MatchSkeleton';
 
 export function MatchBox() {
   const matchResult = useRecoilValue(summonerMatchResult);
+  if (matchResult.loading || isNull(matchResult.games)) {
+    return (
+      <>
+        {new Array(7).fill(1).map((_, i) => {
+          return <MatchSkeleton key={i} />;
+        })}
+      </>
+    );
+  }
 
-  if (isNull(matchResult.games)) return <></>;
   return (
     <>
       {matchResult.games.map((game) => {

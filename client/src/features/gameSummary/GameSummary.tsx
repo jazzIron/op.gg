@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
 import { summonerMatchResult } from '@src/store/match/MatchState';
 import { colors } from '@src/themes';
+import { isNull } from 'lodash';
 import { useRecoilValue } from 'recoil';
 import { FavoriteChampions } from './FavoriteChampions';
 import { FavoritePosition } from './FavoritePosition';
 import { GameResultPie } from './GameResultPie';
+import { GameSummarySkeleton } from './GameSummarySkeleton';
 
 export function GameSummary() {
   const matchResult = useRecoilValue(summonerMatchResult);
+  if (matchResult.loading || isNull(matchResult)) {
+    return <GameSummarySkeleton />;
+  }
+
   return (
     <GameSummaryWrapper>
       <GameResultPie summary={matchResult.summary} />

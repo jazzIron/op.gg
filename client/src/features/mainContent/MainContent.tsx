@@ -4,15 +4,10 @@ import { GameSummary } from '../gameSummary/GameSummary';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { NavBar } from '@src/components/navBar';
-import {
-  SummonerMatchResultApi,
-  activeMatchTypeState,
-  SummonerMatchResult,
-} from '@src/store/match';
+import { activeMatchTypeState, SummonerMatchResult } from '@src/store/match';
 import { titleBarLabelCustom } from '@src/utils/common';
 import { OPTIONS } from '@src/utils/match';
 import { ChampionMatchEmpty } from '../championRate/ChampionMatchEmpty';
-import { isNil, isNull } from 'lodash';
 
 interface MainContentProps {
   matchResult: SummonerMatchResult | null;

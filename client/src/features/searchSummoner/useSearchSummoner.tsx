@@ -38,10 +38,6 @@ export function useSearchSummoner() {
     setLocalStorage(LOCAL_STORAGE_SEARCH_NAME!, JSON.stringify(keywords));
   }, [keywords]);
 
-  useEffect(() => {
-    setLocalStorage(LOCAL_STORAGE_FAVORITE_NAME!, JSON.stringify(keywords));
-  }, [favoriteSummoner]);
-
   const outsideCallback = () => {
     setAutoCompleteData([]);
     setIsHaveInputValue(false);

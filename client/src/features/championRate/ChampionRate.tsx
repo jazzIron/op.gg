@@ -1,17 +1,42 @@
 import styled from '@emotion/styled';
-import { Champion } from '@src/store/summoner';
+import { Skeleton } from '@src/components/skeleton';
+import {
+  SkeletonImgWrapper,
+  SkeletonImg,
+  SkeletonInfo,
+  SkeletonContentItem,
+  SKELETON_SIZE,
+} from '@src/components/skeleton/skeleton_styled';
+import { SummonerDetailResult } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
 import { kdaStyled, matchSummary, positionItem } from '@src/utils/match';
+import { isNull } from 'lodash';
 import { ChampionMatchEmpty } from './ChampionMatchEmpty';
+import React from 'react';
 
 interface ChampionRatePropTypes {
-  champions: Champion[];
+  summonerDetail: SummonerDetailResult;
 }
 
-export function ChampionRate({ champions }: ChampionRatePropTypes) {
+export function MemoizedChampionRate({ summonerDetail }: ChampionRatePropTypes) {
+  if (summonerDetail.loading || isNull(summonerDetail.summonerMost)) {
+    return (
+      <Skeleton gap={8} padding={10} bordered={false}>
+        <SkeletonImgWrapper>
+          <SkeletonImg imageSize={40} />
+        </SkeletonImgWrapper>
+        <SkeletonInfo>
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+          <SkeletonContentItem size={SKELETON_SIZE.SMALL} />
+        </SkeletonInfo>
+      </Skeleton>
+    );
+  }
+  const { champions } = summonerDetail.summonerMost;
   return (
     <ChampionRateWrapper>
-      {champions.length > 0 ? (
+      {summonerDetail.summonerMost.champions.length > 0 ? (
         champions.map((champion, idx) => {
           const { total } = matchSummary(champion.wins, champion.losses);
           const { positionWinningRateValue, winningRateColor } = positionItem(
@@ -56,6 +81,11 @@ export function ChampionRate({ champions }: ChampionRatePropTypes) {
     </ChampionRateWrapper>
   );
 }
+
+function ChampionRatePropsAreEqual(prevProps: any, nextProps: any) {
+  return prevProps.summonerDetail === nextProps.summonerDetail;
+}
+export const ChampionRate = React.memo(MemoizedChampionRate, ChampionRatePropsAreEqual);
 
 const ChampionRateWrapper = styled.div`
   width: 100%;

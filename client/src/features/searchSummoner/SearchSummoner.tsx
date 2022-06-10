@@ -7,14 +7,10 @@ import { useMainContent } from '../mainContent/useMainContent';
 import { useSearchSummoner } from './useSearchSummoner';
 import { useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { isEmpty, isNull, isUndefined } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
 import { RouteList } from '@src/routes/RouteList';
 import { activeMatchTypeState } from '@src/store/match';
 import { useRecoilValue } from 'recoil';
-
-// TODO: 스켈레톤 로딩
-// TODO: REACT.MEMO, CALLBACK 최적화
-// TODO: 스크롤  IntersectionObserver, 해더 따라오기?
 
 export function SearchSummoner() {
   const navigate = useNavigate();

@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import './test.scss';
 
@@ -10,6 +11,16 @@ export function TestPage() {
     </TestPageWrapper>
   );
 }
+
+const loading = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  50%,
+  100% {
+    transform: translateX(460px);
+  }
+`;
 
 const TestPageWrapper = styled.div`
   margin-top: 300px;
@@ -42,7 +53,7 @@ const Skeleton = () => {
       width: 50px;
       height: 100%;
       background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
-      animation: loading 5s infinite linear;
+      animation: ${loading} 5s infinite linear;
     }
   `;
 
@@ -68,7 +79,7 @@ const Skeleton = () => {
       width: 40%;
       height: 100%;
       background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
-      animation: loading 2s infinite linear;
+      animation: ${loading} 2s infinite linear;
     }
   `;
 
@@ -87,7 +98,7 @@ const Skeleton = () => {
       width: 55%;
       height: 100%;
       background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
-      animation: loading 2s infinite linear;
+      animation: ${loading} 2s infinite linear;
     }
   `;
 
