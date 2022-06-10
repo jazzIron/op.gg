@@ -120,10 +120,10 @@ const EtcItemStyled = styled.div`
 const WardWrapper = styled.div`
   display: flex;
   align-items: center;
-  ${fonts.textStyle04};
-  color: ${colors.black_two};
   letter-spacing: -0.42px;
   > div {
+    ${fonts.textStyle04};
+    color: ${colors.black_two};
     margin-left: 4px;
   }
 `;

@@ -40,7 +40,7 @@ export function FavoritePosition({ positions }: FavoritePositionPropTypes) {
 
 const FavoritePositionWrapper = styled.div`
   padding: 16px;
-  background-color: ${colors.white_four};
+  background-color: transparent;
   > div {
     margin-bottom: 12px;
   }

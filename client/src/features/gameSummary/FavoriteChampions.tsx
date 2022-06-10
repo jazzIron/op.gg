@@ -52,16 +52,14 @@ export function FavoriteChampions({ champions }: FavoriteChampionPropTypes) {
             </ChampionAvatarWrapper>
             <ChampionDetailWrapper>
               <ChampionLabelStyled>{champion.name}</ChampionLabelStyled>
-              <ChampionRateStyled kdaColor={kdaColor} winningRateColor={winningRateColor}>
-                <span>
-                  {positionWinningRateValue}%
+              <ChampionRateStyled>
+                <WinLoseStyled winningRateColor={winningRateColor}>
+                  <span>{positionWinningRateValue}% </span>
                   <span>
                     ({win} {lose})
                   </span>
-                </span>
-                <span>
-                  {kdaValue} <span>평점</span>
-                </span>
+                </WinLoseStyled>
+                <KdaStyled kdaColor={kdaColor}>{kdaValue} 평점</KdaStyled>
               </ChampionRateStyled>
             </ChampionDetailWrapper>
           </ChampionBoxWrapper>
@@ -74,8 +72,7 @@ export function FavoriteChampions({ champions }: FavoriteChampionPropTypes) {
 
 const FavoriteChampionWrapper = styled.div`
   padding: 16px;
-  background-color: ${colors.white_four};
-
+  background-color: transparent;
   > div {
     margin-bottom: 12px;
   }
@@ -107,31 +104,15 @@ const ChampionAvatarWrapper = styled.div`
 const ChampionDetailWrapper = styled.div``;
 
 const ChampionLabelStyled = styled.div`
-  font-family: 'Helvetica';
+  font-family: 'NanumBarunGothic';
   font-size: 14px;
   letter-spacing: 0px;
   margin-bottom: 3px;
   color: ${colors.black};
 `;
-const ChampionRateStyled = styled.div<{ kdaColor: string; winningRateColor: string }>`
+const ChampionRateStyled = styled.div`
   display: flex;
   align-items: center;
-  > span:nth-of-type(1) {
-    ${fonts.textStyle11};
-    color: ${(props) => props.winningRateColor};
-    font-weight: bold;
-    > span {
-      color: ${colors.greyish_brown};
-      font-weight: normal;
-    }
-  }
-  > span:nth-of-type(2) {
-    ${fonts.textStyle05};
-    color: ${(props) => props.kdaColor};
-    > span {
-      color: ${colors.brownish_grey_two};
-    }
-  }
   > span:nth-of-type(2)::before {
     display: inline-block;
     margin-left: 6px;
@@ -141,4 +122,22 @@ const ChampionRateStyled = styled.div<{ kdaColor: string; winningRateColor: stri
     height: 12px;
     vertical-align: middle;
   }
+`;
+
+const WinLoseStyled = styled.span<{ winningRateColor: string }>`
+  > span:nth-of-type(1) {
+    ${fonts.textStyle11};
+    color: ${(props) => props.winningRateColor};
+    font-weight: bold;
+  }
+  > span:nth-of-type(2) {
+    ${fonts.textStyle11};
+    color: ${colors.greyish_brown};
+  }
+`;
+
+const KdaStyled = styled.span<{ kdaColor: string }>`
+  ${fonts.textStyle05};
+  color: ${(props) => props.kdaColor};
+  font-weight: bold;
 `;

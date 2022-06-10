@@ -45,4 +45,8 @@ const LogoStyled = styled.img`
   width: 150px;
 `;
 
-const SearchInputWrapper = styled.div``;
+const SearchInputWrapper = styled.div`
+  position: relative;
+  top: 30px;
+  left: 50px;
+`;

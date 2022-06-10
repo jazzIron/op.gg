@@ -1,4 +1,4 @@
-import { isNil, isEmpty } from 'lodash';
+import { isNil } from 'lodash';
 
 export const parenthesisExtraction = (value: string) => {
   const regExp = /\(([^)]+)\)/;

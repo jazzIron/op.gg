@@ -89,6 +89,7 @@ const MatchTagsWrapper = styled.div`
 `;
 
 const StatsWrapper = styled.div`
+  margin-top: -15px;
   width: 90px;
   display: inline-flex;
   flex-direction: column;
@@ -99,8 +100,17 @@ const StatsWrapper = styled.div`
   color: ${colors.gunmetal};
   letter-spacing: -0.42px;
 `;
-const LevelStyed = styled.div``;
-const CsStyled = styled.div``;
+const LevelStyed = styled.div`
+  ${fonts.textStyle04};
+  color: ${colors.gunmetal};
+  letter-spacing: -0.42px;
+`;
+const CsStyled = styled.div`
+  ${fonts.textStyle04};
+  color: ${colors.gunmetal};
+`;
 const KillParticipation = styled.div`
+  ${fonts.textStyle04};
   color: ${colors.scarlet};
+  letter-spacing: -0.42px;
 `;

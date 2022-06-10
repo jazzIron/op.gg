@@ -12,17 +12,19 @@ export function MainSummoner() {
   const summonerDetail = useRecoilValue(summonerDetailResult);
   const matchResult = useRecoilValue(summonerMatchResult);
   return (
-    <MainSummonerWrapper>
+    <>
       <SummonerBasicWrapper>
         <SummonerBasic summonerDetail={summonerDetail} />
       </SummonerBasicWrapper>
-      <ContentWrapper>
-        <Content>
-          <LeftContent summonerDetail={summonerDetail} />
-          <MainContent matchResult={matchResult} />
-        </Content>
-      </ContentWrapper>
-    </MainSummonerWrapper>
+      <MainSummonerWrapper>
+        <ContentWrapper>
+          <Content>
+            <LeftContent summonerDetail={summonerDetail} />
+            <MainContent matchResult={matchResult} />
+          </Content>
+        </ContentWrapper>
+      </MainSummonerWrapper>
+    </>
   );
 }
 

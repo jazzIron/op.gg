@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Spinner } from '@src/components/loadingSpinner';
 import { Skeleton } from '@src/components/skeleton';
 import {
   SkeletonImgWrapper,
@@ -9,11 +8,12 @@ import {
   SKELETON_SIZE,
 } from '@src/components/skeleton/skeleton_styled';
 import { SummonerDetailResult } from '@src/store/summoner';
-import { fonts } from '@src/themes';
+import { colors, fonts } from '@src/themes';
 import { numberMark } from '@src/utils/formatter';
 import { isNull } from 'lodash';
 import TierTag from './TierTag';
 import React from 'react';
+import { ICON_LIST } from './../../components/icon/IconList';
 interface SummonerBasicPropTypes {
   summonerDetail: SummonerDetailResult;
 }
@@ -41,25 +41,27 @@ export function MemoizedSummonerBasic({ summonerDetail }: SummonerBasicPropTypes
 
   return (
     <SummonerBasicWrapper>
-      <TierTagWrapper>
-        <TierTag previousTiers={previousTiers} />
-      </TierTagWrapper>
-
       <SummonerBasicStyled>
-        <SummonerAvatar>
-          <img src={profileImageUrl} alt={'summoner_profile_image'} />
-          <img src={profileBorderImageUrl} alt={'summoner_profile_border_image'} />
-          <div>
-            <span>{level}</span>
-          </div>
-        </SummonerAvatar>
-        <SummonerInfoWrapper>
-          <div>{name}</div>
-          <div>
-            <span>레더 랭킹</span> <span>{numberMark(String(ladderRank.rank), ',')}</span>위
-            <span> (상위 {ladderRank.rankPercentOfTop.toFixed(1)}%)</span>
-          </div>
-        </SummonerInfoWrapper>
+        <TierTagWrapper>
+          <TierTag previousTiers={previousTiers} />
+        </TierTagWrapper>
+
+        <SummonerBasicInfoStyled>
+          <SummonerAvatar>
+            <img src={profileImageUrl} alt={'summoner_profile_image'} />
+            <img src={profileBorderImageUrl} alt={'summoner_profile_border_image'} />
+            <div>
+              <span>{level}</span>
+            </div>
+          </SummonerAvatar>
+          <SummonerInfoWrapper>
+            <div>{name}</div>
+            <div>
+              <span>레더 랭킹</span> <span>{numberMark(String(ladderRank.rank), ',')}</span>위
+              <span> (상위 {ladderRank.rankPercentOfTop.toFixed(1)}%)</span>
+            </div>
+          </SummonerInfoWrapper>
+        </SummonerBasicInfoStyled>
       </SummonerBasicStyled>
     </SummonerBasicWrapper>
   );
@@ -80,7 +82,9 @@ const SkeletonLoadingWrapper = styled.div`
   margin-left: 10px;
 `;
 
-const SummonerBasicWrapper = styled.div`
+const SummonerBasicWrapper = styled.div``;
+
+const SummonerBasicStyled = styled.div`
   display: flex;
   width: 1080px;
   height: 175px;
@@ -94,7 +98,7 @@ const TierTagWrapper = styled.div`
   margin-left: 12px;
 `;
 
-const SummonerBasicStyled = styled.div`
+const SummonerBasicInfoStyled = styled.div`
   display: flex;
   gap: 16px;
   margin-top: 6px;
@@ -129,7 +133,7 @@ const SummonerAvatar = styled.div`
     width: 44px;
     height: 24px;
     ${fonts.textStyle08};
-    background: url(https://s-lol-web.op.gg/static/images/site/summoner/bg-levelbox.png);
+    background: url(${ICON_LIST.levelBox});
     > span {
     }
   }

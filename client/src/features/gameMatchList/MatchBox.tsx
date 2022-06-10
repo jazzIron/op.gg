@@ -95,7 +95,6 @@ const StatusWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 204px;
-  padding-top: 13px;
 `;
 const ItemWrapper = styled.div`
   padding-top: 15px;

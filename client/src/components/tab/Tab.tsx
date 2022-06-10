@@ -64,7 +64,7 @@ const TabItemStyled = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.white_five};
+  background-color: ${colors.white_four};
   position: relative;
   cursor: pointer;
   border-bottom: 1px solid ${colors.silver_three};

@@ -27,7 +27,7 @@ const GameSummaryWrapper = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid ${colors.silver_three};
-  background-color: ${colors.white_four};
+  background-color: transparent;
   border-radius: 2px;
   margin-bottom: 8px;
   > div:nth-of-type(1) {
