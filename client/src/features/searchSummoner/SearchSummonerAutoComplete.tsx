@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { SummonerApi } from '@src/store/summoner';
 import { colors, fonts } from '@src/themes';
+import { useMemo } from 'react';
 
 interface SearchSummonerAutoCompletePropTypes {
-  summoners: SummonerApi[];
+  summoners: SummonerApi[] | null | undefined;
   onSelectSummoner: (event: React.MouseEvent<HTMLDivElement>, summoner: SummonerApi) => void;
 }
 
@@ -19,9 +20,12 @@ export function SearchSummonerAutoComplete({
   summoners,
   onSelectSummoner,
 }: SearchSummonerAutoCompletePropTypes) {
+  const active = useMemo(() => (summoners && summoners.length > 0 ? true : false), [summoners]);
+
   return (
-    <SearchSummonerAutoCompleteWrapper>
-      {summoners &&
+    <SearchSummonerAutoCompleteWrapper active={active}>
+      {active &&
+        summoners &&
         summoners.map((summoner) => (
           <SummonerBox key={summoner.name} onClick={(event) => onSelectSummoner(event, summoner)}>
             <SummonerProfileImageStyled>
@@ -37,13 +41,15 @@ export function SearchSummonerAutoComplete({
   );
 }
 
-const SearchSummonerAutoCompleteWrapper = styled.div`
+const SearchSummonerAutoCompleteWrapper = styled.div<{ active: boolean }>`
   position: absolute;
   background: rgb(255, 255, 255);
   top: 34px;
   width: 100%;
-  box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
   overflow: hidden;
+  opacity: ${(props) => (props.active ? `1` : `0`)};
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
   z-index: 3;
 `;
 

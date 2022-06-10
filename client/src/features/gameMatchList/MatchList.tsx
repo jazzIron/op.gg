@@ -11,7 +11,7 @@ export function MatchList() {
 }
 
 const MatchListWrapper = styled.div`
-  margin-top: 16px;
+  margin-top: 8px;
   background-color: ${colors.white_four};
   > div {
     margin-bottom: 8px;

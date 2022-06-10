@@ -40,7 +40,7 @@ export const summonerMatchResultQuery = atomFamily<
       games: null,
       positions: null,
       summary: null,
-      loading: false,
+      loading: true,
       error: true,
     };
   },
@@ -53,7 +53,7 @@ export const summonerMatchResult = atom<SummonerMatchResult>({
     games: null,
     positions: null,
     summary: null,
-    loading: false,
+    loading: true,
     error: true,
   },
 });

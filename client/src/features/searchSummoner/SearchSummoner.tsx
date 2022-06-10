@@ -7,7 +7,7 @@ import { useMainContent } from '../mainContent/useMainContent';
 import { useSearchSummoner } from './useSearchSummoner';
 import { useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { isEmpty, isNull } from 'lodash';
+import { isNull } from 'lodash';
 import { RouteList } from '@src/routes/RouteList';
 import { activeMatchTypeState } from '@src/store/match';
 import { useRecoilValue } from 'recoil';
@@ -64,20 +64,17 @@ export function SearchSummoner() {
         onBlur={inputBlurHandler}
         onSubmit={(event) => searchHandler(event)}
       />
-      {isHaveInputValue && (
-        <SearchHistoryContents
-          keywords={keywords}
-          onSelectSearchHistory={selectSearchHistoryHandler}
-          onRemoveSearchHistory={removeSearchHistoryHandler}
-        />
-      )}
+      <SearchHistoryContents
+        keywords={keywords}
+        active={isHaveInputValue}
+        onSelectSearchHistory={selectSearchHistoryHandler}
+        onRemoveSearchHistory={removeSearchHistoryHandler}
+      />
 
-      {autoCompleteData && (
-        <SearchSummonerAutoComplete
-          summoners={autoCompleteData}
-          onSelectSummoner={selectSummonerHandler}
-        />
-      )}
+      <SearchSummonerAutoComplete
+        summoners={autoCompleteData}
+        onSelectSummoner={selectSummonerHandler}
+      />
     </SearchSummonerWrapper>
   );
 }

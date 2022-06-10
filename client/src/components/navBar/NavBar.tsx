@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { colors } from '@src/themes';
 import { MouseEvent } from 'react';
 
-export function NavBar({ options, activeId, onChange }: NavBarOptions) {
+export function NavBar({ options, activeId, children, onChange }: NavBarOptions) {
   const handleMouseDown = (e: MouseEvent<HTMLInputElement>) => e.preventDefault();
 
   return (

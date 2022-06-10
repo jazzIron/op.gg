@@ -29,6 +29,7 @@ const GameSummaryWrapper = styled.div`
   border: 1px solid ${colors.silver_three};
   background-color: ${colors.white_four};
   border-radius: 2px;
+  margin-bottom: 8px;
   > div:nth-of-type(1) {
     min-width: 260px;
   }

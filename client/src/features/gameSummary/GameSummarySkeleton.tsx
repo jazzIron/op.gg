@@ -63,6 +63,8 @@ const GameSummarySkeletonWrapper = styled.div`
   align-items: center;
   border: 1px solid #cdd2d2;
   border-radius: 2px;
+  background-color: #f2f2f2;
+  min-height: 172px;
 `;
 
 const GameResultPieWrapper = styled.div`
@@ -72,6 +74,8 @@ const GameResultPieWrapper = styled.div`
 const FavoriteChampionWrapper = styled.div`
   min-width: 240px;
   margin: auto;
+  border-left: 1px solid #cdd2d2;
+  border-right: 1px solid #cdd2d2;
 `;
 const FavoritePositionWrapper = styled.div`
   min-width: 184px;

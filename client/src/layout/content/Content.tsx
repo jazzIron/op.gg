@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { LeftContent } from '@src/features/leftContent/LeftContent';
-import { MainContent } from '@src/features/mainContent/MainContent';
 
 interface ContentPropTypes {
   children: string | JSX.Element | JSX.Element[];
@@ -26,5 +24,6 @@ const ContentWrapper = styled.div`
     min-width: 690px;
     max-width: 690px;
     margin-left: 10px;
+    margin-bottom: 10px;
   }
 `;

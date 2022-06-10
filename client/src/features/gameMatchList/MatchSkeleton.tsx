@@ -27,6 +27,9 @@ export function MatchSkeleton() {
 
 const MatchSkeletonWrapper = styled.div`
   margin-bottom: 8px;
+  > div {
+    height: 100px;
+  }
   > div:last-child {
     margin-bottom: 0px;
   }

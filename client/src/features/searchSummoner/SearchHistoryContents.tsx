@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { NavBar } from '@src/components/navBar';
 import { HistorySearchItem } from '@src/store/summoner';
@@ -9,12 +10,14 @@ import { SearchSummonerHistory } from './SearchSummonerHistory';
 
 interface SearchHistoryContentsPropTypes {
   keywords: HistorySearchItem[];
+  active: boolean;
   onSelectSearchHistory: (name: string) => void;
   onRemoveSearchHistory: (id: string) => void;
 }
 
 export function SearchHistoryContents({
   keywords,
+  active,
   onSelectSearchHistory,
   onRemoveSearchHistory,
 }: SearchHistoryContentsPropTypes) {
@@ -24,30 +27,36 @@ export function SearchHistoryContents({
   };
 
   return (
-    <SearchHistoryContentsWrapper>
-      <NavBar options={HISTORY_OPTIONS} activeId={activeNav} onChange={handleChangeNav} />
-      {activeNav === 'SEARCH' ? (
-        <SearchSummonerHistory
-          keywords={keywords}
-          onSelectSearchHistory={onSelectSearchHistory}
-          onRemoveSearchHistory={onRemoveSearchHistory}
-        />
-      ) : (
-        <SearchSummonerFavorite />
+    <SearchHistoryContentsWrapper active={active}>
+      {active && (
+        <>
+          <NavBar options={HISTORY_OPTIONS} activeId={activeNav} onChange={handleChangeNav} />
+          {activeNav === 'SEARCH' ? (
+            <SearchSummonerHistory
+              keywords={keywords}
+              onSelectSearchHistory={onSelectSearchHistory}
+              onRemoveSearchHistory={onRemoveSearchHistory}
+            />
+          ) : (
+            <SearchSummonerFavorite />
+          )}
+        </>
       )}
     </SearchHistoryContentsWrapper>
   );
 }
 
-const SearchHistoryContentsWrapper = styled.div`
+const SearchHistoryContentsWrapper = styled.div<{ active: boolean }>`
   position: absolute;
   width: 100%;
   max-width: 260px;
   top: 36px;
   right: 0px;
   background-color: ${colors.white_two};
-  box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px 0px;
   overflow: hidden;
+  opacity: ${(props) => (props.active ? `1` : `0`)};
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
   z-index: 2;
   > div {
     z-index: 3;
