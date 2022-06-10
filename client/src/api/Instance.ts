@@ -55,8 +55,7 @@ export async function api(apiConfig: AxiosRequestConfig) {
       }
     })
     .catch((error) => {
-      console.error(`[ERROR] AXIOS API REST ERROR!!! ===> ${error.toJSON()}`);
-      console.log(error);
+      console.error(`[ERROR] AXIOS API REST ERROR!!! ===> ${error}`);
       return {
         status: error.response && error.response.status !== 0 ? error.response.status : 9999,
         data: null,

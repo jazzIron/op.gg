@@ -13,6 +13,7 @@ function RouterDom() {
       <Route path={`${RouteList.SUMMONERS}/:summonerName`} element={<MainSummonerPage />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path={RouteList.TEST} element={<TestPage />} />
+      <Route path={RouteList.ERROR} element={<ErrorPage />} />
     </Routes>
   );
 }
